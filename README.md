@@ -9,6 +9,7 @@ Jeżeli już wypełniłeś poprzedni krok, w overlifie znajduje się dokuent z p
 1. Pisz normalnie pracę w Overleafie
 2. Gdy będziesz chciał zrobić commita:
     * Ctrl + A
+    * Ctrl + C
     * przechodzisz do repozytorium w VSC
     * Ctrl + V w pliku main.tex
     * *Jeżeli dodawałeś zdjęcia lub wpisy w bibliografi te też należy dodać do odpowiednich miejsc
