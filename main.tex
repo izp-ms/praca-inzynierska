@@ -125,6 +125,7 @@
 \usepackage{xurl}
 \usepackage{xstring}
 \usepackage{ifthen}
+\usepackage{float}
 
 
 
@@ -686,8 +687,7 @@ Dłuższe fragmenty lepiej jest umieszczać jako rysunek, np. kod na rys \ref{fi
 , a naprawdę długie fragmenty – w załączniku.
 
 
-\begin{figure}
-\centering
+\begin{figure}[H]
 \begin{lstlisting}
 class test : public basic
 {
@@ -724,6 +724,54 @@ class test : public basic
 
 
 
+
+\section{Biblioteki}
+\subsection{Biblioteka główna mobilna}
+\begin{itemize}
+    \item Flutter - jest to technologia stworzona przez firmę Google pozwalająca na tworzenie aplikacji na urządzenia Android jak i iOS używając tego samego kodu. Językiem wykorzystywanym podczas tworzenia tych aplikacji jest Dart który również został stworzony przez Google. Napisane we Flutterze aplikacje mobilne wyglądają i działają niemal identycznie na obu systemach z wydajnością która jest bardzo zbliżona do aplikacji natywnych. Fluttera tworzą dwa podstawowe elementy którymi są framework który jest niezbędny do poprawnego działania aplikacji oraz pakiet SDK który jest konieczny do ich tworzenia.
+\end{itemize}
+\subsection{Biblioteki mobilne dodatkowe}
+\begin{itemize}
+    \item intl - umożliwia stworzenie pliku zawierającego wszystkie wiadomości zawierające się w aplikacji oraz używanie odpowiednich plików z językami w zależności od tego wybranego w ustawieniach.
+    \item http - jest to biblioteka umożliwiająca komunikację pomiędzy aplikacją a serwerem używając żądań HTTP.
+    \item flutter\_bloc - biblioteka która zawiera w sobie widgey ułatwiająca wprowadzneie BLoC jako state management w naszej aplikacji.
+    \item flutter\_secure\_storage - w aplikacji używany jest do przechowywania JWT otrzymanego podczas logowania. Biblioteka szyfruje wartości jakie otrzymuje przed umieszczeniem ich w pamięci. Na platformie Android jest używane do tego Szyfrowanie AES, natomiast na platformie iOS jest to KeyChain. 
+    \item jwt\_decoder - jest małą biblioteka do dekodowania JWT. Dzięki niej możemy sprawdzić, czy token wygasł i na podstawie tego przekierować użytkownika na odpowiednią podstronę.
+    \item shimmer - biblioteka dodająca widget używany podczas ładowania danych z serwera.
+    \item image\_picker - oficjalna biblioteka umożliwiająca wybieranie zdjęć z galerii lub tworzenie od razu nowych i dalsze ich wykorzystywanie w aplikacji.
+    \item country\_picker - biblioteka dodająca widget do wybierania kraju.
+    \item auto\_size\_text - jest to biblioteka dająca większą kontrolę nad wyświetlanym tekstem. Dzięki niej łatwo możemy dla przykładu skalować tekst na mniejszych ekranach lub ustawiać limit wierszy przy zawijaniu.
+    \item background\_locator\_2 - jest to jedna z istotniejszych bibliotek w naszej aplikacji. Służy ona na do pobierania z telefonu koordynatów. Działanie funkcji nie jest przerywane przez danie aplikacji do karty lub jej całkowite wyłączenie. Biblioteka jest również rozwinięta o funkcje callback która jest wykonywana za każdym razem gdy pobierany są nowe koordynaty co umożliwia nam wykonywanie wtedy innych funkcji, nawet gdy aplikacja jest wyłączona.
+    \item path\_provider - biiblioteka wykorzystywana na lokalizowanie plików w systemie.
+    \item location\_permissions - umożliwia pobieranie lokalizacji z urządzenia. 
+    \item permission\_handler- biblioteka która obsługuje nadawanie oraz sprawdzanie istniejących zgód na wykorzystywanie poszczególnych serwisów w urządzeniu takich jak powiadomienia lub pamięć. 
+    \item geolocator - biblioteka która pozwala na komunikacje z serwisem odpowiedzialnym za lokallizację. W projekcie jest wykorzystywana w celu sprawdzenia czy lokazacja jest ciągle włączona na użądzeniu. 
+    \item cached\_memory\_image - Biblioteka umożliwiająca na zapisywanie grafik w pamięci telefonu co eliminuje miganie obrazów podczas ich ciągłego pobierania.
+    \item url\_launcher - umożliwia na otwieranie linków w osobnej karcie przeglądarki na użądzeniach mobilnych. 
+    \item loading\_animation\_widget - biblioteka zawierajaca animacje ładowania.
+    \item flutter\_animate - jest to biblioteka umożliwiająca animowania dowolnego widgetu w naszej aplikacji.
+    \item easy\_debounce - biblioteka uproszczająca oryginalny zapis debouncera języka Dart. 
+    \item shared\_preferences - służy do zapisywania różnych zmiennych w pamięci telefonu jako pary klucz-wartość w podobny sposób jak to robi secure storage. 
+    \item app\_settings - umożliwia otworzenie ustawień telefonu z poziomu aplikacji
+\end{itemize}
+\section{Architektura systemu}
+\subsection{Architektura modułu mobilnego}
+Architektura oparta na zdarzeniach (Event-Driven Architecture, EDA) stanowi kluczowy element naszego projektu aplikacji mobilnej. Wybraliśmy tę architekturę ze względu na jej zdolność do efektywnego zarządzania komunikacją między różnymi modułami i komponentami aplikacji, zwłaszcza w kontekście obsługi stanu i przetwarzania zdarzeń.
+
+W ramach tej architektury, BLoC i Cubit pełnią rolę obsługiwaczy zdarzeń.
+BLoC to jedno z narzędzi do zarządzania stanem w aplikacjach Flutter. Możemy go używać do obsługi wszystkich stanów, które chcemy kontrolować w naszych aplikacjach. Cubit to podzbiór wzorca projektowego BLoC, który upraszcza sposób zarządzania stanem aplikacji. W tym celu zastępuje użycie zdarzeń (używanych w BLoC) funkcjami, które odbudowują interfejs użytkownika poprzez emitowanie różnych stanów na strumieniu.
+
+Cubit jest podobny do BLoC, ale nie posiada pojęcia o zdarzeniach i polega na metodach do emitowania nowych stanów. Są odpowiedzialne za nasłuchiwanie i przetwarzanie zdarzeń, które są generowane w różnych częściach aplikacji. Na przykład, BLoC lub Cubit ds. uwierzytelniania może nasłuchiwać zdarzeń takich jak "zalogowanie użytkownika" lub "wylogowanie użytkownika" i reagować poprzez zmianę stanu uwierzytelnienia.
+
+Zdarzenia są generowane w odpowiedzi na różne interakcje użytkownika oraz na operacje asynchroniczne. Przykłady to zdarzenia "kliknięcia przycisku" w interfejsie użytkownika, "wysłania formularza" lub "zakończenia operacji pobierania danych z serwera". Zdarzenia te są kluczowe dla przekazywania informacji o działaniach i stanach aplikacji.
+
+Jednym z głównych celów EDA jest utrzymanie luźnego powiązania między różnymi komponentami naszej aplikacji. Oznacza to, że BLoC i Cubit nie muszą mieć wiedzy o źródle generowania zdarzenia, co przyczynia się do modularności i skalowalności projektu. Nowe funkcje i modyfikacje istniejących funkcji mogą być wprowadzane bez konieczności naruszania istniejącej struktury.
+
+Aplikacje Flutter często wymagają operacji asynchronicznych, takich jak komunikacja z serwerem lub dostęp do bazy danych. Dzięki architekturze opartej na zdarzeniach, te operacje asynchroniczne są inicjowane i obsługiwane poprzez generowanie i przetwarzanie zdarzeń. Jest to ważne dla zachowania spójności i zarządzania asynchronicznymi przepływami w aplikacji.
+
+Architektura oparta na zdarzeniach umożliwia także wprowadzenie warstwy pośredniej, która może przechwytywać, przetwarzać i filtrować zdarzenia przed ich dostarczeniem do odpowiednich BLoC lub Cubit. To zapewnia dodatkową kontrolę nad przepływem zdarzeń i może być używane do wykonywania ogólnych operacji, takich jak logowanie lub uwierzytelnianie.
+
+Wszystkie te elementy razem tworzą spójną i skalowalną architekturę, która umożliwia nam efektywne zarządzanie stanem i komunikacją w naszej aplikacji.
 
 % TODO
 \chapter{Weryfikacja i walidacja}
