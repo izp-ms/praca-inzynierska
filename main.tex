@@ -816,6 +816,15 @@ Poniżej znajdują się nazwy głównych folderów oraz opis plików jakie w sob
 \end{itemize}
 
 \subsection{Komunikacja aplikacji mobilnej z serwerem}
+Komunikacja aplikacji mobilnej z serwerem jest przeprowadzana za pomocą serwisów oraz cubitów. Cubity obsługują eventy które są wywoływane przez użytkownika. Obsługa eventów w większości przypadków przebiega następująco:
+\begin{itemize}
+    \item Zamiana stanu na stan ładownia.
+    \item Jeżeli jest to event polegający na wysłaniu zapytania do serwera to teraz jest ono wykonywane.
+    \item Przetworzenie informacji zwrotnych z serwera.
+    \item Ustawienie stanu załadowanego zawierającego nowe dane.
+\end{itemize}
+
+Wysłanie zapytania tak jak to było wspomniane powyżej jest wykonywane przez serwis. Każdy serwis zawiera zestaw zapytań dotyczący jednej dziedziny takiej jak autoryzacja lub dane szczegółowe użytkownika. Każde zapytanie poza rejestracją oraz logowaniem wymaga posiadania tokenu. Token ten otrzymujemy podczas logowania i przechowujemy go w secured storage. Jest on pobierany z pamięci urządzenia za każdym razem gdy wykonujemy zapytanie. Odpowiedź z serwera jest sprawdzana i w zależności czy zapytanie powiodło się to wywoływana jest metoda fromJson z odpowiedniego modelu response lub wyświetlany jest komunikat w postaci snackbara.
 
 % TODO
 \chapter{Weryfikacja i walidacja}
