@@ -796,23 +796,23 @@ Wszystkie te elementy razem tworzą spójną i skalowalną architekturę, która
 
 Poniżej znajdują się nazwy głównych folderów oraz opis plików jakie w sobie posiadają:
 \begin{itemize}
-    \item api - znajdują się tam wszystkie modele związane z tworzeniem zapytań oraz odbieraniem danych z serwera. Każdy model request posiada metodę toJson która zamienia obiekt flutterowy na JSON'a, natomiast modele respons, posiadają metodę fromJson która zamienia JSON'a który został nam przesłany z serwera na obiekt flutterowy który możemy wykorzystać w naszej aplikacji.
+    \item /api - znajdują się tam wszystkie modele związane z tworzeniem zapytań oraz odbieraniem danych z serwera. Każdy model request posiada metodę toJson() która zamienia obiekt flutterowy na JSON'a, natomiast modele respons, posiadają metodę fromJson() która zamienia JSON'a który został nam przesłany z serwera na obiekt flutterowy który możemy wykorzystać w naszej aplikacji.
 
-    \item constants - folder ten zawiera wszelkie stałe które są używane w wielu miejscach aplikacji dla przykładu baseUrl który jest niezmienną częścią adresu url do połączenia z backendem.
+    \item /constants - folder ten zawiera wszelkie stałe które są używane w wielu miejscach aplikacji dla przykładu baseUrl który jest niezmienną częścią adresu url do połączenia z backendem.
 
-    \item cubit - zawiera on pliki dotyczące zarządzania stanem aplikacji. Dzięki użyciu cubita zamiast czystego BLoCa nie posiadamy w nim plików związanych z eventami ponieważ funkcjonalność eventów przejęły funkcje znajdujące się już w cubitach. Poza cubitami które zmieniają stany aplikacji oraz obsługują logikę, folder ten posiada również pliki stanów które określają jakie zmienne posiadają konkretne stany aplikacji.
+    \item /cubit - zawiera on pliki dotyczące zarządzania stanem aplikacji. Dzięki użyciu cubita zamiast czystego BLoCa nie posiadamy w nim plików związanych z eventami ponieważ funkcjonalność eventów przejęły funkcje znajdujące się już w cubitach. Poza cubitami które zmieniają stany aplikacji oraz obsługują logikę, folder ten posiada również pliki stanów które określają jakie zmienne posiadają konkretne stany aplikacji.
 
-    \item custom\_widgets - jest to zbiór naszych ostylowanych już widgetów przygotowanych do wielokrotnego użytku. W większości sprowadza się to do tego, że dany widget ma własności które posiadają wartości domyślne które możemy zmienić w zależności od potrzeb lub zostawić takimi jakimi są, lecz są również własności które należy podać.
+    \item /custom\_widgets - jest to zbiór naszych ostylowanych już widgetów przygotowanych do wielokrotnego użytku. W większości sprowadza się to do tego, że dany widget ma własności które posiadają wartości domyślne które możemy zmienić w zależności od potrzeb lub zostawić takimi jakimi są, lecz są również własności które należy podać.
 
-    \item extensions - są to pliki które umożliwiają rozwijanie wbudowanych klas takich jak na przykład String o nowe metody które nie są domyślnie zawarte we frameworku takie jak na przykład Ustawianie wielkiej litery na początku.
+    \item /extensions - są to pliki które umożliwiają rozwijanie wbudowanych klas takich jak na przykład String o nowe metody które nie są domyślnie zawarte we frameworku takie jak na przykład Ustawianie wielkiej litery na początku.
 
-    \item helpers - są tu zawarte funkcje które z uwagi na wielokrotne użycie w wielu miejscach naszej aplikacji, zostały przeniesione do osobnego folderu. Znajdują się tu dla przykładu funkcje wyświetlające snackbary lub formatujące datę zgodnie z ustawieniami użytkownika. 
+    \item /helpers - są tu zawarte funkcje które z uwagi na wielokrotne użycie w wielu miejscach naszej aplikacji, zostały przeniesione do osobnego folderu. Znajdują się tu dla przykładu funkcje wyświetlające snackbary lub formatujące datę zgodnie z ustawieniami użytkownika. 
 
-    \item l10n - jest to folder zawierający pliki .arb które są odpowiedzialne za przechowywanie tekstów znajdujących się w aplikacji. Dzięki zawarciu wszystkich tekstów tutaj, tłumaczenie aplikacji sprowadza się do dodania nowego pliku .arb zawierającego wszystkie teksty, oraz dodanie obsługiwanego tekstu do main.dart. 
+    \item /l10n - jest to folder zawierający pliki .arb które są odpowiedzialne za przechowywanie tekstów znajdujących się w aplikacji. Dzięki zawarciu wszystkich tekstów tutaj, tłumaczenie aplikacji sprowadza się do dodania nowego pliku .arb zawierającego wszystkie teksty, oraz dodanie obsługiwanego tekstu do main.dart. 
 
-    \item pages - są tutaj wszystkie strony jakie posiadamy w aplikacji. są one przechowywane w osobnych folderach ponieważ każda ze stron jest rozdzielona na mniejsze widgety które z uwagi na swoje jednokrotne zastosowanie i brak uniwersalności nie możemy przechowywać w folderze custom\_widgets. 
+    \item /pages - są tutaj wszystkie strony jakie posiadamy w aplikacji. są one przechowywane w osobnych folderach ponieważ każda ze stron jest rozdzielona na mniejsze widgety które z uwagi na swoje jednokrotne zastosowanie i brak uniwersalności nie możemy przechowywać w folderze /custom\_widgets. 
 
-    \item services - znajdują się tutaj pliki odpowiedzialne za komunikację pomiędzy aplikacją a serwerem, jak i również komunikację wewnątrz aplikacji jak na przykład pobieranie danych GPS urządzenia czy dostęp do pamięci wewnętrznej urządzenia. 
+    \item /services - znajdują się tutaj pliki odpowiedzialne za komunikację pomiędzy aplikacją a serwerem, jak i również komunikację wewnątrz aplikacji jak na przykład pobieranie danych GPS urządzenia czy dostęp do pamięci wewnętrznej urządzenia. 
 \end{itemize}
 
 \subsection{Komunikacja aplikacji mobilnej z serwerem}
