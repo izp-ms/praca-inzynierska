@@ -528,19 +528,19 @@ escapeinside={@*}{*@},%
 \end{itemize}
 
 \section{Wprowadzenie}
-Aplikacje społecznościowe w dzisiejszym świecie są dla nas czymś powszechnym. Większość z nich sprowadza się do wysyłania zdjęć na swoje konto aby każdy widział co robisz i gdzie jesteś. Przed erą smartfonów takie informacje były bardziej spersonalizowane, ponieważ służyły do tego listy na których pisaliśmy co robimy, oraz pocztówki dzięki którym mogliśmy pokazać gdzie jesteśmy. Właśnie to drugie zainspirowało nas do połączenia starego z nowym, pocztówek z aplikacją społecznościową. Chcemy aby odwiedzanie różnych miejsc, czy to lokalnie, blisko, czy tych na drugim końcu świata, łączyło się z czymś kiedyś powszechnym czyli wysyłaniem pocztówek. Wszak cieszymy się bardziej z pocztówki wysłanej przez rodzinę lub przyjaciela niż ze zdjęcia na Facebooku.
+Aplikacje społecznościowe w dzisiejszym świecie są dla czymś powszechnym. Większość z nich sprowadza się do wysyłania zdjęć. Przed erą smartfonów takie informacje były bardziej spersonalizowane, ponieważ służyły do tego listy na których pisaliśmy co robimy, oraz pocztówki dzięki którym mogliśmy pokazać gdzie jesteśmy. Właśnie to drugie zainspirowało nas do połączenia starego z nowym - pocztówek z aplikacją społecznościową. Chcemy, aby odwiedzanie różnych miejsc, czy to lokalnie, blisko, czy tych na drugim końcu świata, łączyło się z czymś kiedyś powszechnym czyli wysyłaniem pocztówek. Wszak cieszymy się bardziej z pocztówki wysłanej przez rodzinę lub przyjaciela niż ze zdjęcia na Facebooku.
 
 \section{Osadzenie problemu w dziedzinie}
 
 \section{Cel pracy}
-Celem naszej pracy jest stworzenie w pełni działającej aplikacji mobilnej umożliwiającej na zawiązywanie znajomości, wymianę oraz kolekcjonowanie pocztówek. Dodatkowo celem jest stworzenie aplikacji webowej umożliwiającą wykonanie większości czynności z aplikacji mobilnej jak i również backendu działającego na obu platformach odpowiedzialnego za część serwerową.
+Celem naszej pracy jest stworzenie w pełni działającej aplikacji mobilnej umożliwiającej na zawiązywanie znajomości, wymianę oraz kolekcjonowanie pocztówek. Dodatkowo celem jest stworzenie aplikacji webowej umożliwiającą wykonanie większości czynności z~aplikacji mobilnej, jak i również backendu działającego na obu platformach odpowiedzialnego za część serwerową.
 
 \section{Zakres pracy}
 Zakres pracy obejmuje:
 \begin{itemize}
-    \item Aplikację mobilną stworzoną w technologi Flutter
-    \item Backendu stworzonego w technologi .Net
-    \item Aplikcji webowej stworzonej w technologi React
+    \item Aplikacje mobilną stworzoną w technologi Flutter
+    \item Aplikacje serwerową stworzoną w technologi .Net
+    \item Aplikacje webową stworzoną w technologi React
 \end{itemize}
 
 \section{Zwięzła charakterystyka rozdziałów}
@@ -744,46 +744,47 @@ class test : public basic
 
 
 \section{Biblioteki}
+W rozdziale tym zostaną omówione biblioteki użyte w projekcie. Na początku omówimy główne biblioteki każdego modułu na których podstawie zostały stworzone. W dalszych podrozdziałach omówimy biblioteki dodatkowe które wchodzą w skład modułów dodając do nich nowe funkcjonalności lub rozwijając już te istniejące.
 \subsection{Biblioteka główna mobilna}
 \begin{itemize}
-    \item Flutter - jest to technologia stworzona przez firmę Google pozwalająca na tworzenie aplikacji na urządzenia Android jak i iOS używając tego samego kodu. Językiem wykorzystywanym podczas tworzenia tych aplikacji jest Dart który również został stworzony przez Google. Napisane we Flutterze aplikacje mobilne wyglądają i działają niemal identycznie na obu systemach z wydajnością która jest bardzo zbliżona do aplikacji natywnych. Fluttera tworzą dwa podstawowe elementy którymi są framework który jest niezbędny do poprawnego działania aplikacji oraz pakiet SDK który jest konieczny do ich tworzenia.
+    \item Flutter - jest to technologia stworzona przez firmę Google pozwalająca na tworzenie aplikacji na urządzenia z systemami Android jak i iOS używając tego samego kodu. Językiem wykorzystywanym podczas tworzenia tych aplikacji jest Dart, który również został stworzony przez Google. Napisane we Flutterze aplikacje mobilne wyglądają i działają niemal identycznie na obu systemach z wydajnością, która jest bardzo zbliżona do aplikacji natywnych. Fluttera tworzą dwa podstawowe elementy którymi są framework, który jest niezbędny do poprawnego działania aplikacji oraz pakiet SDK, który jest konieczny do ich tworzenia.
 \end{itemize}
 \subsection{Biblioteki mobilne dodatkowe}
 \begin{itemize}
-    \item intl - umożliwia stworzenie pliku zawierającego wszystkie wiadomości zawierające się w aplikacji oraz używanie odpowiednich plików z językami w zależności od tego wybranego w ustawieniach.
-    \item http - jest to biblioteka umożliwiająca komunikację pomiędzy aplikacją a serwerem używając żądań HTTP.
-    \item flutter\_bloc - biblioteka która zawiera w sobie widgey ułatwiająca wprowadzneie BLoC jako state management w naszej aplikacji.
-    \item flutter\_secure\_storage - w aplikacji używany jest do przechowywania JWT otrzymanego podczas logowania. Biblioteka szyfruje wartości jakie otrzymuje przed umieszczeniem ich w pamięci. Na platformie Android jest używane do tego Szyfrowanie AES, natomiast na platformie iOS jest to KeyChain. 
-    \item jwt\_decoder - jest małą biblioteka do dekodowania JWT. Dzięki niej możemy sprawdzić, czy token wygasł i na podstawie tego przekierować użytkownika na odpowiednią podstronę.
+    \item intl - umożliwia stworzenie pliku zawierającego wszystkie wiadomości zawierające się w aplikacji oraz używanie odpowiednich plików z językami w zależności od ustawień.
+    \item http - jest to biblioteka umożliwiająca komunikację pomiędzy aplikacją a serwerem przy użyciu żądań HTTP.
+    \item flutter\_bloc - biblioteka, która zawiera w sobie widgety, ułatwiająca wprowadzenie BLoC jako state management w aplikacji.
+    \item flutter\_secure\_storage - w aplikacji używany jest do przechowywania JWT otrzymanego podczas logowania. Biblioteka szyfruje wartości jakie otrzymuje przed umieszczeniem ich w pamięci. Na platformie Android jest używane do tego szyfrowanie AES, natomiast na platformie iOS jest to KeyChain. 
+    \item jwt\_decoder - jest biblioteka do dekodowania JWT. Dzięki niej możemy sprawdzić, czy token wygasł i na podstawie tego przekierować użytkownika na odpowiednią podstronę.
     \item shimmer - biblioteka dodająca widget używany podczas ładowania danych z serwera.
     \item image\_picker - oficjalna biblioteka umożliwiająca wybieranie zdjęć z galerii lub tworzenie od razu nowych i dalsze ich wykorzystywanie w aplikacji.
     \item country\_picker - biblioteka dodająca widget do wybierania kraju.
-    \item auto\_size\_text - jest to biblioteka dająca większą kontrolę nad wyświetlanym tekstem. Dzięki niej łatwo możemy dla przykładu skalować tekst na mniejszych ekranach lub ustawiać limit wierszy przy zawijaniu.
-    \item background\_locator\_2 - jest to jedna z istotniejszych bibliotek w naszej aplikacji. Służy ona na do pobierania z telefonu koordynatów. Działanie funkcji nie jest przerywane przez danie aplikacji do karty lub jej całkowite wyłączenie. Biblioteka jest również rozwinięta o funkcje callback która jest wykonywana za każdym razem gdy pobierany są nowe koordynaty co umożliwia nam wykonywanie wtedy innych funkcji, nawet gdy aplikacja jest wyłączona.
-    \item path\_provider - biblioteka wykorzystywana na lokalizowanie plików w systemie.
+    \item auto\_size\_text - jest to biblioteka dająca większą kontrolę nad wyświetlanym tekstem. Dzięki niej łatwo możemy skalować tekst na mniejszych ekranach lub ustawiać limit wierszy przy zawijaniu.
+    \item background\_locator\_2 - jest to jedna z istotniejszych bibliotek w naszej aplikacji. Służy ona na do pobierania z telefonu koordynatów. Funkcja kontynuuje działanie, nawet gdy aplikacja działa w tle lub gdy jest całkowicie wyłączona. Biblioteka jest również rozwinięta o funkcje callback która jest wykonywana za każdym razem gdy pobierany są nowe koordynaty co umożliwia nam wykonywanie wtedy innych funkcji, nawet gdy aplikacja jest wyłączona.
+    \item path\_provider - biblioteka wykorzystywana do lokalizowanie plików w systemie.
     \item location\_permissions - umożliwia pobieranie lokalizacji z urządzenia. 
-    \item permission\_handler- biblioteka która obsługuje nadawanie oraz sprawdzanie istniejących zgód na wykorzystywanie poszczególnych serwisów w urządzeniu takich jak powiadomienia lub pamięć. 
-    \item geolocator - biblioteka która pozwala na komunikacje z serwisem odpowiedzialnym za lokalizację. W projekcie jest wykorzystywana w celu sprawdzenia czy lokazacja jest ciągle włączona na urządzeniu. 
-    \item cached\_memory\_image - biblioteka umożliwiająca na zapisywanie grafik w pamięci telefonu co eliminuje miganie obrazów podczas ich ciągłego pobierania.
-    \item url\_launcher - umożliwia na otwieranie linków w osobnej karcie przeglądarki na użądzeniach mobilnych. 
+    \item permission\_handler - biblioteka, która obsługuje nadawanie oraz sprawdzanie istniejących zgód na wykorzystywanie poszczególnych serwisów w urządzeniu, takich jak powiadomienia lub pamięć. 
+    \item geolocator - biblioteka, która pozwala na komunikację z serwisem odpowiedzialnym za lokalizację. W projekcie jest wykorzystywana w celu sprawdzenia czy lokalizacja jest ciągle włączona na urządzeniu. 
+    \item cached\_memory\_image - biblioteka umożliwiająca zapisywanie grafik w pamięci telefonu co eliminuje miganie obrazów podczas ich ciągłego pobierania.
+    \item url\_launcher - umożliwia otwieranie linków w osobnej karcie przeglądarki na użądzeniach mobilnych. 
     \item loading\_animation\_widget - biblioteka zawierająca animacje ładowania.
-    \item flutter\_animate - jest to biblioteka umożliwiająca animowania dowolnego widgetu w naszej aplikacji.
-    \item easy\_debounce - biblioteka uproszczająca oryginalny zapis debouncera języka Dart. 
+    \item flutter\_animate - biblioteka umożliwiająca animowania dowolnego widgetu w aplikacji.
+    \item easy\_debounce - biblioteka upraszczająca oryginalny zapis debouncera języka Dart. 
     \item shared\_preferences - służy do zapisywania różnych zmiennych w pamięci telefonu jako pary klucz-wartość w podobny sposób jak to robi secure storage. 
-    \item app\_settings - umożliwia otworzenie ustawień telefonu z poziomu aplikacji
+    \item app\_settings - umożliwia otworzenie ustawień telefonu z poziomu aplikacji.
 \end{itemize}
 \section{Architektura systemu}
 \subsection{Architektura modułu mobilnego}
-Architektura oparta na zdarzeniach (Event-Driven Architecture, EDA) stanowi kluczowy element naszego projektu aplikacji mobilnej. Wybraliśmy tę architekturę ze względu na jej zdolność do efektywnego zarządzania komunikacją między różnymi modułami i komponentami aplikacji, zwłaszcza w kontekście obsługi stanu i przetwarzania zdarzeń.
+Architektura oparta na zdarzeniach (Event-Driven Architecture, EDA) stanowi kluczowy element naszego projektu aplikacji mobilnej. Wybraliśmy tę architekturę ze względu na jej zdolność do efektywnego zarządzania komunikacją między różnymi modułami i~komponentami aplikacji, zwłaszcza w kontekście obsługi stanu i przetwarzania zdarzeń.
 
 W ramach tej architektury, BLoC i Cubit pełnią rolę obsługiwaczy zdarzeń.
 BLoC to jedno z narzędzi do zarządzania stanem w aplikacjach Flutter. Możemy go używać do obsługi wszystkich stanów, które chcemy kontrolować w naszych aplikacjach. Cubit to podzbiór wzorca projektowego BLoC, który upraszcza sposób zarządzania stanem aplikacji. W tym celu zastępuje użycie zdarzeń (używanych w BLoC) funkcjami, które odbudowują interfejs użytkownika poprzez emitowanie różnych stanów na strumieniu.
 
-Cubit jest podobny do BLoC, ale nie posiada pojęcia o zdarzeniach i polega na metodach do emitowania nowych stanów. Są odpowiedzialne za nasłuchiwanie i przetwarzanie zdarzeń, które są generowane w różnych częściach aplikacji. Na przykład, BLoC lub Cubit ds. uwierzytelniania może nasłuchiwać zdarzeń takich jak "zalogowanie użytkownika" lub "wylogowanie użytkownika" i reagować poprzez zmianę stanu uwierzytelnienia.
+Cubit jest podobny do BLoC, ale nie posiada zdarzeń i polega na metodach do emitowania nowych stanów. Są one odpowiedzialne za nasłuchiwanie i przetwarzanie zdarzeń, które są generowane w różnych częściach aplikacji. Na przykład, BLoC lub Cubit ds. uwierzytelniania może nasłuchiwać zdarzeń takich jak ``zalogowanie użytkownika'' lub ``wylogowanie użytkownika'' i reagować poprzez zmianę stanu uwierzytelnienia.
 
-Zdarzenia są generowane w odpowiedzi na różne interakcje użytkownika oraz na operacje asynchroniczne. Przykłady to zdarzenia "kliknięcia przycisku" w interfejsie użytkownika, "wysłania formularza" lub "zakończenia operacji pobierania danych z serwera". Zdarzenia te są kluczowe dla przekazywania informacji o działaniach i stanach aplikacji.
+Zdarzenia są generowane w odpowiedzi na różne interakcje użytkownika oraz na operacje asynchroniczne. Przykłady to zdarzenia ``kliknięcia przycisku'' w interfejsie użytkownika, ``wysłania formularza'' lub ``zakończenia operacji pobierania danych z serwera''. Zdarzenia te są kluczowe dla przekazywania informacji o działaniach i stanach aplikacji.
 
-Jednym z głównych celów EDA jest utrzymanie luźnego powiązania między różnymi komponentami naszej aplikacji. Oznacza to, że BLoC i Cubit nie muszą mieć wiedzy o źródle generowania zdarzenia, co przyczynia się do modularności i skalowalności projektu. Nowe funkcje i modyfikacje istniejących funkcji mogą być wprowadzane bez konieczności naruszania istniejącej struktury.
+Jednym z głównych celów EDA jest utrzymanie luźnego powiązania między różnymi komponentami naszej aplikacji. Oznacza to, że BLoC i Cubit nie muszą mieć wiedzy o~źródle generowania zdarzenia, co przyczynia się do modularności i skalowalności projektu. Nowe funkcje i modyfikacje istniejących funkcji mogą być wprowadzane bez konieczności naruszania istniejącej struktury.
 
 Aplikacje Flutter często wymagają operacji asynchronicznych, takich jak komunikacja z serwerem lub dostęp do bazy danych. Dzięki architekturze opartej na zdarzeniach, te operacje asynchroniczne są inicjowane i obsługiwane poprzez generowanie i przetwarzanie zdarzeń. Jest to ważne dla zachowania spójności i zarządzania asynchronicznymi przepływami w aplikacji.
 
@@ -796,17 +797,17 @@ Wszystkie te elementy razem tworzą spójną i skalowalną architekturę, która
 
 Poniżej znajdują się nazwy głównych folderów oraz opis plików jakie w sobie posiadają:
 \begin{itemize}
-    \item /api - znajdują się tam wszystkie modele związane z tworzeniem zapytań oraz odbieraniem danych z serwera. Każdy model request posiada metodę toJson() która zamienia obiekt flutterowy na JSON'a, natomiast modele respons, posiadają metodę fromJson() która zamienia JSON'a który został nam przesłany z serwera na obiekt flutterowy który możemy wykorzystać w naszej aplikacji.
+    \item /api - znajdują się tam wszystkie modele związane z tworzeniem zapytań oraz odbieraniem danych z serwera. Każdy model request posiada metodę toJson(), która zamienia obiekt flutterowy na JSON'a, natomiast modele respons, posiadają metodę fromJson(), która zamienia JSON'a z serwera na obiekt flutterowy, który możemy wykorzystać w aplikacji.
 
-    \item /constants - folder ten zawiera wszelkie stałe które są używane w wielu miejscach aplikacji dla przykładu baseUrl który jest niezmienną częścią adresu url do połączenia z backendem.
+    \item /constants - folder ten zawiera wszelkie stałe, które są używane w wielu miejscach aplikacji. Dla przykładu baseUrl który jest niezmienną częścią adresu url do połączenia z backendem.
 
-    \item /cubit - zawiera on pliki dotyczące zarządzania stanem aplikacji. Dzięki użyciu cubita zamiast czystego BLoCa nie posiadamy w nim plików związanych z eventami ponieważ funkcjonalność eventów przejęły funkcje znajdujące się już w cubitach. Poza cubitami które zmieniają stany aplikacji oraz obsługują logikę, folder ten posiada również pliki stanów które określają jakie zmienne posiadają konkretne stany aplikacji.
+    \item /cubit - zawiera pliki dotyczące zarządzania stanem aplikacji. Dzięki użyciu cubita zamiast czystego BLoCa nie posiadamy w nim plików związanych ze zdarzeniami ponieważ funkcjonalność zdarzeń przejęły funkcje znajdujące się już w cubitach. Poza cubitami, które zmieniają stany aplikacji oraz obsługują logikę, folder ten posiada również pliki stanów, które określają jakie zmienne posiadają konkretne stany aplikacji.
 
-    \item /custom\_widgets - jest to zbiór naszych ostylowanych już widgetów przygotowanych do wielokrotnego użytku. W większości sprowadza się to do tego, że dany widget ma własności które posiadają wartości domyślne które możemy zmienić w zależności od potrzeb lub zostawić takimi jakimi są, lecz są również własności które należy podać.
+    \item /custom\_widgets - jest to zbiór ostylowanych widgetów przygotowanych do wielokrotnego użytku. W większości przypadków zmiana sprowadza się to do tego, że dany widget ma własności które posiadają wartości domyślne które możemy zmienić w zależności od potrzeb lub zostawić takimi jakimi są, lecz są również własności które należy podać.
 
-    \item /extensions - są to pliki które umożliwiają rozwijanie wbudowanych klas takich jak na przykład String o nowe metody które nie są domyślnie zawarte we frameworku takie jak na przykład Ustawianie wielkiej litery na początku.
+    \item /extensions - są to pliki, które umożliwiają rozwijanie wbudowanych klas takich jak na przykład String o nowe metody które nie są domyślnie zawarte we frameworku.
 
-    \item /helpers - są tu zawarte funkcje które z uwagi na wielokrotne użycie w wielu miejscach naszej aplikacji, zostały przeniesione do osobnego folderu. Znajdują się tu dla przykładu funkcje wyświetlające snackbary lub formatujące datę zgodnie z ustawieniami użytkownika. 
+    \item /helpers - są tu zawarte funkcje, które z uwagi na wielokrotne użycie w wielu miejscach naszej aplikacji, zostały przeniesione do osobnego folderu. Znajdują się tu dla przykładu funkcje wyświetlające snackbary lub formatujące datę zgodnie z ustawieniami użytkownika. 
 
     \item /l10n - jest to folder zawierający pliki .arb które są odpowiedzialne za przechowywanie tekstów znajdujących się w aplikacji. Dzięki zawarciu wszystkich tekstów tutaj, tłumaczenie aplikacji sprowadza się do dodania nowego pliku .arb zawierającego wszystkie teksty, oraz dodanie obsługiwanego tekstu do main.dart. 
 
@@ -816,10 +817,10 @@ Poniżej znajdują się nazwy głównych folderów oraz opis plików jakie w sob
 \end{itemize}
 
 \subsection{Komunikacja aplikacji mobilnej z serwerem}
-Komunikacja aplikacji mobilnej z serwerem jest przeprowadzana za pomocą serwisów oraz cubitów. Cubity obsługują eventy które są wywoływane przez użytkownika. Obsługa eventów w większości przypadków przebiega następująco:
+Komunikacja aplikacji mobilnej z serwerem jest przeprowadzana za pomocą serwisów oraz cubitów. Cubity obsługują zdarzenia, które są wywoływane przez użytkownika. Obsługa zdarzeń w większości przypadków przebiega następująco:
 \begin{itemize}
     \item Zamiana stanu na stan ładownia.
-    \item Jeżeli jest to event polegający na wysłaniu zapytania do serwera to teraz jest ono wykonywane.
+    \item Jeżeli jest to zdarzenie polegające na wysłaniu zapytania do serwera to teraz jest ono wykonywane.
     \item Przetworzenie informacji zwrotnych z serwera.
     \item Ustawienie stanu załadowanego zawierającego nowe dane.
 \end{itemize}
