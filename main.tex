@@ -772,6 +772,7 @@ W rozdziale tym zostaną omówione biblioteki użyte w projekcie. Na początku o
     \item easy\_debounce - biblioteka upraszczająca oryginalny zapis debouncera języka Dart. 
     \item shared\_preferences - służy do zapisywania różnych zmiennych w pamięci telefonu jako pary klucz-wartość w podobny sposób jak to robi secure storage. 
     \item app\_settings - umożliwia otworzenie ustawień telefonu z poziomu aplikacji.
+    \item privider - jest to biblioteka do zarządzania stanem aplikacji. Umożliwia na przebudowanie widoku gdy Consumer wykryje zmianę wartości zmiennej.
 \end{itemize}
 \section{Architektura systemu}
 \subsection{Architektura modułu mobilnego}
@@ -813,7 +814,10 @@ Poniżej znajdują się nazwy głównych folderów oraz opis plików jakie w sob
 
     \item /pages - są tutaj wszystkie strony jakie posiadamy w aplikacji. są one przechowywane w osobnych folderach ponieważ każda ze stron jest rozdzielona na mniejsze widgety które z uwagi na swoje jednokrotne zastosowanie i brak uniwersalności nie możemy przechowywać w folderze /custom\_widgets. 
 
+    \item /providers - jest to zbiór klas providerów używanych w aplikacji. Każdy plik posiada konstruktor, funkcję set oraz funkcje get.
+
     \item /services - znajdują się tutaj pliki odpowiedzialne za komunikację pomiędzy aplikacją a serwerem, jak i również komunikację wewnątrz aplikacji jak na przykład pobieranie danych GPS urządzenia czy dostęp do pamięci wewnętrznej urządzenia. 
+
 \end{itemize}
 
 \subsection{Komunikacja aplikacji mobilnej z serwerem}
