@@ -831,6 +831,77 @@ Komunikacja aplikacji mobilnej z serwerem jest przeprowadzana za pomocą serwis�
 
 Wysłanie zapytania tak jak to było wspomniane powyżej jest wykonywane przez serwis. Każdy serwis zawiera zestaw zapytań dotyczący jednej dziedziny takiej jak autoryzacja lub dane szczegółowe użytkownika. Każde zapytanie poza rejestracją oraz logowaniem wymaga posiadania tokenu. Token ten otrzymujemy podczas logowania i przechowujemy go w secured storage. Jest on pobierany z pamięci urządzenia za każdym razem gdy wykonujemy zapytanie. Odpowiedź z serwera jest sprawdzana i w zależności czy zapytanie powiodło się to wywoływana jest metoda fromJson z odpowiedniego modelu response lub wyświetlany jest komunikat w postaci snackbara.
 
+\subsection{Użycie Providera}
+
+Provider w aplikacji mobilnej jest drugim po BLoCu, systemem zarządzania stanem. Dzięki tej bibliotece zarządzanie zmiennymi globalnymi staje się dużo prostsze. Możemy dzięki temu odświeżyć aplikację, gdy taka zmienna została zmieniona w dowolnym miejscu naszej aplikacji. Działanie wygląda następująco:
+\begin{itemize}
+    \item Widgety klasy, w której chcemy zainicjalizować Providera, dodajemy jako dziecko widgetu, który znajduje się w bibliotece Provider, zwanym ChangeNotifierProvider. Widget ten potrzebuje klasy typu Provider, której obiekt tworzony jest podczas inicjalizacji. Klasa typu Provider to klasa, która posiada w sobie konstruktor, funkcję ustawiającą ``set'', funkcję, która zwraca zmienne oraz zmienne, które mają być dostępne w naszej aplikacji, a ich zmiana ma skutkować odświeżeniem strony.
+    \begin{figure}[H]
+        \begin{lstlisting}
+        @override
+        Widget build(BuildContext context) {
+            return Scaffold(
+
+              ...
+              
+              body: ChangeNotifierProvider(
+                create: (_) => MetricSystemProvider(),
+                child: ListView()
+
+                ...
+        \end{lstlisting}
+    \caption{Implementacja widgetu ChangeNotifierProvider}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+    \begin{figure}[H]
+        \begin{lstlisting}
+        class MetricSystemProvider extends ChangeNotifier {
+          late bool _isMetric;
+          bool get isMetric => _isMetric;
+        
+          MetricSystemProvider() {
+            _isMetric = false;
+            getPreferences();
+          }
+        
+          set isMetric(bool value) {
+            _isMetric = value;
+            AppSharedPreferences.saveMetricSystemPreference(value);
+            notifyListeners();
+          }
+        
+          getPreferences() async {
+            _isMetric = await AppSharedPreferences.getMetricSystemPreference();
+            notifyListeners();
+          }
+        }
+        \end{lstlisting}
+    \caption{Klasa typu Provider}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+    \item W miejscu, które ma odczytywać lub zapisywać zmienną klasy Provider, dodajemy do drzewa widget Consumer. Jest to kolejny widget, który jest nam dostarczany razem z biblioteką i służy do nasłuchiwania zmian, które następują w obiekcie klasy Provider. Gdy taka zmiana zostanie wykryta, powoduje ona przebudowę całego drzewa widgetów aż do Consumera, używając najnowszych danych.
+    \begin{figure}[H]
+        \begin{lstlisting}
+        ...
+        
+        Consumer<MetricSystemProvider>(builder:
+            (context, MetricSystemProvider metricNotifier, child) {
+                return SwitchWidget()
+
+                ...
+        \end{lstlisting}
+    \caption{Implementacja widgetu Consumer}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+\end{itemize}
+
+Provider w aplikacji jest używany w celu:
+\begin{itemize}
+    \item Zmiany motywu kolorystycznego aplikacji: Zmiana motywu kolorystycznego następuje w podstronie ustawienia za pomocą przełącznika, który zapisuje jego stan w pamięci wewnętrznej aplikacji. Aby poinformować, że użytkownik chce zmienić motyw, musielibyśmy widget po widgecie dotrzeć na sam początek drzewa i tam wykonać funkcję setState(). Dzięki użyciu Providera ChangeNotifier, sam wykryje zmianę wartości, której nasłuchuje, i odświeży stronę z prawidłowym motywem kolorystycznym. 
+    \item Zmiana systemu metrycznego: W naszej aplikacji wykorzystujemy system metryczny. Mamy jednak również możliwość zmiany tego systemu na system imperialny. Użycie Providera powoduje prostą zmianę jednostek w innej gałęzi drzewa widgetów, bez konieczności przekazywania funkcji voidCallback().
+\end{itemize}
+
+
 % TODO
 \chapter{Weryfikacja i walidacja}
 \label{ch:06}
