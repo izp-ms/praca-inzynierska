@@ -1042,13 +1042,320 @@ Na tej stronie użytkownik posiada możliwość edycji danych pocztówki lub dod
 
 
 
-% TODO
+
+
+
+
+
+
+
+% ==========================================================================================
+% ==========================================================================================
+% ===================== BACKEND  ==========================================================================================
 \chapter{Podsumowanie i wnioski}
 \begin{itemize}
 \item uzyskane wyniki w świetle postawionych celów i zdefiniowanych wyżej wymagań
 \item kierunki ewentualnych danych prac (rozbudowa funkcjonalna …)
 \item problemy napotkane w trakcie pracy
 \end{itemize}
+
+\chapter{Aplikacja serwerowa}
+\section{Technologia}
+Podczas wyboru technologii do realizacji aplikacji backendowej, kierowaliśmy się najnowszymi oraz najszybszymi rozwiązaniami. Docelowa platforma powinna być stale rozwijana, dzięki czemu aplikacja mogłaby być z łatwością rozwijana w przyszłości. Popularne platformy cieszą się dużym zaangażowaniem społeczności, co umożliwia łatwiejsze rozwiązywanie napotkanych problemów. Ponadto możemy spojrzeć na gotowe rozwiązania, z których możemy czerpać dobre praktyki architektoniczne oraz rozwiązania. Wybór padł na technologie Microsoft, czyli język C\# oraz framework .NET 7.  
+
+\subsection{Język C\#}
+Język C\# jest silnie typowany oraz obiektowy, stworzony oraz rozwijany przez firmę Microsoft. Jest on częścią frameworka .NET, który umożliwia nam tworzenie aplikacji desktopowych, mobilnych, webowych.  Język C\# historycznie wzorowany jest na języku Java, czerpał z niego np. składnie, sposób działania. Dzięki byciu młodszą technologią wprowadza oraz doskonali wiele nowych rozwiązań.  
+Do najważniejszych cech języka C\# można zaliczyć m.in.: 
+\begin{itemize}
+    \item Obiektowość - cała logika oraz sposób działania oparty jest na klasach. Podstawową klasą jest klasa ‘Object’ znajduje się ona w przestrzeni nazw ‘System’. Każda inna dostępna klasa dziedziczy po niej. Dzięki czemu każda klasa w C\# posiada takie metody jak np. Equals(Object), GetType(), ToString(), oraz parę innych. 
+    \item Zarządzanie pamięcią - język C\# podobnie jak Java posiada mechanizm Garbage Collector, dzięki któremu program automatycznie usuwa obiekty które są już nieużywane, dzięki takiemu rozwiązaniu programista nie musi dbać o przydzielanie pamięci ręcznie, pomaga to uniknąć wycieku pamięci. 
+    \item LINQ – kwerendy Language Integrated Query umożliwiają pracę na obiektach, listach obiektów. Podobnie jak w języku SQL piszemy zapytanie dzięki czemu jesteśmy w stanie przefiltrować oraz wyciągnąć odpowiednie dane.  
+    \item Asynchroniczność - C\# pozwala na wykonywanie wiele zadań jednocześnie. Zawiera mechanizm async/await oraz threads. Dzięki czemu możemy zoptymalizować sposób działania naszej aplikacji. 
+\end{itemize}
+
+\subsection{Platforma .NET}
+Platforma .NET stworzona przez Microsoft jest przeznaczona do tworzenia aplikacji na różne platformy. Obsługuje ona wiele języków programowania takich jak: C\#, F\#, Visual Basic. Sposób działania jest następujący. Docelowy język, w naszym przypadku to C\# jest kompilowany przez kompilator do języka Common Intermediate Language (CIL). Następnie przechodzi przez Common Language Runtime (CLR). CLR to środowisko uruchomieniowe, które podczas uruchamiania aplikacji kompiluje kod przez just-in-time compiler (JIT). W ostatnim kroku kod tłumaczony jest na kod maszynowy. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{compiler.png}
+    \caption{Przepływ kompilowanego kodu}
+    \label{Kompilator}
+\end{figure}
+
+\subsection{Biblioteki}
+\subsubsection{Biblioteka główna}
+    \begin{itemize}
+        \item \textbf{ASP.NET Core 7.0} -- platforma programistyczna do tworzenia aplikacji 
+    \end{itemize}
+\subsubsection{Biblioteki pomocnicze}
+    \begin{itemize}
+        \item \textbf{Microsoft.EntityFrameworkCore} -- ORM (Object-Relational Mapping) biblioteka służąca do mapowania obiektami z bazy danych 
+        \item \textbf{Microsoft.EntityFrameworkCore.Relational} -- dostarcza funkcjonalności, które usprawniają tworzenie relacji bazy danych 
+        \item \textbf{Microsoft.EntityFrameworkCore.Design} -- zawiera logikę design-time 
+        \item \textbf{Microsoft.EntityFrameworkCore.SqlServer} -- integracja frameworku z silnikiem bazy danych opartych na SQL Server 
+        \item \textbf{Microsoft.EntityFrameworkCore.Tools} -- narzędzie do tworzenia migracji 
+        \item \textbf{Microsoft.AspNetCore.Authentication.JwtBearer} -- implementacja funkcji dostarczających obsługę uwierzytelniania z wykorzystaniem tokenów JWT (JSON Web Token) 
+        \item \textbf{Swashbuckle.AspNetCore} -- dostęp do narzędzia Swagger, czyli automatycznie generowanej dokumentacji na podstawie dostępnych w aplikacji endpointów 
+        \item \textbf{Swashbuckle.AspNetCore.Annotations} -- wsparcie dla Swaggera, w postaci adnotacji 
+        \item \textbf{AutoMapper} -– biblioteka służąca do mapowania obiektów znajdujących się pomiędzy różnymi warstwami 
+        \item \textbf{AutoMapper.Extensions.Microsoft.DependencyInjection} -- rozszerzenie funkcji Automappera, o wstrzykiwanie zależności 
+        \item \textbf{Microsoft.AspNetCore.Http} -- obsługa żądań HTTP 
+        \item \textbf{Microsoft.Extensions.DependencyInjection.Abstractions} -- interfejsy dla systemu wstrzykiwania zależności 
+        \item \textbf{Microsoft.Extensions.Identity.Core} -- biblioteka umożliwia dodawanie funkcji logowania do aplikacji 
+        \item \textbf{Microsoft.NET.Test.Sdk}  -- narzędzia do tworzenia testów jednostkowych 
+        \item \textbf{Moq} -- wykorzystanie w testach jednostkowych atrap pewnych funkcjonalności, w celu izolowania faktycznych implementacji od testów 
+        \item \textbf{Xunit} -- framework do testów jednostkowych 
+        \item \textbf{Unit.runner.visualstudio} -- program służący do uruchamiania testów jednostkowych 
+    \end{itemize}
+
+\subsection{Architektura}
+W projekcie zastosowaliśmy architekturę Onion Architecture. Wymusza ona na nas konkretne podejście do tworzenia oprogramowania. Dzięki ścisłym regułom oraz zasadom, tworzona aplikacja zawiera uporządkowany kod, podzielony na mniejsze projekty a dalej klasy. Aplikacja rozdzielona jest pomiędzy warstwy. Pomiędzy projektami występują zależności. Stąd pochodzi nazwa Onion Architecture, ponieważ poszczególne projekty czerpią od siebie wzajemnie, jednocześnie ograniczają dostęp do danych niepożądanych. 
+
+\begin{itemize}
+    \item \textbf{Warstwa Domain} -- nie posiada żadnej zależności, znajduje się w samym centrum warstw. Warstwa ta odpowiedzialna jest za modelowanie obiektów użytych poźniej w bazie danych. Każdy z Modeli konfigurujemy, ustawiamy typ danych, jego właściwości. Warstwa ta odpowiedzielna jest za logikę biznesową. 
+    \item \textbf{Warstwa Application} -- posiada zależność do warstwy Domain. Warstwa ta posiada implementacje serwisów, czerpie dane z wartwy wewnętrznej, czyli Domain, a następnie przetwarza odpowiednio dane i przekazuje do warstwy zewnętrznej, czyli Infrastructure. 
+    \item \textbf{Warstwa Infrastructure} -- posiada zależność do warstwy Application. Warstwa odpowiada za komunikację z bazą danych, wymienia się danymi z warstwą Application. 
+    \item \textbf{Warstwa WebAPI} -- posiada zależność do warstwy Application oraz Infrastructure. Jej głównym celem jest obsługa zdarzeń z użytkownikiem oraz przekazywanie żądanych danych. Dane te są obsługiwane poprzez wykorzystanie protokołu HTTP. 
+    \item \textbf{Warstwa Tests} -- posiada zależność do warstwy Application, dzięki czemu posiadamy możliwość wywoływania funkcjonalności z aplikacji. 
+\end{itemize}
+
+Aby komunikacja była możliwa oraz żeby nie występowały niepożądane przecieki pamięci lub referencje do niedostępnych danych, wykorzystujemy mechanizm Dependency Injection. Dependency Injection, inaczej wstrzykiwanie zależności pozwala nam na odpowiednie udostępnianie oraz zarządzanie zależnościami jakie występują pomiędzy warstwami w solucji. 
+
+\subsection{Struktura plików}
+Struktura plików w projekcie jest ściśle związana z zastosowaną architekturą Onion Architecture.
+Cała solucja podzielona jest na parę projektów. Każdy z nich pełni odpowiednią rolę w swojej warstwie.  
+
+\begin{enumerate}
+    \item \textbf{WebAPI} \begin{itemize}
+        \item \textbf{/Controllers} -- posiada implementacje wszystkich kontrolerów 
+        \item \textbf{/Installers} -- znajdują się w nim wszystkie potrzebne instalacje zależności. Takie jak Cors, Baza danych, Cache, Uwierzytelnianie, MVC, Swagger. Każda zależność przydzielona jest do konkretnej klasy, która implementuje interfejs IInstaller. Podczas uruchomienia aplikacji wszystkie zależności, które implementują interfejs IInstaller, są odpowiednio wcześniej uruchomione przed startem web API. 
+        \item \textbf{/Properties} -- zawiera plik, który definiuje nam właściwości uruchamiania aplikacji, takie jak adres Url, port, środowisko Swagger 
+        \item \textbf{Program.cs} -- główny plik uruchomieniowy aplikacji serwerowej 
+        \item \textbf{WebAPI.csproj} -- zawiera listę zewnętrznych bibliotek, zależności pomiędzy projektami oraz ustawienia projektu 
+        \item \textbf{Appsettings.json} -- plik konfiguracji aplikacji 
+        \item \textbf{Appsettings.development.json} -- plik konfiguracji aplikacji dla środowiska deweloperskiego 
+    \end{itemize}
+
+    \item \textbf{Application} \begin{itemize}
+        \item \textbf{/Constants} -- stałe wartości, użyte w logice aplikacji 
+        \item \textbf{/Dto} -- modele Data Transfer Object (DTO) - obiekty które zawierają konkretne pola, które chcemy przekazać dalej 
+        \item \textbf{/Exceptions} -- spersonalizowane wyjątki 
+        \item \textbf{/Helpers} -- pomocnicze funkcje 
+        \item \textbf{/Interfaces} -- interfejsy do serwisów 
+        \item \textbf{/Mappings} -- podzielony jest na konfiguracje Automappera wraz z obiektami zmapowanymi, oraz na folder /Manual, który zawiera manualnie zmapowane obiekty 
+        \item \textbf{/Requests} -- obiekty dla żądania 
+        \item \textbf{/Response} -- obiekty jako odpowiedź z endpointu 
+        \item \textbf{/Services} -- implementacje serwisów 
+        \item \textbf{/Validators} -- walidacja wybranych funkcjonalności z serwisu 
+        \item \textbf{Application.csproj} -- zawiera listę zewnętrznych bibliotek, zależności pomiędzy projektami oraz ustawienia projektu 
+        \item \textbf{DependencyInjection.cs} -- dodaje usługi o określonym typie w serviceType oraz wstrzykiwuje zależności 
+    \end{itemize}
+
+    \item \textbf{Domain} \begin{itemize}
+        \item \textbf{/Configurations } -- konfiguracja dla obiektów bazy danych, takie jak: wymagane pola, typ danych 
+        \item \textbf{/Entities} -- modele, które są odzwierciedleniem bazy danych 
+        \item \textbf{/Enums} -- obiekt typu Enum, zawierający różne wartości 
+        \item \textbf{/Interfaces} -- interfejsy dla repozytorium 
+        \item \textbf{/Models} -- obiekty odpowiedzialne za przekazanie danych z filtrowania oraz paginacji z warstwy Domain do warstwy Infrastructure 
+        \item \textbf{Domain.csproj} -- zawiera listę zewnętrznych bibliotek, zależności pomiędzy projektami oraz ustawienia projektu 
+    \end{itemize}
+
+    \item \textbf{Infrastructure} \begin{itemize}
+        \item \textbf{/Data} -- konfiguruje dostęp do bazdy danych, implementuje ustawienia uwierzytelniania, zawiera Data Seeder, który wprowadza dane testowe do bazy danych 
+        \item \textbf{/Migrations} -- lista plików migracyjnych 
+        \item \textbf{/Repositories} -- lista repozytoriów aplikacji, wraz z generycznym repozytorium ‘Repository.cs’, po której dziedziczy każde pozostałe repozytorium. Generyczne repozytorium posiada zaimplementowane podstawowe operacje CRUD. 
+        \item \textbf{DependencyInjection.cs} -- dodaje usługi o określonym typie w serviceType oraz wstrzykiwuje zależności 
+        \item \textbf{Infrastructure.csproj} -- zawiera listę zewnętrznych bibliotek, zależności pomiędzy projektami oraz ustawienia projektu 
+    \end{itemize}
+
+    \item \textbf{Tests} \begin{itemize}
+        \item \textbf{/Usings.cs} -- zawiera importy używanych zasobów 
+        \item \textbf{Tests.csproj} -- zawiera listę zewnętrznych bibliotek, zależności pomiędzy projektami oraz ustawienia projektu 
+        \item \textbf{*Tests.cs} -- są to konkretne implementacje testów jednostkowych, odpowiednie dla każdego repozytorium 
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Silnik bazy danych}
+MSSQL, czyli kolejne rozwiązanie firmy Microsoft. Jest to system zarządzania relacyjną bazą danych. Szczególnie popularny i łączony z innymi rozwiązaniami Microsoftu, często łączony z aplikacjami .NETowymi. MSSQL jak każda relacyjna baza danych przechowuje informacje w tabelach, która skłąda się z wierszy oraz kolumn. Silnik pozwala nam na dowolną manipulacją danymi. Jest to rozwiązanie bezpieczne, umożliwia szyfrowanie danych, w połączeniu z systemem operacyjnym Windows mamy możliwość uwierzytelniania poprzez zintegrowany system. Jedną z różnic oraz największą zaletą pomiędzy MSSQL, a konkurencyjnymi silnikami bazodanowymi jest zastosowanie języka T-SQL. 
+
+T-SQL od transakcyjny SQL, to rozszerzenie języka SQL o znane nam z języków programowania mechanizmy takie jak: pętle, instrukcje warunkowe, zmienne. Dzięki temu rozszerzenie tworzenie procedur oraz triggerów daje nam o wiele większe możliwości. Rozszerzenie pozwala przerzucić część funkcjonalności aplikacji backendowej na silnik bazy danych. Przydatne podczas implementacji funkcjonalności opartych na zmiany rekordów w bazie na przykład podczas różnych operacji. Tworzenie triggerów, czyli funkcji wywołujących się automatycznie na bazie po spełnieniu konkretnego warunku, pozwala nam na uniknięcie niektórych błędów.
+
+Do obsługi oraz podglądu bazy danych dostarczony zostaje nam również SQL Server Management Studio. Jest to zintegrowane środowisko zawierające wszystkie potrzebne funkcjonalności. 
+
+\subsection{Modele}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{diagram1.png}
+    \caption{Diagram UML}
+    \label{Kompilator}
+\end{figure}
+Na powyższym rysunku przedstawiony został schemat bazy danych wraz z relacjami. Do poprawnego działania aplikacji backendowej wymagane jest działanie bazy danych. To ona przechowuje wszystkie informacje o użytkownikach, pocztówkach, posiadanych danych i całej reszcie. Na zaprezentowanym rysunku widoczne są wszystkie dostępne relacje. Przykładem relacji wiele do wielu może być połączenie tabeli User z tabelą Postcards poprzez tabelę pośredniczącą, czyli UserPostcards. Przykładem relacji jeden do jednego jest User z UserDetails. Relacja jeden do wielu zaprezentowana jest w PostcardData oraz Postcard. Znaczy to tyle, iż jeden rekord z tabeli PostcardData może występować w wielu rekordach w tabeli Postcard.
+
+Najważniejszymi składowymi bazy danych są: User oraz Postcards. Jest to trzon naszej bazy, od których rozgałęziają się pozostałe funkcjonalności. User przechowuje podstawowe informacje o użytkowniku. Ma bezpośrednią relację jeden do jednego do UserStats, czyli statystyk użytkownika, UserDetails, czyli informacji szczegółowych, Address, czyli adresu użytkownika. Ponadto tabela User posiada relację wiele to wielu z tabelą UserFriends, ponieważ relacja ta odpowiada za posiadanie listy osób obserwujących oraz obserwowanych.
+
+Tabela Postcards zbiera dane które, w połączeniu z tabelami: UserPostcards, FavouritePostcards, PostcardsCollection, PostcardData tworzą wspólną całość. Odpowiedzialna jest ona za zbieranie danych o posiadanych przez użytkownika pocztówek. Pocztówek, które są dostępne w ogólnej puli. Pocztówek, które użytkownik oznaczył jako swoje ulubione oraz pocztówek otrzymanych od innych użytkowników.
+
+Tabela \_\_EFMigrationsHistory zawiera historię o wykonanych migracjach przy użyciu biblioteki EntityFramework. 
+
+\subsection{Specyfikacja wewnętrzna}
+\subsubsection{Runtime, WebApi, instalacje}
+Głównym plikiem uruchomieniowym aplikacji backendowej jest plik WebAPI/Program.cs. To właśnie w tym pliku definiujemy m.in. DataSeeder, Swaggera, użycie kontrolerów, mechanizmu uwierzytelniania oraz instalacji. Wykorzystując klasę WebApplicationBuilder tworzymy builder na podstawie którego buduje aplikację serwerową bazując na dostępnej konfiguracji. W celu usprawnienia budowania oraz tworzenia projektu zaimplementowaliśmy abstrakcyjny poziom instalacji zależności wraz z metodą instalującą InstallServicesInAssembly(). Abstrakcja ta polega na implementacji metody InstallService() w interfejsie IInstaller. W ten sposób zaimplementowane został instalacje metod potrzebnych dla: Cors, Swaggera, Cache, Authentication, MVC, Db. Zastosowanie tego rozwiązania pozwala nam utrzymać porządek w kodzie zwłaszcza w tak kluczowym segmencie projektu. 
+
+\subsubsection{Rest API }
+Definicje REST API warto rozpocząć od zdefiniowania czym jest samo API.  
+
+API (Application Programming Interface), czyli interfejs programistyczny aplikacji jest opisem zasada, w jaki sposób programy komunikują się między sobą. API możemy wyobrazić sobie jako most łączący dwa brzegi, przez który poruszają się samochody, czyli w tym przypadku nasze dane. Gdyby ten most nie istniał to komunikacja lądowa pomiędzy dwoma brzegami byłaby niemożliwa. Tak samo jest z naszym API, które jest kluczowe do działania programu.  
+
+REST (Representational State Transfer) API – styl architektoniczny, który opisuje w jaki sposób tworzony ma być rozproszony system. REST API zawiera w sobie sześć reguł projektowania: 
+\begin{enumerate}
+    \item \textbf{Jednolity interfejs} -- zapytania spełniają reguły formatowania API 
+    \item \textbf{Rozdzielenie klient-serwer} -- klient oraz serwer to osobne aplikacje. Klient posiada informację o nazwie zasobu i w razie potrzeby pobiera ją z serwera. Natomiast serwer nie może ingerować w klienta. 
+    \item \textbf{Bezstanowość} -- serwer nie musi przechowywać informacji o żądaniu 
+    \item \textbf{Buforowość} -- mechanizm, który wymusza na nas implementację cachu. Jeżeli dany zasób jest w krótkim czasie wywoływany kilkukrotnie to powinien być on zapisany w pamięci podręcznej. 
+    \item \textbf{Warstwowa architektura systemu} -- końcowy klient nie musi posiadać wiedzy czy zasoby, o które prosi znajdują się na bezpośrednio na pytanym serwerze, czy też na innym. Serwer może pełnić funkcję pośrednika pomiędzy zasobami dostępnymi w bazie danych a w bazach danych zewnętrznych dostawców. 
+    \item \textbf{Kod na żądanie} -- klient może żądać wykonania kodu 
+\end{enumerate}
+
+Protokołem komunikacyjnym, który pomaga nam spełnić wymagania REST API jest HTTP. Protokół posiada metody, które umożliwiają nam pozyskanie jak i przesyłanie informacji. Metoda GET służy do pobierania zasobów, zwyczajowo nie zawiera elementu body. Metoda POST tworzy nowe zasoby, Metoda PUT może być wykorzystana do zaktualizowania zawartości. Metoda DELETE służy do usuwania zasobów.  
+
+Kody odpowiedzi HTTP możemy podzielić na pięć kategorii: 
+\begin{enumerate}
+    \item \textbf{Grupa informacyjna}. Przedział: 100 – 199 
+    \item \textbf{Grupa potwierdzenia sukcesu}. Przedział: 200 – 299  
+    \item \textbf{Grupa przekierowania}. Przedział: 300 – 399  
+    \item \textbf{Grupa błędu po stronie klienta}. Przedział: 400 – 499  
+    \item \textbf{Grupa błędu po stronie serwera}. Przedział: 500 – 599  
+\end{enumerate}
+
+\subsubsection{Kontroler}
+Aplikacja zawiera kontrolery w projekcie WebAPI. Każdej tabeli w bazie danych odpowiada jeden kontroler.  Kontroler to punkt dostępu dla klienta, zawiera on endpointy wraz z różnymi metodami CRUD. Odpowiedzialny za komunikację danych z użytkownikiem końcowym. To on dzięki użyciu protokołu HTTPS oraz zasad RESTAPI dostarcza klientowi zasoby. W skład kontrolera wchodzą metody CRUD, czyli metody odpowiedzialne za tworzenie, czytanie, aktualizacje oraz usuwanie danych. Dostęp do każdego endpointu może być dodatkowo ograniczony poprzez uwierzytelnianie i/lub autoryzację. Endpointy zawierają informację o ścieżce dostępu. Po otrzymaniu żądania kontroler deleguje dalsze działanie do serwisów aplikacji. Które to odpowiadają za realizację logiki aplikacji oraz zwrócenie danych do kontrolera. 
+
+\subsubsection{Serwis}
+Serwis odpowiada ze przetworzenie danych otrzymanych przez kontroler, a następnie ich zwrócenie. Jeśli jest taka potrzeba serwis może komunikować się z innymi serwisami lub zewnętrznymi usługami. W razie potrzeby działania na bazie danych serwis wykorzystuje metody napisane w repozytoriach.  
+
+\subsubsection{Repozytorium}
+Klasy odpowiedzialne za bezpośrednią komunikację serwera z bazą danych. To za jego pomocą pobieramy, zmieniamy dane w bazie. Dostęp do repozytorium powinny mieć jedynie serwisy, przy założeniu ze korzystamy z architektury Onion Architecture oraz że chcemy odpowiednio zabezpieczyć warstwy. Repozytoria wykonują podstawowe operacje CRUD lub bardziej złożone zapytania. Elementarne operacje takie jak tworzenie nowego rekordu, jego zmiana, usunięcie lub pobranie go możemy wyabstrahować do formy generycznych metod. 
+
+\subsubsection{Generyczne repozytorium}
+Generyczne repozytorium zawiera implementacje najprostszych metod CRUD. Umożliwia nam to w bardzo szybki sposób na implementację podstawowych funkcjonalności w aplikacji. Dodatkowo pozbywamy się zbędnych powtórzeń kodu, ponieważ operacje CRUD w większości przypadków są powtarzalne. W naszej aplikacji stworzyliśmy podstawową klasę Repository, od której to pozostałe repozytoria dziedziczą. Repository przyjmuje jako argument generyczny model dla tabeli, na której chcemy wykonywać operacje. Przez takie rozwiązanie generyczne metody mogą operować jedynie na jednej tabeli w tym samym czasie. W razie utworzenia bardziej zaawansowanych operacji poza istniejącą implementacją możemy wdrożyć dodatkowe metody. Przykładem mogą być operacje na bazie na wielu tabelach. 
+
+\subsubsection{Migracje}
+Entityframework Core dostarcza nam narzędzi do tworzenia migracji bazy danych.  
+
+W projekcie wykorzystaliśmy podejście Model-First. Polega ono na stworzeniu encji oraz relacji, a następnie na ich podstawie EFCore generuje zapytania do bazy danych. Stosowane jest zazwyczaj w przypadku, kiedy nie posiadamy jeszcze istniejącej bazy danych. Podejściem odwrotnym jest podejście Database-First, w tym przypadku to modele, relacje oraz mapowania są tworzone na podstawie istniejącej bazy danych. 
+
+\subsubsection{Interfejs}
+Interfejs w C\# podobnie jak w innych obiektowych językach programowania to abstrakcyjny typ posiadający jednie definicje operacji. Nie możemy stworzyć na jej podstawie obiektu, natomiast każda klasa lub struct może zaimplementować dowolnie wiele interfejsów. Warunkiem do poprawnego użycia interfejsu jest konieczność implementacji wszystkich jego zdefiniowanych metod. Interfejsów używamy w celu osiągnięcia pewnego poziomu abstrakcji. Przykładem użycia w naszej aplikacji jest interfejs IRepository, po którym to dziedziczy każdy z repozytoriów. Ponadto każde repozytorium oraz serwis posiadają swój indywidualny interfejs. Stosowane jest to w celu poprawnej implementacji architektury Onion Architecture. Dla przykładu implementacja repozytoriów znajduje się w projekcie Infrastructure, natomiast ich interfejsy znajdują się w warstwie Domain. Jest tak, ponieważ oddzielamy w ten sposób logikę biznesową od domeny. Ułatwia to późniejsze testowanie aplikacji. 
+
+\subsubsection{Wstrzykiwanie zależności}
+Dependency injection – wstrzykiwanie zależności stosowane jest do zarządzania zależnościami w ramach całej solucji. W ramach konkretnych projektów może być potrzeba na zarejestrowanie usługi i/lub jej użycie. W ramach rejestracji usług interfejs IServiceCollection dostarcza nam metody. Trzy główne oraz najczęściej stosowane to: AddScoped, AddTransient i AddSingleton. 
+\textbf{AddScoped} -- usługa tworzona jest raz podczas pojedynczego żądania HTTP, przy każdym zapytaniu otrzymujemy nowy obiekt 
+\textbf{AddTransient} -- dla każdego żądania usługi zostaje tworzona nowa instancja 
+\textbf{AddSingleton} -- to nic innego jak użycie wzorca projektowego Singleton. Pozwala nam stworzyć usługę tylko raz podczas trwania działania aplikacji. Używane jest podczas gdy dane które są w tej usłudze rejestrowane, są współdzielone w wielu miejscach. 
+
+
+\subsubsection{Uwierzytelnianie i autoryzacja (JWT)}
+We współczesnych implementacjach aplikacji ważne są pojęcia takie jak uwierzytelnianie oraz autoryzacja. Istotny jest poziom bezpieczeństwa użytkowników oraz ich danych. Często są to dane wrażliwe, które po dostaniu się w niepowołane ręce mogą wyrządzić wiele szkód użytkownikowi jak i wiele problemów organizacji oraz twórcą wadliwego oprogramowania. 
+
+Uwierzytelnianie to proces, podczas którego potwierdzamy tożsamość użytkownika, celem jest upewnienie się, że osoba, która wykonuje pewne żądanie może uzyskać zasób lub jego część. Uwierzytelniamy się w systemie np. poprzez podanie hasła, użycie karty dostępu lub poprzez skorzystanie z zewnętrznych serwisów. 
+
+Autoryzacja to z kolei proces, który odpowiada na pytanie “Czy jesteś uprawniony to zrobić”. Użytkownicy po zalogowaniu mają różne uprawnienia do zasobów. Związane to jest z różnymi rolami oraz uprawnieniami w aplikacji, organizacji. To za pomocą autoryzacji jesteśmy w stanie ograniczyć dostęp do zasobów. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{jwt.png}
+    \caption{JWT przepływ uwierzytelniania}
+    \label{JWT}
+\end{figure}
+
+\subsubsection{Proces uwierzytelniania} 
+Proces uwierzytelniania zaczyna się od użytkownika oraz aplikacji klienckiej. To za jej pomocą oraz zaimplementowanej w niej formularzu logowania zaczynamy proces uwierzytelniania. Użytkownik po wpisaniu danych logowania wysyła prośbę o uwierzytelnienie na serwer. Ten natomiast sprawdza czy podane dane są zgodne ze stanem faktycznym w bazie danych. Następnie tworzy token, który zawiera informacje o użytkowniku oraz długości życia sesji. Przekazuje je do aplikacji klienta. Klient posiadając taki token ma możliwość z dalszego korzystania z aplikacji oraz dostępu do zablokowanych źródeł. Podczas każdego autoryzowanego zapytania klient wysyła w nagłówku otrzymany token, co pozwala serwerowi na dalszą autoryzację oraz uwierzytelnianie użytkownika. W przypadku niepoprawnego tokenu lub błędnych danych przekazanych na serwer, aplikacja klienta odmówi nam dostępu do niedostępnych danych. 
+
+\subsubsection{Czym jest token JWT?} 
+JWT (JSON Web Token) - token wydawany przez serwer. Jest to ciąg znaków kodowany do Base64. Jest on nie szyfrowany, oznacza to, że każdy jest w stanie bez problemu odkodować jego zawartość. Co za tym, nie mogą znajdować się w nim dane wrażliwe, a jedynie informacje o nazwie użytkownika jego id lub podobne. Każdy token ma określoną długość życia. W ramach każdego zapytania długość ta może być przedłużana przy pomocy RefreshTokena, aby zachować ciągłość działania aplikacji bez potrzeby ponownego logowania.  
+
+RefreshToken to specjalny token, który zostaje użyty w przypadku, gdy nasz token dostępu utraci swoją ważność. RefreshToken ma dłuższy czas życia niż token dostępu. 
+
+W skład tokenu wchodzi: nagłówek, payload, podpis tokena. Nagłówek to informacja o użytym algorytmie podpisywania tokena. Payload jest to lista wszystkich claimsów. Podpis tokena to suma kontrola.
+
+Claim to informacja o danych zalogowanego użytkownika. Przydatne podczas tworzenia tokenów JWT. Każdy token JWT może parę różnych Claimsów.  
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{jwtdecode.png}
+    \caption{Przykładowe zdekowodanie tokenu JWT }
+    \label{JWTDecode}
+\end{figure}
+
+\subsubsection{Data seeder} 
+W celu ułatwienia procesu deweloperskiego na nasze wewnętrzne potrzeby stworzony został mechanizm seedowania danych. Jest to specjalny zestaw klas oraz metod, które wywoływane są jedynie na środowisku testowym. Metody te wprowadzają dane testowe do naszej bazy danych.  
+
+Główną klasą, która zarządza danymi z seedera jest klasa DataSeeder. Posiada metodę Seed(), która jest wywoływana wraz z uruchomieniem programu. Sprawdza ona czy nasze połączenie z bazą testową jest prawidłowe oraz następnie dla każdej tabeli sprawdza czy posiada ona już jakieś testowe dane. Jeśli dana tabela nie posiada danych testowych to za pomocą odpowiadających im klas statycznych wprowadza dane testowe do tabeli. Dzięki temu rozwiązaniu dane testowe nie są dublowane przy każdym uruchomieniu aplikacji, a jedynie w momencie, gdy wiem, że tabela jest pusta. Takie rozwiązanie bardzo ułatwia testowanie aplikacji oraz symulowanie rzeczywistego działania na danych. 
+
+\subsubsection{Cachowanie} 
+Podczas tworzenia aplikacji backendowej ważnym aspektem jest jego optymalizacja oraz szybkość działania. Jednym z mechanizmów pozwalającym zwiększyć wydajność aplikacji jest mechanizm cachowania, czyli przechowywania tymczasowych kopii. Cache obejmuje przechowywanie danych pozyskanych z bazy danych, plików które są dostępne z poziomu backendu. Stosowanie cachingu zwiększa wydajność poprzez ograniczenie ilości powtórnie wykonywanych operacji odczytu. Dla przykładu, jeżeli użytkownik odczyta jakieś dane, a w niedalekiej przyszłości zrobi to ponownie, to dzięki zastosowaniu mechanizmu cache ta druga operacja nie będzie musiała być ponownie obliczona przez serwer. Zostaną jedynie zwrócone dane które były zapisane w pamięci podręcznej podczas pierwszego zapytania. Minusem takiego zastosowania jest oczywiście zużycie pamięci, przez co należy używać tego mechanizmu z rozwagą i jedynie w kluczowych miejscach. Druga sprawa to taka, że jeżeli dane zostały zmienione pomiędzy zapytaniami a my mamy dostęp do przestarzałego cache, który może być wynikiem błędnej implementacji, to użytkownik otrzyma niezaktualizowane dane. I to właśnie na poprawną implementację powinniśmy zwrócić uwagę. Ponieważ podczas fazy deweloperskiej utrudnia nam to poprawne zlokalizowanie błędów, a podczas korzystania z wydanej aplikacji zwrócić nam może nieaktualne dane. 
+W C\#, aby zrealizować mechanizm cachowania możemy skorzystać z przestrzeni nazw Microsoft.Extensions.Caching.Memory oraz interfejsu IMemoryCache. W standardowy sposób wstrzykujemy przez kontruktor obiekt IMemoryCache, a następnie za pomocą metody Set() możemy ustawić klucz oraz wartość danej kopii. Aby poprawnie stworzyć kopię tymczasową, potrzebujemy klucza, który jednoznacznie zidentyfikuje nam daną kopię, potrzebuje dane które chcemy zapamiętać, oraz opcjonalnie ustawienia. Do skorzystania z ustawień należy użyć klasy MemoryCacheEntryOptions. To w niej możemy zawsze takie informacje jak np. czas przechowywania kopii w pamięci, jego priorytetu oraz rozmiar danych. Do tworzenia kluczy stworzona została statyczna klasa CacheKeyGenerator. Posiada przeciążoną metodę GetKey(), która to przyjmuje jako argumentu różne wartości, zależne od kontekstu aplikacji. 
+
+Mechanizm cache zastosowaliśmy podczas pobierania danych pocztówek oraz użytkownika. Związane jest to z tym, że powyższe wartości bardzo rzadko ulegają zmianie oraz to, że zawierają długie ciągi zakodowanych znaków w formacie base64. Dzięki temu serwer nie musi za każdym zapytaniem ponownie przetwarzać danych, co wpływa na szybkość z jaką otrzymujemy dane z serwera.  
+
+
+\subsubsection{Mapper} 
+Mapowanie, czyli funkcja, która zamienia jeden obiekt do postaci innego obiektu. Stosowane jest w celu uniknięcia przypisywania każdego pola do nowego obiektu, pozwala nam to uniknąć powtórzeń w kodzie oraz usprawnić proces przekazywania danych. Częstym miejscem w kodzie, gdzie stosuje się mapowanie to np. przekazywanie obiektu z requestu (czyli z zapytania użytkownika) do następnej warstwy aplikacji. Na tym etapie otrzymujemy od użytkownika szczątkowe informacje o obiekcie, ale przy pomocy mappera tworzymy nowy obiekt, który zawiera brakujące pola. Ten nowy obiekt następnie może posłużyć nam do wykonania działań na bazie danych przy pomocy repozytoriów. 
+
+W kodzie zastosowaliśmy dwa podejścia do mappera. 
+
+Pierwsze, z wykorzystaniem biblioteki AutoMapper. Która to po uprzednim skonfigurowaniu pozwala nam w znaczący sposób zautomatyzować proces mapowania. Służą nam do tego wewnętrzne funkcje biblioteki. Każdy z naszym obiektów DTO (Data Transfer Object), czyli obiektów transferów danych, posiada zaimplementowaną metodę Map. Ponadto posiadamy osobną klasę AutoMapperConfig, w której to znajduje się dalsza część mapowania obiektów.  
+
+Drugim podejściem jest mapowanie manualne przy pomocy ręcznie napisanych klas. Wszystkie nasze klasy mapera znajdują się w folderze /Application/Mapping/Manual. Są to klasy statyczne które jako argument przyjmują obiekt klasy wchodzącej, a zwracają obiekt klasy docelowej.  
+
+Różnica pomiędzy oba podejściami jest taka, że w podejściu z wykorzystaniem AutoMappera, wiele zadań jest wykonanych automatycznie bez naszego udziału. Natomiast potrzebna jest wcześniejsza konfiguracja, która miejscami może być o wiele trudniejsza. W przypadku manualnych maperów mamy doczynienia z większą ilością kodu, jednak pisanie tych klas jest bardzo proste i mamy większą kontrolę nad procesem mapowania np. w przypadku debugowania kodu. 
+
+\subsubsection{Swagger}
+Swagger to narzędzie, które pozwala nam w łatwy oraz przystępny sposób na korzystanie z naszego API. Dodatkowo pełni funkcję dokumentacji, dzięki temu, że po uruchomieniu od razu widzimy listę wszystkich endpointów. Dane te można eksportować i użyć w Postmanie lub innych programach do używania API. Każdy z endpointów możemy dowolnie testować. Można przekazywać dowolne dane, a dzięki wbudowanym mechanizmom istnieje możliwość wstrzyknięcia tokenu JWT, dzięki czemu nie mamy żadnych ograniczeń. W naszej aplikacji serwerowej Swagger uruchamiany jest automatycznie podczas rozpoczęcia działania aplikacji. Jego sesja gaśnie wraz z zamknięciem okna przeglądarki lub wyłączenia backendu.
+
+\subsection{Ważne funkcjonalności}
+\subsubsection{Measure}
+\subsubsection{Uwierzytelnianie}
+
+\subsection{Specyfikacja zewnętrzna}
+\subsubsection{Flow dzialania, tworzenie konta, zdobywanie pocztowek, przeyslanie pocztowek. Mozliwosci ograniczenia, zasada dzialania.  }
+
+\subsubsection{Czysty kod oraz konwencje języka C\# }
+Podczas tworzenia oprogramowania ważne jest, aby tworzony kod był z zachowaniem zasad czystego kodu oraz dobrej architektury. Pozwala nam to w przyszłości na szybsze tworzenie nowych funkcjonalności oraz łatwiejszego odnajdowania błędów. W aplikacji serwerowej z wykorzystaniem języka C\# staraliśmy się wykorzystać wszystkie dobre oraz odgórnie ustalone reguły oraz zasady. I tak dla przykładu wszystkie klasy, nazwy metod są zapisane w notacji PascalCase, a funkcje w camelCase. Pola prywatne poprzedzone są podkreśleniem a następnie camelCase. Wykorzystany został podział funkcjonalności na mniejsze metody zamiast jednej dużej. Poprzez odpowiednie nazywanie zmiennych, metod oraz klas kod nie posiada komentarzy, ponieważ komentuje się sam. 
+
+\subsubsection{Narzędzia pracy}
+
+\begin{itemize}
+    \item \textbf{Visual Studio (IDE)} -- zintegrowane środowisko programistyczne  
+    \item \textbf{SQL Server Management Studio} -- zintegrowane środowisko bazy danych do jej obsługi, które zawiera wszystkie potrzebne funkcjonalności. 
+\end{itemize}
+
+\subsubsection{Jak uruchomić?}
+Są dwa sposoby na uruchomienie naszego serwera. Po pierwsze wymagane jest działanie bazy danych. W tym celu na naszym systemie Windows musimy posiadać zainstalowaną usługę MSSQLSERVER, aby sprawdzić, czy jest ona aktywna przechodzimy do Usług, a następnie szukamy MSSQLSERVER, powinien posiadać status uruchomiony. Po drugie musimy posiadać zainstalowaną wersję 7.0 frameworka .NET Core.  
+
+Aby uruchomić serwer przy pomocy terminala, wchodzimy do folderu z projektem. Następnie do projektu WebAPI, a w nim wpisujemy polecenie: dotnet run. Po uruchomieniu aplikacja działa na uprzednio skonfigurowanym porcie. 
+
+Serwer można uruchomić również wraz z trybem debugowania z poziomu środowiska programistycznego. Można do tego użyć Visual Studio, Visual Studio Code lub Rider. Mając uruchomione środowisko oraz projekt klikamy przycisk uruchomienia projektu. Projekt w tym czasie zostaje uruchomiony wraz z usługą Swagger. Poza tym mamy możliwość debugowania kodu. 
+
+\subsubsection{Sposób pracy}
+Przed pierwszym uruchomienia projektu ważne jest, aby posiadać zainstalowane wszystkie potrzebne zależności oraz programy, które zostały przedstawione wcześniej. Aplikacja serwerowa posiada pliki konfiguracyjne, które należy skopiować oraz dostosować pod swoje potrzeby. Są to pliki appsettings.Development.json i appsettings.Production.json. Kiedy mamy już uruchomione IDE wraz z projektem, ważne jest, aby postępować zgodnie z instrukcjami zawartymi w plikach README.md. Po pierwsze uruchomienie wszystkich migracji, abyśmy byli w stanie działać na bazie danych. W tym celu w konsoli Package Manager Console w projekcie src/Infrastructure wpisujemy polecenie: Update-Database. Gdybyśmy chcieli stworzyć nową migrację w tym celu polecenie to poprzedzamy poleceniem Add-Migration <NazwaNaszejMigracji>. W razie pomyłki ostatnią migrację można cofnąć poleceniem Remove-Migration. We wszystkich projektach wchodzących w skład systemu korzystamy z systemu kontroli wersji GIT. W związku z tym wszystkie nowe zmiany tworzymy na uprzednio utworzonym branchu, a następnie każdą zmianę wrzucamy na brancha. Aby stworzyć nowego brancha korzystamy z wewnętrznego integratora projektów GitHub Projects. To w nim tworzymy nowe zadania. Kiedy dana funkcjonalność jest zakończona zmiany dołączamy do głównej gałęzi - master. 
+
+\subsubsection{Testy}
+
+% ==========================================================================================
+% ==========================================================================================
+% ===================== BACKEND  ==========================================================================================
+
+
+
+
+
+
+
+
+
+
 
 
 
