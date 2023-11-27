@@ -744,7 +744,7 @@ class test : public basic
 
 
 \section{Biblioteki}
-W rozdziale tym zostaną omówione biblioteki użyte w projekcie. Na początku omówimy główne biblioteki każdego modułu na których podstawie zostały stworzone. W dalszych podrozdziałach omówimy biblioteki dodatkowe które wchodzą w skład modułów dodając do nich nowe funkcjonalności lub rozwijając już te istniejące.
+W rozdziale tym zostaną omówione biblioteki użyte w projekcie. Na początku omówimy główne biblioteki każdego z modułów. W dalszych podrozdziałach omówimy biblioteki dodatkowe, które wchodzą w skład modułów dodając do nich nowe funkcjonalności lub rozwijając już te istniejące.
 \subsection{Biblioteka główna mobilna}
 \begin{itemize}
     \item Flutter - jest to technologia stworzona przez firmę Google pozwalająca na tworzenie aplikacji na urządzenia z systemami Android jak i iOS używając tego samego kodu. Językiem wykorzystywanym podczas tworzenia tych aplikacji jest Dart, który również został stworzony przez Google. Napisane we Flutterze aplikacje mobilne wyglądają i działają niemal identycznie na obu systemach z wydajnością, która jest bardzo zbliżona do aplikacji natywnych. Fluttera tworzą dwa podstawowe elementy którymi są framework, który jest niezbędny do poprawnego działania aplikacji oraz pakiet SDK, który jest konieczny do ich tworzenia.
@@ -760,7 +760,7 @@ W rozdziale tym zostaną omówione biblioteki użyte w projekcie. Na początku o
     \item image\_picker - oficjalna biblioteka umożliwiająca wybieranie zdjęć z galerii lub tworzenie od razu nowych i dalsze ich wykorzystywanie w aplikacji.
     \item country\_picker - biblioteka dodająca widget do wybierania kraju.
     \item auto\_size\_text - jest to biblioteka dająca większą kontrolę nad wyświetlanym tekstem. Dzięki niej łatwo możemy skalować tekst na mniejszych ekranach lub ustawiać limit wierszy przy zawijaniu.
-    \item background\_locator\_2 - jest to jedna z istotniejszych bibliotek w naszej aplikacji. Służy ona na do pobierania z telefonu koordynatów. Funkcja kontynuuje działanie, nawet gdy aplikacja działa w tle lub gdy jest całkowicie wyłączona. Biblioteka jest również rozwinięta o funkcje callback która jest wykonywana za każdym razem gdy pobierany są nowe koordynaty co umożliwia nam wykonywanie wtedy innych funkcji, nawet gdy aplikacja jest wyłączona.
+    \item background\_locator\_2 - jest to jedna z istotniejszych bibliotek w naszej aplikacji. Służy ona na do pobierania z telefonu koordynatów. Funkcja kontynuuje działanie, nawet gdy aplikacja działa w tle lub gdy jest całkowicie wyłączona. Biblioteka jest również rozwinięta o funkcje callback, która jest wykonywana za każdym razem gdy pobierane są nowe koordynaty co umożliwia nam wykonywanie wtedy innych funkcji, nawet gdy aplikacja jest wyłączona.
     \item path\_provider - biblioteka wykorzystywana do lokalizowanie plików w systemie.
     \item location\_permissions - umożliwia pobieranie lokalizacji z urządzenia. 
     \item permission\_handler - biblioteka, która obsługuje nadawanie oraz sprawdzanie istniejących zgód na wykorzystywanie poszczególnych serwisów w urządzeniu, takich jak powiadomienia lub pamięć. 
@@ -772,7 +772,8 @@ W rozdziale tym zostaną omówione biblioteki użyte w projekcie. Na początku o
     \item easy\_debounce - biblioteka upraszczająca oryginalny zapis debouncera języka Dart. 
     \item shared\_preferences - służy do zapisywania różnych zmiennych w pamięci telefonu jako pary klucz-wartość w podobny sposób jak to robi secure storage. 
     \item app\_settings - umożliwia otworzenie ustawień telefonu z poziomu aplikacji.
-    \item privider - jest to biblioteka do zarządzania stanem aplikacji. Umożliwia na przebudowanie widoku gdy Consumer wykryje zmianę wartości zmiennej.
+    \item provider - jest to biblioteka do zarządzania stanem aplikacji. Umożliwia na przebudowanie widoku gdy Consumer wykryje zmianę wartości zmiennej.
+    \item flutter\_local\_notifications - biblioteka umożliwiająca wykonywanie lokalnych powiadomień typu ``push'', nawet gdy aplikacja jest wyłączona. 
 \end{itemize}
 \section{Architektura systemu}
 \subsection{Architektura modułu mobilnego}
@@ -781,7 +782,34 @@ Architektura oparta na zdarzeniach (Event-Driven Architecture, EDA) stanowi kluc
 W ramach tej architektury, BLoC i Cubit pełnią rolę obsługiwaczy zdarzeń.
 BLoC to jedno z narzędzi do zarządzania stanem w aplikacjach Flutter. Możemy go używać do obsługi wszystkich stanów, które chcemy kontrolować w naszych aplikacjach. Cubit to podzbiór wzorca projektowego BLoC, który upraszcza sposób zarządzania stanem aplikacji. W tym celu zastępuje użycie zdarzeń (używanych w BLoC) funkcjami, które odbudowują interfejs użytkownika poprzez emitowanie różnych stanów na strumieniu.
 
-Cubit jest podobny do BLoC, ale nie posiada zdarzeń i polega na metodach do emitowania nowych stanów. Są one odpowiedzialne za nasłuchiwanie i przetwarzanie zdarzeń, które są generowane w różnych częściach aplikacji. Na przykład, BLoC lub Cubit ds. uwierzytelniania może nasłuchiwać zdarzeń takich jak ``zalogowanie użytkownika'' lub ``wylogowanie użytkownika'' i reagować poprzez zmianę stanu uwierzytelnienia.
+Cubit jest podobny do BLoC, ale nie posiada zdarzeń i polega na metodach do emitowania nowych stanów. Są one odpowiedzialne za nasłuchiwanie i przetwarzanie zdarzeń, które są generowane w różnych częściach aplikacji. Na przykład, BLoC lub Cubit ds. uwierzytelniania może nasłuchiwać zdarzeń takich jak ``zalogowanie użytkownika'' lub ``wylogowanie użytkownika'' i reagować poprzez zmianę stanu uwierzytelnienia. Na rysunku poniżej przedstawiono fragment kodu klasy typu Cubit odpowiedzialnej za logikę dotyczącą logowania i rejestrowania użytkowników. 
+
+\begin{figure}[H]
+        \begin{lstlisting}
+class AuthCubit extends Cubit<AuthState> {
+    final AuthService _repository;
+
+    AuthCubit(this._repository) : super(InitState());
+
+    Future<void> loginUser(LoginRequest loginRequest) async {
+        emit(LoadingState());
+        try {
+            final response = await _repository.login(loginRequest);
+            
+            await SecureStorageService.write
+                (key: 'token', value: response);
+
+            emit(LoginSuccessState(response));
+            
+        } catch (e) {
+            emit(ErrorState(e.toString()));
+        }
+    }
+ ...
+        \end{lstlisting}
+    \caption{Fragment Cubita z funkcją logującą }
+    \label{fig:pseudokod:listings}
+\end{figure}
 
 Zdarzenia są generowane w odpowiedzi na różne interakcje użytkownika oraz na operacje asynchroniczne. Przykłady to zdarzenia ``kliknięcia przycisku'' w interfejsie użytkownika, ``wysłania formularza'' lub ``zakończenia operacji pobierania danych z serwera''. Zdarzenia te są kluczowe dla przekazywania informacji o działaniach i stanach aplikacji.
 
@@ -835,7 +863,7 @@ Wysłanie zapytania tak jak to było wspomniane powyżej jest wykonywane przez s
 
 Provider w aplikacji mobilnej jest drugim po BLoCu, systemem zarządzania stanem. Dzięki tej bibliotece zarządzanie zmiennymi globalnymi staje się dużo prostsze. Możemy dzięki temu odświeżyć aplikację, gdy taka zmienna została zmieniona w dowolnym miejscu naszej aplikacji. Działanie wygląda następująco:
 \begin{itemize}
-    \item Widgety klasy, w której chcemy zainicjalizować Providera, dodajemy jako dziecko widgetu, który znajduje się w bibliotece Provider, zwanym ChangeNotifierProvider. Widget ten potrzebuje klasy typu Provider, której obiekt tworzony jest podczas inicjalizacji. Klasa typu Provider to klasa, która posiada w sobie konstruktor, funkcję ustawiającą ``set'', funkcję, która zwraca zmienne oraz zmienne, które mają być dostępne w naszej aplikacji, a ich zmiana ma skutkować odświeżeniem strony.
+    \item Widgety klasy, w której chcemy zainicjalizować Providera, dodajemy jako dziecko widgetu, który znajduje się w bibliotece Provider, zwanym ChangeNotifierProvider. Widget ten potrzebuje klasy typu Provider, której obiekt tworzony jest podczas inicjalizacji. Klasa typu Provider to klasa, która posiada w sobie konstruktor, funkcję ustawiającą ``set'', funkcję, która zwraca zmienne oraz zmienne, które mają być dostępne w naszej aplikacji, a ich zmiana ma skutkować odświeżeniem strony. Na rysunkach poniżej przedstawione zostały fragmenty kodów odpowiedzialnych kolejno za implementację widgetu ChangeNotifierProvider oraz implementację widgetu Consumer.
     \begin{figure}[H]
         \begin{lstlisting}
         @override
@@ -897,11 +925,83 @@ Provider w aplikacji mobilnej jest drugim po BLoCu, systemem zarządzania stanem
 
 Provider w aplikacji jest używany w celu:
 \begin{itemize}
-    \item Zmiany motywu kolorystycznego aplikacji: Zmiana motywu kolorystycznego następuje w podstronie ustawienia za pomocą przełącznika, który zapisuje jego stan w pamięci wewnętrznej aplikacji. Aby poinformować, że użytkownik chce zmienić motyw, musielibyśmy widget po widgecie dotrzeć na sam początek drzewa i tam wykonać funkcję setState(). Dzięki użyciu Providera ChangeNotifier, sam wykryje zmianę wartości, której nasłuchuje, i odświeży stronę z prawidłowym motywem kolorystycznym. 
+    \item Zmiany motywu kolorystycznego aplikacji: Zmiana motywu kolorystycznego następuje w podstronie ustawienia za pomocą przełącznika, który zapisuje jego stan w~pamięci wewnętrznej aplikacji. Aby poinformować, że użytkownik chce zmienić motyw, musielibyśmy widget po widgecie dotrzeć na sam początek drzewa i tam wykonać funkcję setState(). Dzięki użyciu Providera ChangeNotifier, sam wykryje zmianę wartości, której nasłuchuje, i odświeży stronę z prawidłowym motywem kolorystycznym. 
     \item Zmiana systemu metrycznego: W naszej aplikacji wykorzystujemy system metryczny. Mamy jednak również możliwość zmiany tego systemu na system imperialny. Użycie Providera powoduje prostą zmianę jednostek w innej gałęzi drzewa widgetów, bez konieczności przekazywania funkcji voidCallback().
 \end{itemize}
 
+\subsection{Powiadomienia}
 
+Aplikacja mobilna posiada zaimplementowaną funkcjonalność lokalnych powiadomień. Powiadomienia dotyczą:
+\begin{itemize}
+    \item Poinformowaniu użytkownika, że znajduje się w pobliżu pocztówki która jest możliwa do zebrania. 
+    \item Poinformowaniu użytkownika, że aplikacja aktualnie używa lokalizacji użytkownika w celu lokalizowania nowych pocztówek.
+\end{itemize}
+Do wykonywania lokalnych powiadomień wykorzystaliśmy bibliotekę ``flutter\_local\_notifications''. Aby powiadomienia mogły być wyświetlane, wymagane były odpowiednie zmiany w pliku AndroidManifest.xml, w którym należało dodać odpowiednie pozwolenia.
+Powiadomienie o tym, że w pobliżu znajduje się pocztówka możliwa do zebrania, wykonywane jest po odpowiedzi z serwera. Serwer na podstawie naszej lokalizacji przysyła nam dwie listy:
+\begin{itemize}
+    \item Listę pocztówek możliwych do zebrania.
+    \item Listę pocztówek w pobliżu, do których musimy jeszcze się zbliżyć, aby je zebrać.
+\end{itemize}
+Po każdym wykonanym zapytaniu, aplikacja zapamiętuje, o których pocztówkach już poinformowała użytkownika zapisując ich ID w pamięci lokalnej urządzenia, która jest resetowana po godzinie lub przy wyłączeniu opcji lokalizowania. Poniżej znajduje się fragment kodu odpowiedzialny za wykonywanie lokalnych powiadomień.
+\begin{figure}[H]
+        \begin{lstlisting}
+        ...
+        PostCoordinatesResponse response =
+        await collectPostcardService.postCoordinates(coordinatesRequest);
+
+        print(
+            "Recived: ${response.postcardsCollected?.length}, and ${response.postcardsNearby?.length}");
+    
+        _cyclesCount += 1;
+    
+        final List<int> storedPostcardsNearbyIds =
+            await AppSharedPreferences.getPostcardsNearbyIdList();
+    
+        List<int> newPostcardIds = (response.postcardsCollected
+                ?.map((postcard) => postcard.id)
+                .whereType<int>()
+                .where((id) => !storedPostcardsNearbyIds.contains(id))
+                .toList()) ??
+            [];
+    
+        if (newPostcardIds.isNotEmpty) {
+          NotificationService().showNotification(
+              title: "New Postcard",
+              body: "There are new postcards ready to collect!");
+    
+          storedPostcardsNearbyIds.addAll(newPostcardIds);
+          await AppSharedPreferences.savePostcardsNearbyIdList(
+              storedPostcardsNearbyIds);
+        }
+    
+        if (_cyclesCount > 360) {
+          _cyclesCount = 0;
+          await AppSharedPreferences.savePostcardsNearbyIdList([]);
+        }
+        ...
+        \end{lstlisting}
+    \caption{Fragment funkcji odpowiedzialny za wykonywanie powiadomień}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+Sama operacja wykonywania powiadomienia jest zawarta w klasie NotificationService, która zawiera metodę showNotification.
+\begin{figure}[H]
+        \begin{lstlisting}
+        ...
+        Future showNotification({int id = 0, String? title, String? body, String? payload}) async {
+            await initNotification();
+            var notificationDetailsObj = await notificationDetails();
+            return notificationsPlugin.show(id, title, body, notificationDetailsObj);
+        }
+        ...
+        \end{lstlisting}
+    \caption{Metoda showNotification}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+\subsection{Panel admina aplikacji mobilnej}
+
+Aplikacja mobilna posiada dodatkową stronę do administrowania pocztówkami znajdującymi się w bazie danych. W celu otrzymania dostępu do tej strony, administrator musi nadać rolę ADMIN do konta, na którym strona ma być dostępna. Po zalogowaniu na odpowiednie konto, użytkownik powinien mieć dostęp do ``Admin Panel'' z poziomu menu bocznego. 
+Na tej stronie użytkownik posiada możliwość edycji danych pocztówki lub dodanie nowej. W celu obsługi dodatkowych funkcjonalności admina użyty został Provider, który umożliwia nam na sprawdzenie w dowolnym miejscu aplikacji przy użyciu widgetu Consumer czy zalogowany użytkownik posiada rolę USER czy ADMIN i na podstawie tego wyświetlać odpowiednie podstrony i dane.
 % TODO
 \chapter{Weryfikacja i walidacja}
 \label{ch:06}
