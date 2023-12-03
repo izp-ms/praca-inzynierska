@@ -1002,6 +1002,195 @@ Sama operacja wykonywania powiadomienia jest zawarta w klasie NotificationServic
 
 Aplikacja mobilna posiada dodatkową stronę do administrowania pocztówkami znajdującymi się w bazie danych. W celu otrzymania dostępu do tej strony, administrator musi nadać rolę ADMIN do konta, na którym strona ma być dostępna. Po zalogowaniu na odpowiednie konto, użytkownik powinien mieć dostęp do ``Admin Panel'' z poziomu menu bocznego. 
 Na tej stronie użytkownik posiada możliwość edycji danych pocztówki lub dodanie nowej. W celu obsługi dodatkowych funkcjonalności admina użyty został Provider, który umożliwia nam na sprawdzenie w dowolnym miejscu aplikacji przy użyciu widgetu Consumer czy zalogowany użytkownik posiada rolę USER czy ADMIN i na podstawie tego wyświetlać odpowiednie podstrony i dane.
+
+\section{Instrukcja obsługi}
+
+\subsection{Rejestracja i logowanie}
+Aby rozpocząć używanie aplikacji, użytkownik musi założyć konto na poniższej stronie.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/rejestracja.png}
+    \caption{Strona do rejestracji użytkownika}
+\end{figure}
+
+Na stronie znajdują się cztery pola których wypełnienie jest wymagane. Symbol oka przy hasłach powoduje odsłonięcie hasła. Na dole strony znajduje się przycisk ``Sign in'' który przenosi użytkownika na stronę logowania. 
+Po udanej rejestracji na dole ekranu pojawi się informacja na zielonym tle informująca o utworzeniu konta a użytkownik zostanie przekierowany na stronę logowania która wygląda w następujący sposób 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/logowanie.png}
+    \caption{Strona do logowania użytkownika}
+\end{figure}
+
+Na stronie logowania również posiadamy przycisk odsłaniający hasło a przycisk ``Sign up'' przenosi użytkownika do strony z rejestracją. 
+
+\subsection{Nawigacja po aplikacji}
+Nawigacja po aplikacji została wykonana w postaci szuflady. Każdy dział aplikacji posiada odpowiednią podstronę. Dodatkowo administrator posiada podstronę do zarządzania pocztówkami znajdującymi się w bazie danych oraz każdy typ użytkownika posiada przycisk wylogowujący na dole szuflady.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/szuflada.png}
+    \caption{Szuflada służąca do nawigacji}
+\end{figure}
+
+\subsection{Edycja konta i informacji}
+W aplikacji możemy zobaczyć jak inni widzą nasz profil wchodząc na stronę ``Profile page'' która wygląda następująco:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/profil_bez_info.png}
+    \caption{Strona z profilem użytkownika bez informacji}
+\end{figure}
+
+Na powyższym zrzucie ekranu widzimy profil który posiada dwie ulubione pocztówki ale nie ma jeszcze wprowadzonych danych oraz zdjęć. Aby takowe wprowadzić należy przejść do strony edycji profilu używając przycisku ``Edit profile'' znajdującego się po prawej stronie. Użytkownik zostanie wtedy przeniesiony do strony edycji gdzie może wprowadzić swoje dane osobowe. Każda z rubryk jest nieobowiązkowa. Użytkownik sam może wybrać jakie dane chce aby się wyświetlały na jego profilu. Poniżej znajdują się zrzuty ekranu obrazujące proces wprowadzania informacji do profilu.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/edycja_profilu_bez_danych.png}
+    \caption{Edycja profilu bez wprowadzonych danych}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/edycja_profilu_z_danymi.png}
+    \caption{Edycja profilu z wprowadzonymi danymi}
+  \end{minipage}
+\end{figure}
+
+Po wprowadzeniu danych nasz profil prezentuje się następująco.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/profil_z_info.png}
+    \caption{Strona z profilem użytkownika bez informacji}
+\end{figure}
+
+\subsection{Kolekcja}
+Kolekcja to dział w którym możemy zobaczyć wszystkie pocztówki które kiedykolwiek odebraliśmy nawet jeżeli pocztówkę z tego miejsca komuś wysłaliśmy. Pierwsza zakładka to nasza kolekcja która wygląda następująco. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/obrazki_nasze.png}
+    \caption{Widok zakładki z naszą kolekcją}
+\end{figure}
+
+Druga zakładka to wszystkie pocztówki które można zebrać. Jeżeli dana pocztówka znajduje się w naszej kolekcji to jest ona kolorowa, jeżeli danej pocztówki jeszcze nie uzyskaliśmy, będzie ona czarno biała. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/obrazki_wszystkie.png}
+    \caption{Widok zakładki z naszą kolekcją}
+\end{figure}
+
+Na obu zakładkach możemy wyszukiwać daną pocztówkę po nazwie, filtrować pocztówki oraz je sortować. 
+
+\subsection{Pocztówki}
+Pocztówki to podstrona która zawiera te pocztówki, które zebraliśmy i możemy wysłać jak i również te, które otrzymaliśmy od innych użytkowników. W pierwszej zakładce znajdują się pocztówki które możemy komuś wysłać. Możemy te pocztówki tak samo jak w przypadku kolekcji filtrować, wyszukiwać i sortować. Po wciśnięciu danej pocztówki pojawia się dodatkowe okienko ukazujące więcej szczegółów dotyczące danej pocztówki. 
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/pocztowki.png}
+    \caption{Zawartość zakładki z pocztówkami do wysłania}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/pocztowki_podglad.png}
+    \caption{Podgląd pocztówki do wysłania}
+  \end{minipage}
+\end{figure}
+
+Druga zakładka zawiera pocztówki, które dostaliśmy od innych użytkowników. Zawartość jest podobna jak w pierwszej zakładce z tą różnicą, że pocztówki które są naszymi ulubionymi posiadają złotą ramkę. Różnice znajdują się również w podglądzie. Zamiast przycisku ``Send'' mamy przycisk serduszka, dodający daną pocztówkę do naszych ulubionych.  W podglądzie mamy również tytuł oraz treść którą ktoś wraz z daną pocztówką nam wysłał.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/pocztówki_odebrane.png}
+    \caption{Zawartość zakładki z odebranymi pocztówkami}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/pocztówki_odebrane_podglad.png}
+    \caption{Podgląd odebranej pocztówki\\}
+  \end{minipage}
+\end{figure}
+
+\subsection{Odbieranie pocztówek}
+
+Odbieranie pocztówek następuje na podstronie ``Collect''. Strona posiada dwie listy: pierwsza pokazuje nam pocztówki znajdujące się w zasięgu zebrania, druga natomiast pocztówki znajdujące się w zasięgu powiadamiania, który został ustawiony w ustawieniach. Gdy wciśniemy przycisk ``Redeem postcard'' na pocztówce z pierwszej listy, do naszej kolekcji dodana zostanie pocztówka dla nas oraz kopia do wysłania naszemu znajomemu. Gdy wciśniemy pocztówkę znajdującą się w drugiej liście, zostaniemy przeniesieni do strony pokazującej nam dokładne koordynaty pocztówki, jak i przycisk, który przeniesie nas do strony Google Maps z ustawioną już pocztówką do danej lokalizacji.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/odbieranie pocztówek.png}
+    \caption{Podstrona do odbierania pocztówek}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/lokalizownaie_pocztówki.png}
+    \caption{Podstrona do lokalizowania pocztówki}
+  \end{minipage}
+\end{figure}
+
+Aplikacja posiada również mechanizm powiadamiania użytkownika o tym, że znajduje się w pobliżu pocztówki do odebrania. Gdy znajdujemy się w jej zasięgu zostaje wysłane lokalne powiadomienie. Jest one wysyłane tylko raz na godzinę lub do momentu ponownego włączenia lokalizowania pocztówek.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/powiadomienie.png}
+    \caption{Powiadomienie o nowej pocztówce}
+\end{figure}
+
+Podstrona do odbioru pocztówek posiada również wersję gdy użytkownik nie włączył lokalizowania pocztówek jak i również wersje gdy lokalizacja jest w telefonie całkowicie wyłączona.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/lokalizacja_pocztowek_wylaczana.png}
+    \caption{Wersja podstrony gdy lokalizowanie pocztówek jest wyłączone}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/lokalizacja_w_tel_wylaczana.png}
+    \caption{Wersja podstrony gdy lokalizacja w telefonie jest wyłączona}
+  \end{minipage}
+\end{figure}
+
+\subsection{Ustawienia}
+W ustawieniach, użytkownik może dostosować aplikację do swoich potrzeb jak i zarządzać pewnymi jej funkcjami. 
+Ustawienia umożliwiają:
+\begin{itemize}
+    \item Zmieniać motyw na jasny lub ciemny
+    \item Włączać i wyłączać lokalizowanie pocztówek
+    \item Włączać i wyłączać powiadomienia
+    \item Zmieniać zasięg powiadamiania użytkownika o pocztówkach w pobliżu
+    \item Zmieniać format daty
+    \item Zmieniać typ jednostek
+    \item Przeczytane zasad korzystania z aplikacji
+    \item Usunięcie konta
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/ustawienia.png}
+    \caption{Podstrona z ustawieniami}
+\end{figure}
+
+\subsection{Panel administratora}
+Użytkownicy ze statusem administratora mają dostęp do dodatkowej zakładki w której mogą edytować istniejące już pocztówki jak i również z poziomu aplikacji dodawać nowe. Przeglądanie pocztówek w panelu admina jest wykonane podobnie do przeglądania pocztówek zwykłego użytkownika.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/admin.png}
+    \caption{Podstrona do zarządzania pocztówkami}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/admin_edit.png}
+    \caption{Podstrona do edycji i dodawania nowych pocztówek}
+  \end{minipage}
+\end{figure}
+
 % TODO
 \chapter{Weryfikacja i walidacja}
 \label{ch:06}
@@ -1315,12 +1504,218 @@ Różnica pomiędzy oba podejściami jest taka, że w podejściu z wykorzystanie
 Swagger to narzędzie, które pozwala nam w łatwy oraz przystępny sposób na korzystanie z naszego API. Dodatkowo pełni funkcję dokumentacji, dzięki temu, że po uruchomieniu od razu widzimy listę wszystkich endpointów. Dane te można eksportować i użyć w Postmanie lub innych programach do używania API. Każdy z endpointów możemy dowolnie testować. Można przekazywać dowolne dane, a dzięki wbudowanym mechanizmom istnieje możliwość wstrzyknięcia tokenu JWT, dzięki czemu nie mamy żadnych ograniczeń. W naszej aplikacji serwerowej Swagger uruchamiany jest automatycznie podczas rozpoczęcia działania aplikacji. Jego sesja gaśnie wraz z zamknięciem okna przeglądarki lub wyłączenia backendu.
 
 \subsection{Ważne funkcjonalności}
-\subsubsection{Measure}
+\subsubsection{Wzór Haversine}
+W celu poprawnej implementacji systemu powiadomień oraz systemu odbierania pocztówek, należy obliczyć odległość ortodromiczną. Odległość ortodromiczna to najkrótsza droga pomiędzy dwoma punktami na powierzchni kuli. W tym celu posłuży nam wzór Haversine.
+
+    \begin{equation}
+    d = 2R \arcsin\left( \sqrt{\sin^2\left(\frac{{\text{{lat}}_2 - \text{{lat}}_1}}{2}\right) + \cos(\text{{lat}}_1) \cdot \cos(\text{{lat}}_2) \cdot \sin^2\left(\frac{{\text{{lon}}_2 - \text{{lon}}_1}}{2}\right)} \right)
+    \end{equation}
+    gdzie:
+    \begin{align*}
+    \text{{lat}}_1 & : \text{{szerokości geograficzna pocztówki}} \\
+    \text{{lat}}_1 & : \text{{szerokości geograficzna użytkownika}} \\
+    \text{{lon}}_2 & : \text{{długość geograficzna}} \\
+    \text{{lon}}_2 & : \text{{długość geograficzna}} \\
+    R & : \text{{promień ziemi}}
+    \end{align*}
+
+Powyższy wzór zaimplementowaliśmy w aplikacji serwerowej. Jest to jedna z najważniejszych funkcji w programie, ponieważ to ona mówi nam o tym czy użytkownik znajduje się w zasięgu odebrania pocztówki.
+
+
+    \begin{figure}[H]
+        \begin{lstlisting}
+    private static double Measure(double postcardLatitude, double postcardLongitude, double userLatitude, double userLongitude)
+    {
+        double earthRad = 6378137;
+        double diffrentceLatitude = (userLatitude * Math.PI / 180) - (postcardLatitude * Math.PI / 180);
+        double diffrentceLongitude = (userLongitude * Math.PI / 180) - (postcardLongitude * Math.PI / 180);
+        double x = Math.Sin(diffrentceLatitude / 2) * Math.Sin(diffrentceLatitude / 2) +
+                   Math.Cos(postcardLatitude * Math.PI / 180) * Math.Cos(userLatitude * Math.PI / 180) *
+                   Math.Sin(diffrentceLongitude / 2) * Math.Sin(diffrentceLongitude / 2);
+        double distance = 2 * earthRad * Math.Atan2(Math.Sqrt(x), Math.Sqrt(1 - x));
+        return distance;
+    }
+        \end{lstlisting}
+    \caption{Implementacja wzoru Haversine w języku C\#}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+    
 \subsubsection{Uwierzytelnianie}
+Uwierzytelnianie jako kluczowy proces aplikacji, powinien być odpowiednio zabezpieczony oraz obsługiwany. Ważne jest aby hasła były zapisywane w bazie danych w formie zahaszowanej, a następnie aby proces logowania odpowiednio dostosowywał dane logowania pod zahaszowaną formę danych.
+
+Metoda która obsługuje rejestrację użytkownika zawiera wiele walidatorów. Na każdym etapie sprawdzamy czy podane dane do rejestracji są prawidłowe. Hasła muszą być takie same, nie mogą być za krótkie. Email musi być unikalny oraz posiadać poprawną składnia. Jeżeli warunki te zostaną spełnione to zostaje założone nowe konto użytkownika. Hasło zostaje zapisane w bazie danych w postaci zahaszowanej. 
+
+    \begin{figure}[H]
+        \begin{lstlisting}
+    public async Task<RegisterResponse> Register(RegisterUserDto registerUserDto)
+    {
+        RegistrationResult result = RegistrationResult.Success;
+
+        if (registerUserDto.Password != registerUserDto.ConfirmPassword)
+        {
+            result = RegistrationResult.PasswordsDoNotMatch;
+        }
+
+        if (registerUserDto.Password.Length < UserServiceConstants.MinPasswordLength)
+        {
+            result = RegistrationResult.WeakPassword;
+        }
+
+        if (!EmailRegex.IsValidEmail(registerUserDto.Email))
+        {
+            result = RegistrationResult.IncorrectEmail;
+        }
+
+        bool isEmailInUse = _userRepository.IsEmailInUse(registerUserDto.Email);
+        if (isEmailInUse)
+        {
+            result = RegistrationResult.EmailAlreadyExists;
+        }
+
+        if (result != RegistrationResult.Success)
+        {
+            throw new Exception(result.ToString());
+        }
+
+        User newUser = _mapper.Map<User>(registerUserDto);
+
+        string hashedPassword = _passwordHasher.HashPassword(newUser, registerUserDto.Password);
+        newUser.Password = hashedPassword;
+        newUser.Role = "USER";
+        newUser.CreatedAt = DateTime.UtcNow;
+
+        User user = await _userRepository.Insert(newUser);
+        await _userStatsRepository.Insert(new UserStat() { Id = user.Id, PostcardsReceived = 0, PostcardsSent = 0, Score = 0 });
+        await _addressRepository.Insert(new Address() { Id = user.Id });
+        await _userDetailRepository.Insert(new UserDetail() { Id = user.Id });
+        RegisterResponse registerResponse = _mapper.Map<RegisterResponse>(user);
+        return registerResponse;
+    }
+        \end{lstlisting}
+    \caption{Metoda rejestracji użytkownika}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+W celu poprawnego przetworzenia procesu logowania hasło musimy zweryfikować przy pomocy specjalnej funkcji VerifyHashedPassword. Która to sprawdza czy zahaszowane hasło jest tym samym hasłem które podaje użytkownik w formularzu logowania. 
+
+    \begin{figure}[H]
+        \begin{lstlisting}
+    public Task<LoginResponse> Login(LoginUserDto loginUserDto)
+    {
+        User storedUser = _userRepository.GetUserByEmail(loginUserDto.Email) ?? throw new Exception("User not found");
+        PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedUser, storedUser.Password, loginUserDto.Password);
+        if (passwordResult != PasswordVerificationResult.Success)
+        {
+            throw new Exception("Password is incorrect");
+        }
+
+        User userDataForClaims = _userRepository.GetUserByEmail(loginUserDto.Email);
+        LoginResponse loginResponse = new LoginResponse() { Token = _userRepository.Login(userDataForClaims) };
+        return Task.FromResult(loginResponse);
+    }
+        \end{lstlisting}
+    \caption{Metoda rejestracji użytkownika}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+Po zakończeniu procesu logowania sukcesem, zwracany jest token JWT. Który na dalszym etapie obsłuży procesy związane z uwierzytelnianiem oraz autoryzacją. Jak możemy zauważyć tworzona jest lista Claimsów. Zawiera ona informację które następnie będą dostępne z poziomu tokena JWT. Są to informację o ID użytkownika, jego nicku, emailu oraz roli.
+
+        \begin{figure}[H]
+        \begin{lstlisting}
+    public string Login(User user)
+    {
+        List<Claim> claims = new List<Claim>()
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.NickName),
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Role, user.Role),
+        };
+
+        SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
+        SigningCredentials credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        DateTime expires = DateTime.Now.AddDays(_authenticationSettings.JwtExpireDays);
+
+        JwtSecurityToken token = new JwtSecurityToken(
+            _authenticationSettings.JwtIssuer,
+            _authenticationSettings.JwtIssuer,
+            claims,
+            expires: expires,
+            signingCredentials: credentials
+        );
+
+        JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+        return tokenHandler.WriteToken(token);
+    }
+        \end{lstlisting}
+    \caption{Metoda tworząca token JWT}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+\subsubsection{Przekazywanie pocztówki}
+Przekazywanie pocztówki to proces, w którym użytkownik wybierając adresata oraz jedną ze swoich nowych pocztówek wysyła tą pocztówkę wraz z opisem. Opisem może być dowolna treść. Może to być pozdrowienie z wakacji, opisanie jakieś historii lub pewna forma komunikacji. W skład opisu wchodzi nagłówek pocztówki oraz treść właściwa. 
+
+        \begin{figure}[H]
+        \begin{lstlisting}
+public async Task<UserPostcardDto> TransferPostcard(int newUserId, PostcardDto postcardDto)
+{
+    if (!await _userService.IsUserActive(newUserId))
+    {
+        throw new Exception("User is not active");
+    }
+
+    UserPostcard userPostcard = await _userPostcardRepository.GetUserPostcardByPostcardId(postcardDto.Id);
+    if (!PostcardTransferValidator.IsPostcardValid(userPostcard, newUserId, _userContextService.GetUserId))
+    {
+        throw new Exception("Postcard is not valid");
+    }
+
+    PostcardDto postcard = await GetPostcardById(postcardDto.Id);
+    UserStatDto sender = await _userStatsService.GetUserStatsById(_userContextService.GetUserId ?? userPostcard.UserId);
+    UserStatDto receiver = await _userStatsService.GetUserStatsById(newUserId);
+
+    if (postcard.IsSent)
+    {
+        throw new Exception("Postcard already received by user");
+    }
+
+    if (!PostcardTransferValidator.IsSenderAndReceiverValid(sender, receiver))
+    {
+        throw new Exception("User not found");
+    }
+...
+        \end{lstlisting}
+    \caption{Metoda tworząca token JWT 1/2}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+    \begin{figure}[H]
+        \begin{lstlisting}
+...
+        
+    sender.PostcardsSent++;
+    sender.Score++;
+    receiver.PostcardsReceived++;
+    receiver.Score++;
+    postcard.IsSent = true;
+    postcard.Title = postcardDto.Title;
+    postcard.Content = postcardDto.Content;
+
+    await UpdatePostcard(postcard);
+    await _userStatsService.UpdateUserStats(sender);
+    await _userStatsService.UpdateUserStats(receiver);
+
+    userPostcard.UserId = newUserId;
+    UserPostcard updatedUserPostcard = await _userPostcardRepository.Update(userPostcard);
+    return _mapper.Map<UserPostcardDto>(updatedUserPostcard);
+}
+        \end{lstlisting}
+    \caption{Metoda tworząca token JWT 2/2}
+    \label{fig:pseudokod:listings}
+    \end{figure}
 
 \subsection{Specyfikacja zewnętrzna}
-\subsubsection{Flow dzialania, tworzenie konta, zdobywanie pocztowek, przeyslanie pocztowek. Mozliwosci ograniczenia, zasada dzialania.  }
-
 \subsubsection{Czysty kod oraz konwencje języka C\# }
 Podczas tworzenia oprogramowania ważne jest, aby tworzony kod był z zachowaniem zasad czystego kodu oraz dobrej architektury. Pozwala nam to w przyszłości na szybsze tworzenie nowych funkcjonalności oraz łatwiejszego odnajdowania błędów. W aplikacji serwerowej z wykorzystaniem języka C\# staraliśmy się wykorzystać wszystkie dobre oraz odgórnie ustalone reguły oraz zasady. I tak dla przykładu wszystkie klasy, nazwy metod są zapisane w notacji PascalCase, a funkcje w camelCase. Pola prywatne poprzedzone są podkreśleniem a następnie camelCase. Wykorzystany został podział funkcjonalności na mniejsze metody zamiast jednej dużej. Poprzez odpowiednie nazywanie zmiennych, metod oraz klas kod nie posiada komentarzy, ponieważ komentuje się sam. 
 
