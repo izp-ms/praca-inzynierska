@@ -1434,6 +1434,56 @@ Entityframework Core dostarcza nam narzędzi do tworzenia migracji bazy danych.
 
 W projekcie wykorzystaliśmy podejście Model-First. Polega ono na stworzeniu encji oraz relacji, a następnie na ich podstawie EFCore generuje zapytania do bazy danych. Stosowane jest zazwyczaj w przypadku, kiedy nie posiadamy jeszcze istniejącej bazy danych. Podejściem odwrotnym jest podejście Database-First, w tym przypadku to modele, relacje oraz mapowania są tworzone na podstawie istniejącej bazy danych. 
 
+Aby utworzyć migrację wykorzystujemy polecenie Add-Migration <Nazwa>. Dzięki niemu tworzone są dwa pliki. Pierwszy 20230920081020\_InitializeDatabase.cs, drugi 20230920081020\_InitializeDatabase.Designer.cs. W skład ich nazw wchodzi rok, miesiąc, dzień, godzina wykonania migracji oraz podana przez nas nazwa <Nazwa>. Dzięki zastosowanej składni rozwiązuje się nam kilka problemów. Po pierwsza taka nazwa jest jednoznacznie zidentyfikowana z konkretnymi zmianami. Po drugie dzięki formatowi daty aplikacja wie w jakiej kolejności wywołać migrację, dzięki czemu unikniemy problemu z niepoprawną kolejnością ich wywoływania. 
+Zawartość pliku migracji.cs to klasa zawierająca metody: Up() oraz metoda Down(). Metoda Up() tworzy tabele, określa kolumny oraz relacje. Definiuje klucze główne oraz obce. Metoda Down() definiuje operację, które należy wykonać, aby cofnąć zmiany z metody Up(). Przydatne w razie pomyłki oraz potrzeby cofnięcia zmian.
+Natomiast plik migracja.Designer.cs definiuje nam encje, które odpowiadają modelom w kodzie.
+W celu wprowadzenia zmian z migracji do bazy danych należy skorzystać z polecenia Update-Database.
+\begin{figure}[H]
+    \begin{lstlisting}
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace Infrastructure.Migrations;
+
+/// <inheritdoc />
+public partial class InitializeDatabase : Migration
+{
+    /// <inheritdoc />
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.CreateTable(
+            name: "PostcardsImages",
+            columns: table => new
+            {
+                Id = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                ImageBase64 = table.Column<string>(type: "nvarchar(max)", nullable: false)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_PostcardsImages", x => x.Id);
+            });
+...
+    migrationBuilder.CreateIndex(
+                name: "IX_Postcards_ImageId",
+                table: "Postcards",
+                column: "ImageId");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "PostcardsImages");
+        }
+    }
+}
+    \end{lstlisting}
+\caption{Automatycznie wygenerowany plik migracyjny}
+\label{fig:pseudokod:listings}
+\end{figure}
+
 \subsubsection{Interfejs}
 Interfejs w C\# podobnie jak w innych obiektowych językach programowania to abstrakcyjny typ posiadający jednie definicje operacji. Nie możemy stworzyć na jej podstawie obiektu, natomiast każda klasa lub struct może zaimplementować dowolnie wiele interfejsów. Warunkiem do poprawnego użycia interfejsu jest konieczność implementacji wszystkich jego zdefiniowanych metod. Interfejsów używamy w celu osiągnięcia pewnego poziomu abstrakcji. Przykładem użycia w naszej aplikacji jest interfejs IRepository, po którym to dziedziczy każdy z repozytoriów. Ponadto każde repozytorium oraz serwis posiadają swój indywidualny interfejs. Stosowane jest to w celu poprawnej implementacji architektury Onion Architecture. Dla przykładu implementacja repozytoriów znajduje się w projekcie Infrastructure, natomiast ich interfejsy znajdują się w warstwie Domain. Jest tak, ponieważ oddzielamy w ten sposób logikę biznesową od domeny. Ułatwia to późniejsze testowanie aplikacji. 
 
@@ -1619,7 +1669,7 @@ W celu poprawnego przetworzenia procesu logowania hasło musimy zweryfikować pr
     \label{fig:pseudokod:listings}
     \end{figure}
 
-Po zakończeniu procesu logowania sukcesem, zwracany jest token JWT. Który na dalszym etapie obsłuży procesy związane z uwierzytelnianiem oraz autoryzacją. Jak możemy zauważyć tworzona jest lista Claimsów. Zawiera ona informację które następnie będą dostępne z poziomu tokena JWT. Są to informację o ID użytkownika, jego nicku, emailu oraz roli.
+Po zakończeniu procesu logowania sukcesem, zwracany jest token JWT. Który na dalszym etapie obsłuży procesy związane z uwierzytelnianiem oraz autoryzacją. Jak możemy zauważyć tworzona jest lista Claimsów. Zawiera ona informację które następnie będą dostępne z poziomu tokena JWT. Są to informacje o ID użytkownika, jego nicku, emailu oraz roli.
 
         \begin{figure}[H]
         \begin{lstlisting}
@@ -1737,6 +1787,109 @@ Serwer można uruchomić również wraz z trybem debugowania z poziomu środowis
 Przed pierwszym uruchomienia projektu ważne jest, aby posiadać zainstalowane wszystkie potrzebne zależności oraz programy, które zostały przedstawione wcześniej. Aplikacja serwerowa posiada pliki konfiguracyjne, które należy skopiować oraz dostosować pod swoje potrzeby. Są to pliki appsettings.Development.json i appsettings.Production.json. Kiedy mamy już uruchomione IDE wraz z projektem, ważne jest, aby postępować zgodnie z instrukcjami zawartymi w plikach README.md. Po pierwsze uruchomienie wszystkich migracji, abyśmy byli w stanie działać na bazie danych. W tym celu w konsoli Package Manager Console w projekcie src/Infrastructure wpisujemy polecenie: Update-Database. Gdybyśmy chcieli stworzyć nową migrację w tym celu polecenie to poprzedzamy poleceniem Add-Migration <NazwaNaszejMigracji>. W razie pomyłki ostatnią migrację można cofnąć poleceniem Remove-Migration. We wszystkich projektach wchodzących w skład systemu korzystamy z systemu kontroli wersji GIT. W związku z tym wszystkie nowe zmiany tworzymy na uprzednio utworzonym branchu, a następnie każdą zmianę wrzucamy na brancha. Aby stworzyć nowego brancha korzystamy z wewnętrznego integratora projektów GitHub Projects. To w nim tworzymy nowe zadania. Kiedy dana funkcjonalność jest zakończona zmiany dołączamy do głównej gałęzi - master. 
 
 \subsubsection{Testy}
+Ważnym aspektem tworzenia nowego oprogramowania jest odpowiednie uzupełnienie zaimplementowanych funkcjonalności o testy. Testy możemy podzielić na dwa główne typy.
+Są to kolejno:
+\begin{itemize}
+    \item \textbf{Testy manualne} -- są to testy przeprowadzane ręcznie na uruchomionej aplikacji, podczas testów backendu przydatnym narzędziem może okazać się Swagger oraz Postman. To właśnie za ich pomocą jesteśmy w stanie "strzelać" do odpowiednich endpointów oraz testować konkretne funkcjonalności. Ważne, aby na każdym etapie tworzenia kodu, sprawdzać skrupulatnie nowe implementacje, aby były one jak najbardziej pozbawione błędów.
+    \item \textbf{Testy automatyczne} -- czyli testy, które pozwalają nam zautomatyzować proces testowania. Dzięki tworzeniu testów automatycznych jesteśmy w stanie ciągle sprawdzać czy nasza aplikacja będzie działała poprawnie. Przydatne podczas tworzenia nowych rozwiązań. Oszczędza nam to sporo czasu, ponieważ zamiast kolejnego testowania manualnego lub debugowania błędów, to właśnie testy automatyczne wychwycą wcześniej niepożądane zachowania.
+\end{itemize}
+
+W definicji testów automatycznych istnieje piramida testów. Jest to podział testów automatycznych ze względu na typ funkcjonalności.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{testy.png}
+    \caption{Piramida testów}
+    \label{Tests}
+\end{figure}
+
+Piramida testów:
+\begin{itemize}
+    \item \textbf{E2E (end-to-end)} -- znajdują się na samym szczycie piramidy. Najdroższe oraz najbardziej czasochłonne w implementacji. W ich skład wchodzą narzędzia, które symulują zachowania użytkownika. Głównie w warstwie wizualnej, poprzez interakcję z interfejsem graficznym.
+    \item \textbf{Integracyjne} -- dzięki nim sprawdzamy jak nasze komponenty oraz moduły aplikacji współpracują ze sobą. Możliwe jest również testowanie zachowań z zewnętrznymi funkcjonalnościami.
+    \item \textbf{Jednostkowe} -- będące na samym dole piramidy, testy, które są najczęściej spotykane w aplikacji. Ich celem jest sprawdzenie pojedynczych funkcjonalności lub komponentów. Z pomocą przychodzi nam wcześniej zaimplementowana abstrakcja, która pozwala nam odizolować daną funkcjonalność od części systemu. Posłużyć nam mogą w tym zamockowane dane. Mock, czyli dane które podstawiamy za właściwą implementację.
+\end{itemize}
+
+Struktura testów jednostkowych. 
+Każdy serwis posiada oddzielną klasę do testów. 
+Za pomocą konstruktora, wstrzykujemy odpowiednio zamockowane dane, oraz testowany przez nas serwis.
+
+    \begin{figure}[H]
+        \begin{lstlisting}
+namespace Tests;
+
+public class UserServiceTests
+{
+    private readonly Mock<IUserRepository> _userRepositoryMock;
+    private readonly Mock<IMapper> _mapperMock;
+    private readonly Mock<IPasswordHasher<User>> _passwordHasherMock;
+    private readonly UserService _userService;
+
+    public UserServiceTests()
+    {
+        _userRepositoryMock = new Mock<IUserRepository>();
+        _mapperMock = new Mock<IMapper>();
+        _passwordHasherMock = new Mock<IPasswordHasher<User>>();
+        _userService = new UserService(
+            contextService: null,
+            userRepository: _userRepositoryMock.Object,
+            userStatsRepository: null,
+            userDetailRepository: null,
+            addressRepository: null,
+            userFriendsRepository: null,
+            postcardDataRepository: null,
+            mapper: _mapperMock.Object,
+            passwordHasher: _passwordHasherMock.Object
+        );
+    }
+}
+...
+        \end{lstlisting}
+    \caption{Przykład klasy do testów jednostkowych}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+Wzorzec \textbf{AAA}. \\
+Nazwa pochodzi od wzorca \textbf{Arrange - Act - Assert}. Jest to główna idea, tworzenia testów jednostkowych. Arrange odpowiada za organizację danych wejściowych, są to dane które chcemy przetestować i od których oczekujemy odpowiedniego wyniku. Act to konkretne wywołanie metody. Natomiast Assert to porównanie wyników końcowych z danymi wcześniej przez nas podstawionymi. Ponadto każdą z metod nazywamy w odpowiedni sposób, zgodny z ustaloną konwencją. Czyli opis wykonywanej akcji, wraz z oczekiwanym rezultatem testu.
+\begin{itemize}
+    \item \textbf{GetAll\_ShouldReturnAllUsers} - metoda pobierająca wszystkich użytkowników, zwraca wszystkich użytkowników
+    \item \textbf{Login\_ValidCredentials\_ShouldReturnToken} - metoda logowania, zawierająca poprawne dane, powinna zwrócić token uwierzytelnienia
+    \item \textbf{Login\_InvalidEmail\_ShouldThrowInvalidLoginException} - metoda logowania, zawiera błędny adres e-mail, zwraca wyjątek
+\end{itemize}
+
+    \begin{figure}[H]
+        \begin{lstlisting}
+[Fact]
+public async Task Login_ValidCredentials_ShouldReturnToken()
+{
+    // Arrange
+    LoginUserDto loginUserDto = new LoginUserDto { Email = "test@example.com", Password = "password" };
+    User storedUser = new User { Email = "test@example.com", Password = "hashedPassword" };
+    _userRepositoryMock.Setup(repo => repo.GetUserByEmail(loginUserDto.Email)).Returns(storedUser);
+    _passwordHasherMock.Setup(hasher => hasher.VerifyHashedPassword(storedUser, storedUser.Password, loginUserDto.Password))
+        .Returns(PasswordVerificationResult.Success);
+    _userRepositoryMock.Setup(repo => repo.Login(storedUser)).Returns("token");
+
+    // Act
+    LoginResponse result = await _userService.Login(loginUserDto);
+
+    // Assert
+    Assert.Equal("token", result.Token);
+}
+        \end{lstlisting}
+    \caption{Przykład klasy do testów jednostkowych}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+
+W projekcie wykorzystaliśmy bibliotekę xunit do pisania testów jednostkowych. Wszystkie napisane przez nas testy znajdują się w osobnym projekcie w katalogu /Tests. Podczas pisania testów wspomagaliśmy się również dodatkową biblioteką do tworzenia Mocków, jest to biblioteka Moq.
+
+Na wynik poprawnego wykonania testów, często mówimy, że świecą się na zielono. Jest to moment, w którym wszystkie testy przeszły prawidłowo. Uzyskany rezultat możemy zaobserwować poniżej.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{poprawneTesty.png}
+    \caption{Testy na zielono}
+    \label{SuccessTests}
+\end{figure}
 
 % ==========================================================================================
 % ==========================================================================================
