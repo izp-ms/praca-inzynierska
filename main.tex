@@ -1191,6 +1191,44 @@ Użytkownicy ze statusem administratora mają dostęp do dodatkowej zakładki w 
   \end{minipage}
 \end{figure}
 
+\subsection{Znajomi}
+Strona która służy do zdobywania nowych znajomości jest podzielona na 3 zakładki. W pierwszej zakładce znajdują się użytkownicy których śledzimy, w drugiej zakładce znajdują się użytkownicy którzy nas śledzą, natomiast w trzeciej zakładce znajdują się wszyscy użytkownicy. 
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.30\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/followani.png}
+    \caption{Zakładka ze śledzonymi użytkownikami\\}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.30\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/followingby.png}
+    \caption{Zakładka z użytkownikami którzy nas śledzą}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.30\textwidth}
+    \includegraphics[width=\textwidth]{mobile_ss/wszyscyUzytkownicy.png}
+    \caption{Zakładka ze wszystkimi użytkownikami\\}
+  \end{minipage}
+\end{figure}
+
+Po wciśnięciu na dowolnej zakładce karty z użytkownikiem zostaniemy przekierowani do strony ze szczegółami danego użytkownika na której również znajduję się przycisk który służy do śledzenia lub zrezygnowania ze śledzenia danego użytkownika. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/friend.png}
+    \caption{Strona użytkownika}
+\end{figure}
+
+\subsection{Wysyłanie pocztówek}
+Aby wysłać pocztówkę należy udać się na stronę z pocztówkami, tam po wybraniu odpowiedniej pocztówki na podglądzie wciskamy ``Send'' co przekieruje nas na podstronę do wysyłania pocztówek. Tam, możemy dodać tytuł oraz opis do pocztówki a nstępnie wybrać użytkownika do którego chcemy daną pocztówkę wysłać. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{mobile_ss/wysyłanie.png}
+    \caption{Strona do wysyłania pocztówek}
+\end{figure}
+
 % TODO
 \chapter{Weryfikacja i walidacja}
 \label{ch:06}
@@ -1202,45 +1240,10 @@ Użytkownicy ze statusem administratora mają dostęp do dodatkowej zakładki w 
 \item opcjonalnie wyniki badań eksperymentalnych
 \end{itemize}
 
-\begin{table}
-\centering
-\caption{Nagłówek tabeli jest nad tabelą.}
-\label{id:tab:wyniki}
-\begin{tabular}{rrrrrrrr}
-\toprule
-	         &                                     \multicolumn{7}{c}{metoda}                                      \\
-	         \cmidrule{2-8}
-	         &         &         &        \multicolumn{3}{c}{alg. 3}        & \multicolumn{2}{c}{alg. 4, $\gamma = 2$} \\
-	         \cmidrule(r){4-6}\cmidrule(r){7-8}
-	$\zeta$ &     alg. 1 &   alg. 2 & $\alpha= 1.5$ & $\alpha= 2$ & $\alpha= 3$ &   $\beta = 0.1$  &   $\beta = -0.1$ \\
-\midrule
-	       0 &  8.3250 & 1.45305 &       7.5791 &    14.8517 &    20.0028 & 1.16396 &                       1.1365 \\
-	       5 &  0.6111 & 2.27126 &       6.9952 &    13.8560 &    18.6064 & 1.18659 &                       1.1630 \\
-	      10 & 11.6126 & 2.69218 &       6.2520 &    12.5202 &    16.8278 & 1.23180 &                       1.2045 \\
-	      15 &  0.5665 & 2.95046 &       5.7753 &    11.4588 &    15.4837 & 1.25131 &                       1.2614 \\
-	      20 & 15.8728 & 3.07225 &       5.3071 &    10.3935 &    13.8738 & 1.25307 &                       1.2217 \\
-	      25 &  0.9791 & 3.19034 &       5.4575 &     9.9533 &    13.0721 & 1.27104 &                       1.2640 \\
-	      30 &  2.0228 & 3.27474 &       5.7461 &     9.7164 &    12.2637 & 1.33404 &                       1.3209 \\
-	      35 & 13.4210 & 3.36086 &       6.6735 &    10.0442 &    12.0270 & 1.35385 &                       1.3059 \\
-	      40 & 13.2226 & 3.36420 &       7.7248 &    10.4495 &    12.0379 & 1.34919 &                       1.2768 \\
-	      45 & 12.8445 & 3.47436 &       8.5539 &    10.8552 &    12.2773 & 1.42303 &                       1.4362 \\
-	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
-\bottomrule
-\end{tabular}
-\end{table}  
-
-
-
-
-
-
-
-
-
-
 % ==========================================================================================
 % ==========================================================================================
 % ===================== BACKEND  ==========================================================================================
+
 \chapter{Podsumowanie i wnioski}
 \begin{itemize}
 \item uzyskane wyniki w świetle postawionych celów i zdefiniowanych wyżej wymagań
@@ -1434,6 +1437,56 @@ Entityframework Core dostarcza nam narzędzi do tworzenia migracji bazy danych.
 
 W projekcie wykorzystaliśmy podejście Model-First. Polega ono na stworzeniu encji oraz relacji, a następnie na ich podstawie EFCore generuje zapytania do bazy danych. Stosowane jest zazwyczaj w przypadku, kiedy nie posiadamy jeszcze istniejącej bazy danych. Podejściem odwrotnym jest podejście Database-First, w tym przypadku to modele, relacje oraz mapowania są tworzone na podstawie istniejącej bazy danych. 
 
+Aby utworzyć migrację wykorzystujemy polecenie Add-Migration <Nazwa>. Dzięki niemu tworzone są dwa pliki. Pierwszy 20230920081020\_InitializeDatabase.cs, drugi 20230920081020\_InitializeDatabase.Designer.cs. W skład ich nazw wchodzi rok, miesiąc, dzień, godzina wykonania migracji oraz podana przez nas nazwa <Nazwa>. Dzięki zastosowanej składni rozwiązuje się nam kilka problemów. Po pierwsza taka nazwa jest jednoznacznie zidentyfikowana z konkretnymi zmianami. Po drugie dzięki formatowi daty aplikacja wie w jakiej kolejności wywołać migrację, dzięki czemu unikniemy problemu z niepoprawną kolejnością ich wywoływania. 
+Zawartość pliku migracji.cs to klasa zawierająca metody: Up() oraz metoda Down(). Metoda Up() tworzy tabele, określa kolumny oraz relacje. Definiuje klucze główne oraz obce. Metoda Down() definiuje operację, które należy wykonać, aby cofnąć zmiany z metody Up(). Przydatne w razie pomyłki oraz potrzeby cofnięcia zmian.
+Natomiast plik migracja.Designer.cs definiuje nam encje, które odpowiadają modelom w kodzie.
+W celu wprowadzenia zmian z migracji do bazy danych należy skorzystać z polecenia Update-Database.
+\begin{figure}[H]
+    \begin{lstlisting}
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace Infrastructure.Migrations;
+
+/// <inheritdoc />
+public partial class InitializeDatabase : Migration
+{
+    /// <inheritdoc />
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.CreateTable(
+            name: "PostcardsImages",
+            columns: table => new
+            {
+                Id = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                ImageBase64 = table.Column<string>(type: "nvarchar(max)", nullable: false)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_PostcardsImages", x => x.Id);
+            });
+...
+    migrationBuilder.CreateIndex(
+                name: "IX_Postcards_ImageId",
+                table: "Postcards",
+                column: "ImageId");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "PostcardsImages");
+        }
+    }
+}
+    \end{lstlisting}
+\caption{Automatycznie wygenerowany plik migracyjny}
+\label{fig:pseudokod:listings}
+\end{figure}
+
 \subsubsection{Interfejs}
 Interfejs w C\# podobnie jak w innych obiektowych językach programowania to abstrakcyjny typ posiadający jednie definicje operacji. Nie możemy stworzyć na jej podstawie obiektu, natomiast każda klasa lub struct może zaimplementować dowolnie wiele interfejsów. Warunkiem do poprawnego użycia interfejsu jest konieczność implementacji wszystkich jego zdefiniowanych metod. Interfejsów używamy w celu osiągnięcia pewnego poziomu abstrakcji. Przykładem użycia w naszej aplikacji jest interfejs IRepository, po którym to dziedziczy każdy z repozytoriów. Ponadto każde repozytorium oraz serwis posiadają swój indywidualny interfejs. Stosowane jest to w celu poprawnej implementacji architektury Onion Architecture. Dla przykładu implementacja repozytoriów znajduje się w projekcie Infrastructure, natomiast ich interfejsy znajdują się w warstwie Domain. Jest tak, ponieważ oddzielamy w ten sposób logikę biznesową od domeny. Ułatwia to późniejsze testowanie aplikacji. 
 
@@ -1619,7 +1672,7 @@ W celu poprawnego przetworzenia procesu logowania hasło musimy zweryfikować pr
     \label{fig:pseudokod:listings}
     \end{figure}
 
-Po zakończeniu procesu logowania sukcesem, zwracany jest token JWT. Który na dalszym etapie obsłuży procesy związane z uwierzytelnianiem oraz autoryzacją. Jak możemy zauważyć tworzona jest lista Claimsów. Zawiera ona informację które następnie będą dostępne z poziomu tokena JWT. Są to informację o ID użytkownika, jego nicku, emailu oraz roli.
+Po zakończeniu procesu logowania sukcesem, zwracany jest token JWT. Który na dalszym etapie obsłuży procesy związane z uwierzytelnianiem oraz autoryzacją. Jak możemy zauważyć tworzona jest lista Claimsów. Zawiera ona informację które następnie będą dostępne z poziomu tokena JWT. Są to informacje o ID użytkownika, jego nicku, emailu oraz roli.
 
         \begin{figure}[H]
         \begin{lstlisting}
@@ -1737,6 +1790,109 @@ Serwer można uruchomić również wraz z trybem debugowania z poziomu środowis
 Przed pierwszym uruchomienia projektu ważne jest, aby posiadać zainstalowane wszystkie potrzebne zależności oraz programy, które zostały przedstawione wcześniej. Aplikacja serwerowa posiada pliki konfiguracyjne, które należy skopiować oraz dostosować pod swoje potrzeby. Są to pliki appsettings.Development.json i appsettings.Production.json. Kiedy mamy już uruchomione IDE wraz z projektem, ważne jest, aby postępować zgodnie z instrukcjami zawartymi w plikach README.md. Po pierwsze uruchomienie wszystkich migracji, abyśmy byli w stanie działać na bazie danych. W tym celu w konsoli Package Manager Console w projekcie src/Infrastructure wpisujemy polecenie: Update-Database. Gdybyśmy chcieli stworzyć nową migrację w tym celu polecenie to poprzedzamy poleceniem Add-Migration <NazwaNaszejMigracji>. W razie pomyłki ostatnią migrację można cofnąć poleceniem Remove-Migration. We wszystkich projektach wchodzących w skład systemu korzystamy z systemu kontroli wersji GIT. W związku z tym wszystkie nowe zmiany tworzymy na uprzednio utworzonym branchu, a następnie każdą zmianę wrzucamy na brancha. Aby stworzyć nowego brancha korzystamy z wewnętrznego integratora projektów GitHub Projects. To w nim tworzymy nowe zadania. Kiedy dana funkcjonalność jest zakończona zmiany dołączamy do głównej gałęzi - master. 
 
 \subsubsection{Testy}
+Ważnym aspektem tworzenia nowego oprogramowania jest odpowiednie uzupełnienie zaimplementowanych funkcjonalności o testy. Testy możemy podzielić na dwa główne typy.
+Są to kolejno:
+\begin{itemize}
+    \item \textbf{Testy manualne} -- są to testy przeprowadzane ręcznie na uruchomionej aplikacji, podczas testów backendu przydatnym narzędziem może okazać się Swagger oraz Postman. To właśnie za ich pomocą jesteśmy w stanie "strzelać" do odpowiednich endpointów oraz testować konkretne funkcjonalności. Ważne, aby na każdym etapie tworzenia kodu, sprawdzać skrupulatnie nowe implementacje, aby były one jak najbardziej pozbawione błędów.
+    \item \textbf{Testy automatyczne} -- czyli testy, które pozwalają nam zautomatyzować proces testowania. Dzięki tworzeniu testów automatycznych jesteśmy w stanie ciągle sprawdzać czy nasza aplikacja będzie działała poprawnie. Przydatne podczas tworzenia nowych rozwiązań. Oszczędza nam to sporo czasu, ponieważ zamiast kolejnego testowania manualnego lub debugowania błędów, to właśnie testy automatyczne wychwycą wcześniej niepożądane zachowania.
+\end{itemize}
+
+W definicji testów automatycznych istnieje piramida testów. Jest to podział testów automatycznych ze względu na typ funkcjonalności.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{testy.png}
+    \caption{Piramida testów}
+    \label{Tests}
+\end{figure}
+
+Piramida testów:
+\begin{itemize}
+    \item \textbf{E2E (end-to-end)} -- znajdują się na samym szczycie piramidy. Najdroższe oraz najbardziej czasochłonne w implementacji. W ich skład wchodzą narzędzia, które symulują zachowania użytkownika. Głównie w warstwie wizualnej, poprzez interakcję z interfejsem graficznym.
+    \item \textbf{Integracyjne} -- dzięki nim sprawdzamy jak nasze komponenty oraz moduły aplikacji współpracują ze sobą. Możliwe jest również testowanie zachowań z zewnętrznymi funkcjonalnościami.
+    \item \textbf{Jednostkowe} -- będące na samym dole piramidy, testy, które są najczęściej spotykane w aplikacji. Ich celem jest sprawdzenie pojedynczych funkcjonalności lub komponentów. Z pomocą przychodzi nam wcześniej zaimplementowana abstrakcja, która pozwala nam odizolować daną funkcjonalność od części systemu. Posłużyć nam mogą w tym zamockowane dane. Mock, czyli dane które podstawiamy za właściwą implementację.
+\end{itemize}
+
+Struktura testów jednostkowych. 
+Każdy serwis posiada oddzielną klasę do testów. 
+Za pomocą konstruktora, wstrzykujemy odpowiednio zamockowane dane, oraz testowany przez nas serwis.
+
+    \begin{figure}[H]
+        \begin{lstlisting}
+namespace Tests;
+
+public class UserServiceTests
+{
+    private readonly Mock<IUserRepository> _userRepositoryMock;
+    private readonly Mock<IMapper> _mapperMock;
+    private readonly Mock<IPasswordHasher<User>> _passwordHasherMock;
+    private readonly UserService _userService;
+
+    public UserServiceTests()
+    {
+        _userRepositoryMock = new Mock<IUserRepository>();
+        _mapperMock = new Mock<IMapper>();
+        _passwordHasherMock = new Mock<IPasswordHasher<User>>();
+        _userService = new UserService(
+            contextService: null,
+            userRepository: _userRepositoryMock.Object,
+            userStatsRepository: null,
+            userDetailRepository: null,
+            addressRepository: null,
+            userFriendsRepository: null,
+            postcardDataRepository: null,
+            mapper: _mapperMock.Object,
+            passwordHasher: _passwordHasherMock.Object
+        );
+    }
+}
+...
+        \end{lstlisting}
+    \caption{Przykład klasy do testów jednostkowych}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+Wzorzec \textbf{AAA}. \\
+Nazwa pochodzi od wzorca \textbf{Arrange - Act - Assert}. Jest to główna idea, tworzenia testów jednostkowych. Arrange odpowiada za organizację danych wejściowych, są to dane które chcemy przetestować i od których oczekujemy odpowiedniego wyniku. Act to konkretne wywołanie metody. Natomiast Assert to porównanie wyników końcowych z danymi wcześniej przez nas podstawionymi. Ponadto każdą z metod nazywamy w odpowiedni sposób, zgodny z ustaloną konwencją. Czyli opis wykonywanej akcji, wraz z oczekiwanym rezultatem testu.
+\begin{itemize}
+    \item \textbf{GetAll\_ShouldReturnAllUsers} - metoda pobierająca wszystkich użytkowników, zwraca wszystkich użytkowników
+    \item \textbf{Login\_ValidCredentials\_ShouldReturnToken} - metoda logowania, zawierająca poprawne dane, powinna zwrócić token uwierzytelnienia
+    \item \textbf{Login\_InvalidEmail\_ShouldThrowInvalidLoginException} - metoda logowania, zawiera błędny adres e-mail, zwraca wyjątek
+\end{itemize}
+
+    \begin{figure}[H]
+        \begin{lstlisting}
+[Fact]
+public async Task Login_ValidCredentials_ShouldReturnToken()
+{
+    // Arrange
+    LoginUserDto loginUserDto = new LoginUserDto { Email = "test@example.com", Password = "password" };
+    User storedUser = new User { Email = "test@example.com", Password = "hashedPassword" };
+    _userRepositoryMock.Setup(repo => repo.GetUserByEmail(loginUserDto.Email)).Returns(storedUser);
+    _passwordHasherMock.Setup(hasher => hasher.VerifyHashedPassword(storedUser, storedUser.Password, loginUserDto.Password))
+        .Returns(PasswordVerificationResult.Success);
+    _userRepositoryMock.Setup(repo => repo.Login(storedUser)).Returns("token");
+
+    // Act
+    LoginResponse result = await _userService.Login(loginUserDto);
+
+    // Assert
+    Assert.Equal("token", result.Token);
+}
+        \end{lstlisting}
+    \caption{Przykład klasy do testów jednostkowych}
+    \label{fig:pseudokod:listings}
+    \end{figure}
+
+
+W projekcie wykorzystaliśmy bibliotekę xunit do pisania testów jednostkowych. Wszystkie napisane przez nas testy znajdują się w osobnym projekcie w katalogu /Tests. Podczas pisania testów wspomagaliśmy się również dodatkową biblioteką do tworzenia Mocków, jest to biblioteka Moq.
+
+Na wynik poprawnego wykonania testów, często mówimy, że świecą się na zielono. Jest to moment, w którym wszystkie testy przeszły prawidłowo. Uzyskany rezultat możemy zaobserwować poniżej.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{poprawneTesty.png}
+    \caption{Testy na zielono}
+    \label{SuccessTests}
+\end{figure}
 
 % ==========================================================================================
 % ==========================================================================================
