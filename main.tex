@@ -69,26 +69,34 @@
 
 % TODO
 % dane autora
-\newcommand{\FirstNameAuthor}{Imię}
-\newcommand{\SurnameAuthor}{Nazwisko}
-\newcommand{\IdAuthor}{$\langle$wpisać właściwy$\rangle$}   % numer albumu  (bez $\langle$ i $\rangle$)
+\newcommand{\FirstNameAuthor}{Patryk}
+\newcommand{\SurnameAuthor}{Sroczyński}
+\newcommand{\IdAuthor}{297091}   % numer albumu  (bez $\langle$ i $\rangle$)
 
 % drugi autor:
 %\newcommand{\FirstNameCoauthor}{Imię}   % Jeżeli jest drugi autor, to tutaj należy podać imię.
 %\newcommand{\SurnameCoauthor}{Nazwisko} % Jeżeli jest drugi autor, to tutaj należy podać nazwisko.
 %\newcommand{\IdCoauthor}{$\langle$wpisać właściwy$\rangle$}  % numer albumu drugiego autora (bez $\langle$ i $\rangle$)
 % Gdy nie ma drugiego autora, należy zostawić poniższe definicje puste, jak poniżej. Gdy jest drugi autor, należy zakomentować te linie.
-\newcommand{\FirstNameCoauthor}{} % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
-\newcommand{\SurnameCoauthor}{}   % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
-\newcommand{\IdCoauthor}{}  % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\FirstNameCoauthor}{Arkadiusz} % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\SurnameCoauthor}{Stencel}   % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\IdCoauthor}{297094}
+
+\newcommand{\DFirstNameCoauthor}{Dawid} % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\DSurnameCoauthor}{Strzyż}   % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\DIdCoauthor}{299852}
+
+\newcommand{\MFirstNameCoauthor}{Mariusz} % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\MSurnameCoauthor}{Wróbel}   % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\MIdCoauthor}{297106}% Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
 %%%%%%%%%%
 
-\newcommand{\Supervisor}{$\langle$tytuł lub stopień naukowy oraz imię i nazwisko$\rangle$}     % dane promotora (bez $\langle$ i $\rangle$)
-\newcommand{\Title}{Postcardia - Aplikacja społecznościowa do kolekcjonowania i wysyłania pocztówek}           % tytuł pracy po polsku
+\newcommand{\Supervisor}{dr inż. Rafał Brociek}     % dane promotora (bez $\langle$ i $\rangle$)
+\newcommand{\Title}{Postcardia - aplikacja społecznościowa.}           % tytuł pracy po polsku
 \newcommand{\TitleAlt}{Postcardia - Community application for collecting and sending postcards}                     % thesis title in English
-\newcommand{\Program}{$\langle$wpisać właściwy$\rangle$}            % kierunek studiów  (bez $\langle$ i $\rangle$)
-\newcommand{\Specialisation}{$\langle$wpisać właściwą$\rangle$}     % specjalność  (bez $\langle$ i $\rangle$)
-\newcommand{\Departament}{$\langle$wpisać właściwą$\rangle$}        % katedra promotora  (bez $\langle$ i $\rangle$)
+\newcommand{\Program}{Informatyka}            % kierunek studiów  (bez $\langle$ i $\rangle$)
+\newcommand{\Specialisation}{Programowanie aplikacji mobilnych}     % specjalność  (bez $\langle$ i $\rangle$)
+\newcommand{\Departament}{}        % katedra promotora  (bez $\langle$ i $\rangle$)
 
 % Jeżeli został wyznaczony promotor pomocniczy lub opiekun, proszę go/ją wpisać ...
 \newcommand{\Consultant}{$\langle$stopień naukowy imię i nazwisko$\rangle$} % dane promotora pomocniczego, opiekuna (bez $\langle$ i $\rangle$)
@@ -208,13 +216,31 @@
 		{\normalsize\bfseries \LeftId: \IdCoauthor\par}
     }%
     {}
+
+    \StrLen{\DFirstNameCoauthor}[\FNCoALen]
+    \ifthenelse{\FNCoALen > 0}%
+    {%
+		{\large\bfseries\DCoauthor\par}
+	
+		{\normalsize\bfseries \LeftId: \DIdCoauthor\par}
+    }%
+    {}
+
+    \StrLen{\MFirstNameCoauthor}[\FNCoALen]
+    \ifthenelse{\FNCoALen > 0}%
+    {%
+		{\large\bfseries\MCoauthor\par}
+	
+		{\normalsize\bfseries \LeftId: \MIdCoauthor\par}
+    }%
+    {}
 } 
 
 %%%%%%%%%%%%%%%%%%%%%
 \newcommand{\autor}{%		
     \StrLen{\FirstNameCoauthor}[\FNCoALenXX]
     \ifthenelse{\FNCoALenXX > 0}%
-    {\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}%
+    {\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor, \DFirstNameCoauthor\ \DSurnameCoauthor , \MFirstNameCoauthor\ \MSurnameCoauthor}%
 	{\FirstNameAuthor\ \SurnameAuthor}%
 }
 %%%%%%%%%%%%%%%%%%%%%
@@ -222,7 +248,7 @@
 \StrLen{\FirstNameCoauthor}[\FNCoALen]
 \ifthenelse{\FNCoALen > 0}%
 {%
-\author{\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}
+\author{\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor, \DFirstNameCoauthor\ \DSurnameCoauthor , \MFirstNameCoauthor\ \MSurnameCoauthor}
 }%
 {%
 \author{\FirstNameAuthor\ \SurnameAuthor}
@@ -288,8 +314,11 @@
 % Proszę nie modyfikować poniższych definicji!
 \newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
 \newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
+\newcommand{\DCoauthor}{\DFirstNameCoauthor\ \MakeUppercase{\DSurnameCoauthor}}
+\newcommand{\MCoauthor}{\MFirstNameCoauthor\ \MakeUppercase{\MSurnameCoauthor}}
 \newcommand{\Type}{PROJEKT INŻYNIERSKI}
-\newcommand{\Faculty}{Wydział Matematyki Stosowanej} 
+\newcommand{\Faculty}{Katedra
+ Zastosowań Matematyki i Metod Sztucznej Inteligencji} 
 \newcommand{\Polsl}{Politechnika Śląska}
 \newcommand{\Logo}{politechnika_sl_logo_bw_pion_pl.pdf}
 \newcommand{\LeftId}{Nr albumu}
@@ -470,11 +499,6 @@
 	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
 		
 	{\large{\bfseries \Faculty}\par}
-		
-	\vfill  \vfill  
-
-    	
-    \printOpiekun{\Consultant}
     
 	\vfill  \vfill  
 		
@@ -507,7 +531,7 @@
 \Title
 
 \subsubsection*{Streszczenie}  
-Praca prezentuje rezultaty oraz proces tworzenia aplikacji społecznościowej której głównym celem jest kolekcjonowanie oraz wysyłanie pocztówek z odwiedzonych miejsc. Głównym trzonem aplikacji jest jej część mobilna oparta na platformie Flutter, której działanie wspierane jest poprzez dedykowaną aplikację serwerową wykorzystującą technologię .NET. Dodatkowo aplikacja zawiera także oddzielną część webową wykorzystującą technologię React, część ta korzysta z tej samej aplikacji serwerowej co aplikacja mobilna.
+Praca prezentuje rezultaty oraz proces tworzenia aplikacji społecznościowej, której głównym celem jest kolekcjonowanie oraz wysyłanie pocztówek z odwiedzonych miejsc. Głównym trzonem aplikacji jest jej część mobilna oparta na platformie Flutter, której działanie wspierane jest poprzez dedykowaną aplikację serwerową wykorzystującą technologię .NET. Dodatkowo projekt zawiera także oddzielną część webową wykorzystującą technologię React, część ta również korzysta z tej samej aplikacji serwerowej co aplikacja mobilna.
 
 \subsubsection*{Słowa kluczowe} 
 Flutter, .NET, React, CRUD, Pocztówki, Aplikacja społecznościowa, Zwiedzanie
@@ -519,7 +543,7 @@ Flutter, .NET, React, CRUD, Pocztówki, Aplikacja społecznościowa, Zwiedzanie
 
 \subsubsection*{Abstract} 
 \begin{otherlanguage}{british}
-The thesis presents the results and the process of creating a social application whose main purpose is to collect and send postcards from visited places. The core of the application is its mobile component built on the Flutter platform, supported by a dedicated server application utilizing .NET technology. Additionally, the application includes a separate web component using React technology, and this web part utilizes the same server application as the mobile application.
+The thesis presents the results and the process of creating a social application, whose main purpose is to collect and send postcards from visited places. The core of the application is its mobile component built on the Flutter platform, supported by a dedicated server application utilizing .NET technology. Additionally, the project includes a separate web component using React technology, and this web part also utilizes the same server application as the mobile application.
 \end{otherlanguage}
 \subsubsection*{Key words}  
 \begin{otherlanguage}{british}
@@ -551,29 +575,33 @@ Flutter, .NET, React, CRUD, Postcards, Community app, Touring
 
 \section{Wprowadzenie}
 % Aplikacje społecznościowe w dzisiejszym świecie są dla czymś powszechnym. Większość z nich sprowadza się do wysyłania zdjęć oraz wymieniania wiadomości. Przed erą smartfonów takie informacje były bardziej spersonalizowane, ponieważ służyły do tego listy na których pisaliśmy co robimy, oraz pocztówki dzięki którym mogliśmy pokazać gdzie jesteśmy. Właśnie to drugie zainspirowało nas do połączenia starego z nowym - pocztówek z aplikacją społecznościową. Chcemy, aby odwiedzanie różnych miejsc, czy to lokalnie, blisko, czy tych na drugim końcu świata, łączyło się z czymś kiedyś powszechnym czyli wysyłaniem pocztówek. Wszak cieszymy się bardziej z pocztówki wysłanej przez rodzinę lub przyjaciela niż ze zdjęcia na Facebooku. 
+%, a zarazem przesłać pozdrowienia dla bliskich osób, przykładowo z słonecznego Bałtyku.
 
-Aplikacje społecznościowe w dzisiejszym świecie są dla czymś powszechnym. Większość z nich sprowadza się do wysyłania zdjęć oraz wymieniania wiadomości.  Przed erą smartfonów takie informacje były bardziej spersonalizowane, ponieważ służyły do tego listy na których pisaliśmy co robimy, oraz pocztówki dzięki którym mogliśmy pokazać gdzie jesteśmy. Właśnie to drugie zainspirowało nas do połączenia starego z nowym - pocztówek z aplikacją społecznościową.
+Aplikacje społecznościowe w dzisiejszym świecie są czymś powszechnym. Większość z~nich sprowadza się do wysyłania zdjęć oraz wymieniania wiadomości. Przed erą smartfonów takie informacje były bardziej spersonalizowane, ponieważ służyły do tego między innymi listy, na których opisywaliśmy swoje przeżycia oraz pocztówki, dzięki którym mogliśmy przesłać pozdrowienia z odwiedzonego miejsca. Właśnie to drugie zainspirowało nas do połączenia starego z nowym - pocztówek z aplikacją społecznościową.
 
-Chcemy, aby podróżowanie i odwiedzanie różnych miejsc, zarówno lokalnych, blisko, jak i tych na drugim końcu świata, było związane z czymś kiedyś powszechnym - wysyłaniem pocztówek. Wszyscy z pewnością cieszymy się bardziej z pocztówki wysłanej przez kogoś nam bliskiego niż ze zwykłego zdjęcia na znanym portalu społecznościowym. W związku z tym nasza aplikacja umożliwia użytkownikom odbieranie wirtualnych pocztówek podczas odwiedzania ciekawych miejsc. Później te elektroniczne pocztówki można przesłać innym osobom jako miłe wiadomości lub po prostu w celach kolekcjonerskich.
+Chcemy, aby podróżowanie i odwiedzanie różnych miejsc, zarówno lokalnych, blisko, jak i tych na drugim końcu świata, było związane z czymś co kiedyś było powszechne -- wysyłaniem pocztówek. Wszyscy z pewnością cieszymy się bardziej z pocztówki wysłanej przez kogoś nam bliskiego, niż ze zwykłego zdjęcia na znanym portalu społecznościowym. W związku z tym nasza aplikacja umożliwia użytkownikom odbieranie wirtualnych pocztówek podczas odwiedzania ciekawych miejsc. Później te elektroniczne pocztówki można przesłać innym osobom jako miłe wiadomości lub po prostu zachować je w celach kolekcjonerskich, zupełnie jak prawdziwe fizyczne odpowiedniki.
 
-Ze względu na ograniczoną ilość osób, którym możemy przekazać wirtualne pocztówki, każda z nich staje się wyjątkowa i posiada większą wartość dla odbiorcy niż wcześniej wspomniane zdjęcie na tablicy popularnego portalu społecznościowego. Nasza aplikacja stanowi również doskonały sposób na poszerzenie kolekcji miejsc, które użytkownik odwiedził.
+Ze względu na ograniczoną liczbę osób, którym możemy przekazać nasze wirtualne pocztówki, każda z nich staje się wyjątkowa i posiada większą wartość dla odbiorcy niż wcześniej wspomniane zdjęcie na tablicy popularnego portalu społecznościowego. Aplikacja stanowi również doskonały sposób na stworzenie osobistej kolekcji miejsc, które dany użytkownik odwiedził.
 
 \newpage
 
 \section{Cel pracy}
-Celem naszej pracy jest stworzenie wyjątkowej w pełni działającej aplikacji mobilnej umożliwiającej na zawiązywanie znajomości, wymianę oraz kolekcjonowanie pocztówek z odwiedzonych miejsc. Dodatkowo celem jest stworzenie aplikacji webowej umożliwiającą wykonanie większości czynności z~aplikacji mobilnej, jak i również backendu działającego na obu platformach odpowiedzialnego za część serwerową. Aplikacja mobilna oraz webowa powinna być intuicyjna i łatwa w obsłudze, oraz zachęcać użytkowników do aktywnego wypoczynku (zwiedzania) oraz rozwijania się w aspekcie społecznym poprzez wysyłanie oraz odbieranie wyjątkowych pocztówek z różnych ciekawych miejsc w okolicy jak i na całym świecie.
+Celem naszej pracy jest stworzenie wyjątkowej w pełni działającej aplikacji mobilnej umożliwiającej nawiązywanie znajomości, wymianę pocztówek oraz możliwość ich kolekcjonowania.
+Dodatkowo, zrealizowana zostanie także aplikacja webowa, umożliwiająca wykonanie większości czynności z aplikacji mobilnej oraz backend odpowiadający za część serwerową dla obu platform.
+Aplikacja mobilna i webowa powinna być intuicyjna a zarazem łatwa w obsłudze, oraz zachęcać użytkowników do aktywnego wypoczynku (zwiedzania) oraz rozwijania się w aspekcie społecznym poprzez wysyłanie oraz odbieranie wyjątkowych pocztówek z różnych ciekawych miejsc w okolicy jak i na całym świecie.
+Aplikacja serwerowa natomiast powinna być wydajna oraz łatwo skalowalna ze względu na potencjalną możliwośc dalszego rozwoju.
 
 \section{Zakres pracy}
 Zakres pracy obejmował zaprojektowanie intuicyjnej i wyjątkowej aplikacji składającej się z trzech głównych modułów oraz jej kompleksową implementację.
 \\
 Poszczególne moduły:
 \begin{itemize}
-    \item Aplikacji mobilnej stworzonej w technologi Flutter.
-    \item Aplikacji serwerowej stworzonej w technologi .Net.
-    \item Aplikacji webowej stworzonej w technologi React.
+    \item Aplikacja mobilna stworzona w technologi Flutter.
+    \item Aplikacja serwerowa stworzona w technologi .Net.
+    \item Aplikacja webowa stworzona w technologi React.
 \end{itemize}
 
-Przed przejściem do fazy implementacji w każdym module najpierw przeprowadzono fazę projektowania, mającą na celu ocenę sensowności oraz zdefiniowanie kluczowych aspektów modułu. 
+Przed przejściem do fazy implementacji, w każdym module najpierw przeprowadzono fazę projektowania, mającą na celu ocenę sensowności oraz zdefiniowanie kluczowych aspektów modułu. 
 
 Zakres pracy przewidywał także przeprowadzenie odpowiednich testów jak i analizę jakości utworzonego projektu oraz stworzenie szczegółowej dokumentacji technicznej opisującej działanie, architekturę i wykorzystane technologie.
 
@@ -581,14 +609,14 @@ Zakres pracy przewidywał także przeprowadzenie odpowiednich testów jak i anal
 
 \section{Zwięzła charakterystyka rozdziałów}
 \begin{itemize}
-    \item \textbf{Rozdział 1:} Wstęp -- Zaprezentowanie ogólnego kontekstu oraz celów pracy
-    \item \textbf{Rozdział 2:} Analiza tematu -- W tym rozdziale przedstawiony zostanie problem, poszczególne podobne aplikacje oraz rozwiązania z rzeczywistości, nakreślenie przykładowego profilu konsumenta aplikacji oraz przedstawienie wyróżniających nasz projekt rozwiązań
-    \item \textbf{Rozdział 3:} Wymagania -- Przedstawienie wymagań funkcjonalnych jak i niefunkcjonalnych
-    \item \textbf{Rozdział 4:} Metodyka pracy nad projektowaniem i implementacją -- opis wykorzystanej metodyki podczas fazy projektowania jak i implementacji, użyte narzędzia, pomysły, workflow w projekcie
-    \item \textbf{Rozdział 5:} Aplikacja mobilna -- Szeroki opis dotyczący aplikacji mobilnej, wykorzystanych bibliotek, zastosowanej architektury jak i instrukcja obsługi
-    \item \textbf{Rozdział 6:} Aplikacja serwerowa -- Szeroki opis dotyczący aplikacji serwerowej, wykorzystanych technilogii oraz platform, zastosowanej architektury  oraz struktury, wykorzystane modele, szczegóły dotyczące specyfikacji oraz funkcjonalności. Przeprowadzone testy automatyczne oraz manualne
-    \item \textbf{Rozdział 7:} Aplikacja webowa -- TODO
-    \item \textbf{Rozdział 8:} Podsumowanie i wnioski -- Przedstawienie potencjalnego sposobu na dalszy rozwój aplikacji, omówienie napotkanych problemów i trudności podczas tworzenia jak i projektowania aplikacji, wyciągnięcie wniosków w świetle postawionych wcześniej celów i wymagań
+    \item \textbf{Rozdział 1:} Wstęp -- Zaprezentowanie ogólnego kontekstu oraz celów pracy.
+    \item \textbf{Rozdział 2:} Analiza tematu -- W tym rozdziale przedstawiony zostanie problem, poszczególne podobne aplikacje oraz rozwiązania z rynku, nakreślenie przykładowego profilu konsumenta aplikacji oraz przedstawienie wyróżniających cech projektu.
+    \item \textbf{Rozdział 3:} Wymagania -- Przedstawienie wymagań funkcjonalnych jak i niefunkcjonalnych.
+    \item \textbf{Rozdział 4:} Metodyka pracy nad projektowaniem i implementacją -- opis wykorzystanej metodyki podczas fazy projektowania oraz implementacji, użyte narzędzia, pomysły, przepływ pracy w projekcie.
+    \item \textbf{Rozdział 5:} Aplikacja mobilna -- Szeroki opis dotyczący aplikacji mobilnej, wykorzystanych bibliotek, zastosowanej architektury oraz instrukcja obsługi.
+    \item \textbf{Rozdział 6:} Aplikacja webowa -- Szczegółowy opis technologii, bibliotek oraz architektury wykorzystanej podczas tworzenia aplikacji webowej, jak i instrukcja obsługi samej strony internetowej.
+    \item \textbf{Rozdział 7:} Aplikacja serwerowa -- Szeroki opis dotyczący aplikacji serwerowej, wykorzystanych technologii jak i platform, zastosowanej architektury oraz struktury, wykorzystane modele, szczegóły dotyczące specyfikacji oraz funkcjonalności. Opis oraz metodyka przeprowadzonych testów.
+    \item \textbf{Rozdział 8:} Podsumowanie i wnioski -- Przedstawienie potencjalnego sposobu na dalszy rozwój aplikacji, omówienie napotkanych problemów i trudności podczas tworzenia jak i projektowania aplikacji, wyciągnięcie wniosków w świetle postawionych wcześniej celów i wymagań.
 \end{itemize}
 
 \newpage
@@ -602,7 +630,7 @@ Aplikacja była tworzona przez czteroosobowy zespół w którego skład wchodzil
     \item Mariusz Wróbel
 \end{itemize}
 
-Początkowo najwięcej zasobów ludzkich zostało przeznaczonych na stworzenie aplikacji mobilnej, która docelowo miała być głównym produktem projektu. Ze względu na sprawny przebieg prac w części mobilnej oraz serwerowej, część osób została oddelegowana do pomocy z aplikacją webową. Szczegóły przedstawia poniższa tabela:
+Początkowo najwięcej zasobów ludzkich zostało przeznaczonych na stworzenie aplikacji mobilnej, która docelowo miała być głównym produktem projektu. Ze względu na sprawny przebieg prac w części mobilnej oraz serwerowej, część osób została oddelegowana do pomocy z aplikacją webową, jako iż właśnie ta aplikacja w wczesnej fazie projektowania miała być tylko wizytówką, a jak się później okazało będzie posiadać także większość funkcjonalności aplikacji mobilnej, potrzebna była większa moc przerobowa. Szczegóły przedstawia poniższa tabela:
 \begin{table}[ht]
 \centering
 \begin{tabular}{|c|c|c|c|}
@@ -621,69 +649,74 @@ Początkowo najwięcej zasobów ludzkich zostało przeznaczonych na stworzenie a
 \chapter{Analiza tematu}
 
 \section{Sformułowanie problemu}
-Wraz z rozwojem technologicznym media społecznościowe odgrywają coraz to większą rolę w naszym społeczeństwie a dawne tradycje zaczynają tracić na wartości. Media społecznościowe w większości wypadków nie propagują zdrowego trybu życia a jedynie ciągłe siedzenie w miejscu i przewijanie kolejnych treści. Dlatego zadaliśmy sobie pytanie czy można stworzyć aplikację łączącą tradycyjne zwyczaje z nowoczesnym podejściem która jednocześnie pozwala na bardziej aktywne spędzanie czasu.
+Wraz z rozwojem technologicznym media społecznościowe odgrywają coraz to większą rolę w naszym społeczeństwie, a dawne tradycje zaczynają tracić na wartości. Media społecznościowe w większości wypadków nie propagują zdrowego trybu życia, a jedynie zachęcają do  ciągłego siedzenie w miejscu i przewijania kolejnych treści. Dlatego zadaliśmy sobie pytanie, czy można stworzyć aplikację łączącą tradycyjne zwyczaje z nowoczesnym podejściem, która jednocześnie pozwala na bardziej aktywne spędzanie czasu.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{porownanie.png}
-    \caption{Zestawienie zainteresowania pomiędzy słowem kluczowym Snapchat a pocztówki na przestrzeni lat - źródło Google trends}
+    \captionsetup{justification=centering}
+    \caption{Zestawienie zainteresowania pomiędzy słowem kluczowym snapchat a pocztówki na przestrzeni lat w Polsce - źródło: \href{https://trends.google.pl/trends/}{Google trends}}
 \end{figure}
 
 \newpage
 \section{Przegląd podobnych aplikacji oraz rozwiązań}
 \subsection{Snapchat}
-Snapchat to aplikacja społecznościowa dzięki której użytkownicy mogą wysyłać zdjęcia lub filmy konkretnym osobom lub całym grupom, aplikacja pozwala także na dodawanie specjalnych filtrów (na przykład dodanie naklejki z lokalizacji w której zdjęcie zostało stworzone) lub tekstu do przesyłanych treści, elementem specyficznym dla tej aplikacji jest to że odtworzenie czyjejś wiadomości powoduje jej zniknięcie po określonym czasie.
+Snapchat to aplikacja społecznościowa dzięki której użytkownicy mogą wysyłać zdjęcia i filmy konkretnym osobom lub całym grupom. Aplikacja pozwala także na dodawanie specjalnych filtrów (na przykład dodanie naklejki z lokalizacją w której zdjęcie zostało stworzone) lub tekstu do przesyłanych treści. Elementem specyficznym dla tej aplikacji jest to, że odtworzenie czyjejś wiadomości powoduje jej zniknięcie po określonym czasie.
 Snapchat swój rekord popularności zarejestrował w latach 2015-2016, lecz mimo to do dzisiaj aplikacja cieszy się wielką popularnością szczególnie wśród młodych ludzi.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{apki_ss/snapchat.jpg}
-    \caption{Snapchat}
+    \captionsetup{justification=centering}
+    \caption{Snapchat, źródło: \href{https://www.indiatvnews.com/technology/news-snaphat-partner-summit-2020-new-snapchat-features-for-android-ios-see-what-they-are-625533}{www.indiatvnews.com/technology}}
 \end{figure}
-Snapchat posłużył jako inspiracja do stworzenia aspektu społecznościowego w naszej aplikacji, lecz główną naszym zdaniem wadą okazał się fakt braku trwałości wysyłanych treści oraz fakt, że treści wysyłane są masowo, a nie personalnie dla ważnych dla nas użytkowników
+Snapchat posłużył jako inspiracja do stworzenia aspektu społecznościowego w naszej aplikacji, lecz główną naszym zdaniem wadą okazał się fakt braku trwałości wysyłanych treści, a także fakt, że treści wysyłane są masowo i w większości przypadków nie są kierowanie typowo dla najbliższych nam osób.
 
 \newpage
 \subsection{Pokemon Go}
-Pokemon Go to gra mobilna wykorzystująca technologię rzeczywistości rozszerzonej w której gracz może łapać tytułowe pokemony losowo pojawiające się w okolicy. Z faktu, że pokemony pojawiają się losowo w określonych miejscach gracz zachęcany jest do zwiedzania swojego codziennego otoczenia i nie tylko. Zebrane pokemony trafiają do kolekcji z której później gracz może później wystawiać je do walki lub wymieniać się nimi z innymi użytkownikami aplikacji. Gra Pokemon Go podczas premiery biła rekordy popularności a od momentu jej wydania ciągle pojawia się na wysokich miejscach listy najpopularniejszych i najbardziej dochodowych gier mobilnych.
+Pokemon Go to gra mobilna wykorzystująca technologię rzeczywistości rozszerzonej, w~której gracz może łapać tytułowe pokemony losowo pojawiające się w okolicy, co skutkuje tym, że gracz zachęcany jest do zwiedzania swojego otoczenia, aby mieć możliwość złapania jak największej liczby oraz jak najlepszych okazów pod względem statystyk. Zebrane pokemony trafiają do kolekcji, z której później gracz może wystawiać je do walki lub wymieniać się nimi z innymi użytkownikami aplikacji. Gra Pokemon Go podczas premiery biła rekordy popularności, a od momentu jej wydania ciągle pojawia się na wysokich miejscach listy najpopularniejszych i najbardziej dochodowych gier mobilnych.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{apki_ss/pokemon.png}
-    \caption{Pokemon go}
+    \captionsetup{justification=centering}
+    \caption{Pokemon go, źródło: \href{https://niantic.helpshift.com/hc/pl/6-pokemon-go/faq/2345-how-do-i-find-specific-pokemon}{niantic.helpshift.com/hc/pl}}
 \end{figure}
-Pokemon Go posłużyło jako inspiracja do stworzenia aspektu kolekcjonerskiego w naszej aplikacji, użytkownik może traktować pocztówki jak swego rodzaju pokemony, kolekcjonować je i wymieniać się z znajomymi a przy tym zachęcany jest do aktywnego spędzania czasu poprzez zwiedzanie nowych miejsc w celu zdobycia nowych pocztówek
+Pokemon Go posłużyło jako inspiracja do stworzenia aspektu kolekcjonerskiego w naszej aplikacji, użytkownik może traktować pocztówki jak swego rodzaju pokemony, kolekcjonować je i wymieniać się ze znajomymi, a przy tym zachęcany jest do aktywnego spędzania czasu poprzez zwiedzanie nowych miejsc w celu zdobycia nowych pocztówek.
 
 \newpage
 \subsection{Slowly}
-Slowly to aplikacja która pozwala użytkownikom na wymianę listów, elementem wyróżniającym ją pośród zwykłych komunikatorów jet to, że listy dochodzą z opóźnieniem zależnym od odległości między komunikującymi się osobami. W momencie wysłania takiego listu użytkownik dostaje powiadomienie o nadchodzącym liście i dacie jego przyjścia, przez co może z niecierpliwością wyczekiwać nowej wiadomości. Aplikacja ta łączy stare z nowoczesnym -- wysyłanie listów z aplikacją społecznościową rozwijając przy tym personalną więź z każdym kolejnym listem. W aplikacji istnieje także możliwość kolekcjonowania znaczków z różnych stron świata i nie tylko, gdy dostaniemy list z takowym znaczkiem automatycznie trafia on do naszej kolekcji.
+Slowly to aplikacja, która pozwala użytkownikom na wymianę listów. Elementem wyróżniającym ją pośród zwykłych komunikatorów jest to, że listy dochodzą z opóźnieniem zależnym od odległości między komunikującymi się osobami. W momencie wysłania takiego listu użytkownik dostaje powiadomienie o nadchodzącym liście i dacie jego przyjścia, przez co może z niecierpliwością wyczekiwać nowej wiadomości. Aplikacja ta łączy stare z nowoczesnym -- wysyłanie listów z aplikacją społecznościową rozwijając przy tym personalną więź z każdym kolejnym listem. W aplikacji istnieje także możliwość kolekcjonowania znaczków z różnych stron świata i nie tylko, gdy dostaniemy list z takowym znaczkiem automatycznie trafia on do naszej kolekcji.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{apki_ss/slowly.png}
-    \caption{Slowly}
+    \captionsetup{justification=centering}
+    \caption{Slowly, źródło: \href{https://slowly.app/pl/}{slowly.app/pl/}}
 \end{figure}
-Slowly posłużyło jako inspiracja do części prywatnej aspektu społecznościowego oraz do połączenia czegoś starodawnego i już niezbyt używanego z nowoczesnym sposobem jakim jest aplikacja społecznościowa, tak jak listy w Slowly tak samo pocztówki w naszej aplikacji są kierowane do jednej konkretnej osoby co czyni je wyjątkowymi
+Slowly posłużyło jako inspiracja do aspektu części prywatnej i personalnej wysyłanych treści oraz do połączenia czegoś starodawnego i już niezbyt używanego z nowoczesnym sposobem jakim jest aplikacja społecznościowa. Tak jak listy w Slowly tak samo pocztówki w naszej aplikacji są kierowane do jednej konkretnej osoby co czyni je wyjątkowymi.
 \newpage
 \subsection{Książeczki PTTK}
-Polskie Towarzystwo Turystyczno-Krajoznawcze pozwala na zdobywanie specjalnych pieczątek w przeznaczonych do tego książeczkach. Pieczątki można zbierać między innymi z specjalnie wyznaczonych szlaków turystycznych, gdy jesteśmy w odpowiednim miejscu wystarczy podejść do informacji turystycznej i poprosić o takową pieczątkę. Po zebraniu odpowiedniej ilości konkretnych pieczątek możemy ubiegać się o specjalne odznaki. Rozwiązanie to pozwala na unikatowe dokumentowanie odwiedzonych miejsc oraz nagradza użytkownika za konsekwentne ich zbieranie
+Polskie Towarzystwo Turystyczno-Krajoznawcze pozwala na zdobywanie specjalnych pieczątek w przeznaczonych do tego książeczkach. Pieczątki można zbierać na między innymi specjalnie wyznaczonych szlakach turystycznych. Gdy jesteśmy w odpowiednim miejscu wystarczy podejść do informacji turystycznej i poprosić o takową pieczątkę. Po zebraniu odpowiedniej liczby konkretnych pieczątek możemy ubiegać się o specjalne odznaki. Rozwiązanie to pozwala na unikatowe dokumentowanie odwiedzonych miejsc oraz nagradza użytkownika za konsekwentne ich zbieranie.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{apki_ss/pttk.jpg}
-    \caption{Książeczka i odznaka PTTK}
+    \captionsetup{justification=centering}
+    \caption{Książeczka i odznaka PTTK, źródło: \href{https://www.trasadlabobasa.pl/tab/artykul/jak\_zdobyc\_odznaki\_pttk/348}{trasadlabobasa.pl}}
 \end{figure}
 
 \subsection{Tradycyjne Pocztówki}
-Oczywiście nie można nie wspomnieć o rozwiązaniu z świata rzeczywistego są pocztówki, które możemy kupić praktycznie w każdym miejscu na ziemi. Same pocztówki są zazwyczaj bardzo tanie i wysłanie ich również jest możliwe z prawie każdego miejsca na ziemi. Sporą wadą jest to że czas dostarczenia często przekracza kilka tygodni jak nie miesięcy, dodatkowo istnieje spora szansa, że pocztówka zagubi się gdzieś po drodze.
+Oczywiście nie można nie wspomnieć o rozwiązaniu ze świata rzeczywistego jakim są po prostu pocztówki, które możemy kupić praktycznie w każdym miejscu na ziemi. Same pocztówki są zazwyczaj bardzo tanie i wysłanie ich również jest możliwe z prawie każdego miejsca na ziemi. Sporą wadą jest to, że czas dostarczenia często przekracza kilka tygodni jak nie miesięcy, dodatkowo istnieje spora szansa, że pocztówka zagubi się gdzieś po drodze.
 
 \newpage
 \section{Docelowy typ odbiorcy}
 Aplikacja jest skierowana do różnorodnej grupy odbiorców i każdy powinien znaleźć w niej aspekt który zaspokoi jego potrzeby, jednak do celu określenia konkretnego docelowego odbiorcy wyróżniamy trzy różne typy:
 
 \begin{itemize}
-    \item \textbf{Pasjonat trendów i tradycji} -- Docelowym typem odbiorcy jest osoba która jest na bieżąco z najnowszymi trendami ale nie zaniedbuje również tradycyjnych rozwiązań, aplikacja spełnia oczekiwania takiego użytkownika łącząc tradycyjny zwyczaj wysyłania pocztówek z nowoczesną aplikacją społecznościową. 
-    \item \textbf{Miłośnik podróży i kolekcjoner} -- kolejnym docelowym odbiorcą może być osoba dla której podróżowanie to pasja i jednocześnie chce mieć coś w swojej kolekcji z odwiedzonych miejsc. Aplikacja spełnia wymagania takiej osoby ponieważ poprzez zbieranie pocztówek z konkretnych miejsc może dokumentować swoją obecność z danego miejsca jednocześnie poszerzając swoją kolekcję
-    \item \textbf{Uniwersalny użytkownik} -- nie ograniczając się do konkretnych grup aplikacja jest odpowiednia dla każdego, dzięki uniwersalnemu tematowi i prostej obsłudze korzystać może z niej każdy, nawet osoba która nie podróżuje może po prostu tylko otrzymywać pocztówki od znajomych
+    \item \textbf{Pasjonat trendów i tradycji} -- docelowym typem odbiorcy jest osoba, która jest na bieżąco z najnowszymi trendami, ale nie zaniedbuje również tradycyjnych rozwiązań. Aplikacja spełnia oczekiwania takiego użytkownika łącząc tradycyjny zwyczaj wysyłania pocztówek z nowoczesną aplikacją społecznościową. 
+    \item \textbf{Miłośnik podróży i kolekcjoner} -- kolejnym docelowym odbiorcą może być osoba dla której podróżowanie to pasja i jednocześnie chce mieć coś w swojej kolekcji z~odwiedzonych miejsc. Aplikacja spełnia wymagania takiej osoby, ponieważ w wyniku podróżowania lub zwiedzania konkretnych miejsc może ona dokumentować swoją obecność poprzez odbieranie pocztówek, które finalnie trafiają do stałej kolekcji tej osoby.
+    \item \textbf{Uniwersalny użytkownik} -- nie ograniczając się do konkretnych grup, aplikacja jest odpowiednia dla każdego, dzięki uniwersalnemu tematowi i prostej obsłudze korzystać może z niej każdy, nawet osoba która nie podróżuje może po prostu tylko otrzymywać pocztówki od znajomych.
 \end{itemize}
 
 \section{Uzasadnienie wyboru}
-Na rynku aplikacji oraz w prawdziwym świecie istnieje wiele różnych rozwiązań które w niektórych aspektach pozwalają pomóc rozwiązać postawiony problem, w wielu przypadkach są to rozwiązania które osiągnęły duży sukces. Dlatego inspirując się tymi popularnymi połączyliśmy najważniejsze ich aspekty, aby stworzyć aplikację która pozwoli na ponowny wzrost zainteresowania tak prostą i przyjemną czynnością jaką jest wysyłanie pocztówek. Łącząc tradycję która w ostatnich latach zanika z popularnością aplikacji społecznościowych możemy ponownie przywrócić ten zwyczaj w przystępniejszej formie, nie trzeba już szukać na straganach specjalnych kartek, wystarczy odpalić aplikacje, zebrać pocztówkę oraz wysłać ją wraz z krótką wiadomością do bliskiej nas osoby. Aplikacja pozwala budować specjalne więzi międzyludzkie a przy tym propaguje także aktywne spędzanie wolnego czasu na zwiedzaniu ciekawych miejsc w okolicy jak i na całym świecie.
+Na rynku aplikacji oraz w prawdziwym świecie istnieje wiele różnych rozwiązań, które w niektórych aspektach pozwalają pomóc rozwiązać postawiony problem, w wielu przypadkach są to rozwiązania, które osiągnęły duży sukces. Dlatego inspirując się tymi popularnymi, połączyliśmy najważniejsze ich aspekty, aby stworzyć aplikację, która pozwoli na ponowny wzrost zainteresowania tak prostą i przyjemną czynnością jaką jest wysyłanie pocztówek. Łącząc tradycję, która w ostatnich latach zanika z popularnością aplikacji społecznościowych możemy ponownie przywrócić ten zwyczaj w przystępniejszej formie, nie trzeba już szukać na straganach specjalnych kartek, wystarczy włączyć aplikacje, zebrać pocztówkę oraz wysłać ją wraz z krótką wiadomością do bliskiej nas osoby. Aplikacja pozwala budować specjalne więzi międzyludzkie, a przy tym propaguje także aktywne spędzanie wolnego czasu na zwiedzaniu ciekawych miejsc w okolicy jak i na całym świecie.
 
 \newpage
 
@@ -702,7 +735,7 @@ Na rynku aplikacji oraz w prawdziwym świecie istnieje wiele różnych rozwiąza
     \item Każdy użytkownik może zarejestrować swoje konto przy pomocy adresu e-mail, nazwy użytkownika oraz bezpiecznego hasła.
     \item Każdy użytkownik może uwierzytelnić się za pomocą adresu e-mail oraz hasła.
     \item Każdy użytkownik może zmienić motyw kolorystyczny aplikacji.
-    \item Każdy użytkownik może edytować dane swojego profilu który składa się z następujących elementów:
+    \item Każdy użytkownik może edytować dane swojego profilu, który składa się z następujących elementów:
     \begin{itemize}
         \item Zdjęcie tła profilu.
         \item Zdjęcie profilu.
@@ -731,10 +764,10 @@ Na rynku aplikacji oraz w prawdziwym świecie istnieje wiele różnych rozwiąza
 \begin{itemize}
     \item Każdy użytkownik może zmienić podstawowe ustawienia aplikacji takie jak:
     \begin{itemize}
-        \item Ustawienia powiadomień
-        \item Promień w którym wyświetlać się będą powiadomienia o dostępnych pocztówkach
-        \item Preferowany format daty
-        \item Preferowany system miar
+        \item Ustawienia powiadomień.
+        \item Promień w którym wyświetlać się będą powiadomienia o dostępnych pocztówkach.
+        \item Preferowany format daty.
+        \item Preferowany system miar.
     \end{itemize}
     \item Każdy użytkownik może włączyć lokalizowanie pocztówek w okolicy oraz wybrać promień w którym odbywa się lokalizowanie.
     \item Każdy użytkownik powinien otrzymać powiadomienie gdy w pobliżu pojawi się pocztówka do zebrania oraz lokalizowanie pocztówek jest włączone.
@@ -745,7 +778,7 @@ Na rynku aplikacji oraz w prawdziwym świecie istnieje wiele różnych rozwiąza
 
 \section{Wymagania niefunkcjonalne użytkownika dla aplikacji mobilnej}
 \begin{itemize}
-    \item Aplikacja powinna działać poprawnie na dowolnym telefonie z systemem Android X.X+.
+    \item Aplikacja powinna działać poprawnie na dowolnym telefonie z systemem Android 13.0+.
     \item Aplikacja powinna pozwalać na poprawne działanie tylko w przypadku połączenia z aplikacją serwerową.
     \item Aplikacja powinna pozwalać na odbieranie pocztówek tylko gdy lokalizacja jest włączona.
 \end{itemize}
@@ -825,20 +858,20 @@ Na rynku aplikacji oraz w prawdziwym świecie istnieje wiele różnych rozwiąza
     \item \textbf{Visual Studio (IDE)} -- zintegrowane środowisko programistyczne stworzone przez firmę Microsoft. Oferuje narzędzia dla wielu języków programowania w tym dla wykorzystanego w przypadku naszej aplikacji serwerowej C\#.
     \item \textbf{SQL Server Management Studio} -- zintegrowane środowisko bazy danych do jej obsługi, które zawiera wszystkie potrzebne funkcjonalności. 
     \item \textbf{Visual Studio Code} -- prosty i elastyczny edytor kodu posiadający wsparcie dla wielu języków programowania oraz obszerne wsparcie dla wszelakich dodatków.
-    \item \textbf{Android Studio} -- zintegrowane środowisko programistyczne stworzone przez firmę Google do tworzenia aplikacji mobilnych, narzędzie to zawiera wbudowany emulator systemów android który pozwala na proste testowanie aplikacji. Samo środowisko pozwala na obsługę frameworku Flutter który został wykorzystany do stworzenia aplikacji mobilnej.
-    \item \textbf{Miro} -- platforma online służąca do tworzenia diagramów, map myśli czy prototypów i koncepcji. Platforma pozwala na pracę nad projektem w czasie rzeczywistym wielu osobom co okazało się przydatne podczas początkowej fazy projektowania aplikacji.
+    \item \textbf{Android Studio} -- zintegrowane środowisko programistyczne stworzone przez firmę Google do tworzenia aplikacji mobilnych, narzędzie to zawiera wbudowany emulator systemów android, który pozwala na proste testowanie aplikacji. Samo środowisko pozwala na obsługę frameworku Flutter, który został wykorzystany do stworzenia aplikacji mobilnej.
+    \item \textbf{Miro} -- platforma online służąca do tworzenia diagramów, map myśli czy prototypów i koncepcji. Platforma pozwala na pracę nad projektem w czasie rzeczywistym wielu osobom, co okazało się przydatne podczas początkowej fazy projektowania aplikacji.
     \item \textbf{Figma} -- platforma do projektowania interfejsów użytkownika, pozwala ona tworzyć interaktywne prototypy na przykład aplikacji mobilnych, ponadto pozwala na pracę zespołową w czasie rzeczywistym i jest dostępna z poziomu przeglądarki internetowej.
     \item \textbf{dbdiagram.io} -- narzędzie dostępne w przeglądarce służące do projektowania relacyjnych baz danych za pomocą wizualnego edytora, samo narzędzie pozwala także na automatyczne generowanie kodu SQL
     \item \textbf{Github} -- To platforma internetowa która służy do zarządzania projektami przy użyciu systemu kontroli wersji Git. Platforma ta pozwala na łatwą współpracę podczas pracy nad kodem, śledzenie historii zmian, zarządzanie problemami czy tworzenie specjalnych gałęzi. Github jest powszechnie używany na całym świecie przy tworzeniu projektów open-source a także w firmach do prywatnych repozytoriów kodu.
     \item \textbf{Github Desktop/Github Kraken} -- narzędzia pozwalające na zarządzanie repozytoriami Git w sposób graficzny, narzędzia te oferują funkcjonalności takie jak przeglądanie historii commitów, klonowanie repozytoriów, tworzenie gałęzi, synchronizacja z repozytorium zdalnym czy po prostu commitowanie zmian.
-    \item \textbf{Discord} -- platforma komunikacyjna dostępna z poziomu przeglądarki lub aplikacji, początkowo zaprojektowana dla społeczności graczy szybko rozszerzyła swoje zastosowanie dla wszelakich innych grup społecznych. Platforma umożliwia tworzenie serwerów na których użytkownicy mogą komunikować się ze sobą na wiele sposobów między innymi poprzez kanały głosowe. Discord pozwala również na wysyłanie wiadomości tekstowych oraz plików, to wszystko sprawia umożliwia łatwą i przyjemną komunikację międzyludzką w czasie rzeczywistym
+    \item \textbf{Discord} -- platforma komunikacyjna dostępna z poziomu przeglądarki lub aplikacji, początkowo zaprojektowana dla społeczności graczy szybko rozszerzyła swoje zastosowanie dla wszelakich innych grup społecznych. Platforma umożliwia tworzenie serwerów na których użytkownicy mogą komunikować się ze sobą na wiele sposobów, między innymi poprzez kanały głosowe. Discord pozwala również na wysyłanie wiadomości tekstowych oraz plików, to wszystko umożliwia łatwą i przyjemną komunikację międzyludzką w czasie rzeczywistym.
 \end{itemize}
 \newpage
 
 \section{Wczesne Etapy Projektowania}
 
-W najwcześniejszym etapie projektowania aplikacji został wymyślony główny koncept czyli na czym ma polegać cała aplikacja, co ma sobą reprezentować oraz do kogo ma być skierowana. Narzędziem, które w tym pomogło było Miro w bezproblemowo została stworzona mapa myśli przedstawiająca parę różnych pomysłów, lecz wszystkich zgodnych co do jednego, aplikacja powinna zrzeszać jakąś społeczność i pozwalać w nowoczesny sposób aktywnie spędzać czas, ostatecznie zostały wybrane dwa dosyć podobne pomysły
-aplikacja społecznościowa do zbierania wirtualnych magnesów oraz aplikacja społecznościowa do zbierania i przesyłania wirtualnych pocztówek. Finalnie zatwierdzony został pomysł z zbieraniem wirtualnych pocztówek, gdzie początkowo aplikacja webowa miała istnieć tylko na zasadzie wizytówki lecz z czasem pomysł ewoluawał na tyle że część funkcjonalności została tam również zaimplementowana.
+W najwcześniejszym etapie projektowania aplikacji został wymyślony główny koncept, czyli na czym ma polegać cała aplikacja, co ma sobą reprezentować oraz do kogo ma być skierowana. Narzędziem które w tym pomogło było Miro. Bezproblemowo została stworzona mapa myśli przedstawiająca parę różnych pomysłów, lecz wszystkich zgodnych co do jednego, aplikacja powinna zrzeszać jakąś społeczność i pozwalać w nowoczesny sposób aktywnie spędzać czas. Ostatecznie zostały wybrane dwa dosyć podobne pomysły.
+Aplikacja społecznościowa do zbierania wirtualnych magnesów oraz aplikacja społecznościowa do zbierania i przesyłania wirtualnych pocztówek. Finalnie zatwierdzony został pomysł ze zbieraniem wirtualnych pocztówek, w którym początkowo aplikacja webowa miała istnieć jedynie na zasadzie wizytówki, lecz z czasem pomysł ewoluował na tyle, że część funkcjonalności została tam również zaimplementowana.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{wizje_ss/miro.png}
@@ -846,7 +879,7 @@ aplikacja społecznościowa do zbierania wirtualnych magnesów oraz aplikacja sp
 \end{figure}
 \newpage
 
-Kolejnym etapem wczesnego projektowania było wybranie odpowiedniej palety kolorów oraz ustalenie wstępnego designu aplikacji, jako że głównym trzonem aplikacji miała być aplikacja mobilna to właśnie na nią została przeznaczona największa ilość czasu w tym etapie projektowania. W celu wykonania tego zadania bardzo pomogło narzędzie Figma, w którym przetestowane zostały różne koncepcje oraz warianty kolorystyczne do aplikacji mobilnej oraz aplikacji webowej. Warto zaznaczyć, że także na tym etapie po wielu propozycjach została wybrana nazwa całej aplikacji -- Postcardia.
+Kolejnym etapem wczesnego projektowania było wybranie odpowiedniej palety kolorów oraz ustalenie wstępnego designu aplikacji. Jako że głównym trzonem aplikacji miała być aplikacja mobilna to właśnie na nią została przeznaczona największa ilość czasu w~tym etapie projektowania. W celu wykonania tego zadania bardzo pomogło narzędzie Figma, w którym przetestowane zostały różne koncepcje oraz warianty kolorystyczne do aplikacji mobilnej i aplikacji webowej. Warto zaznaczyć, że także na tym etapie po wielu propozycjach została wybrana nazwa całej aplikacji -- Postcardia.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{wizje_ss/figma-colors.png}
@@ -866,11 +899,11 @@ Kolejnym etapem wczesnego projektowania było wybranie odpowiedniej palety kolor
 \end{figure}
 \newpage
 
-Podczas ostatniego etapu wstępnego projektowania części wizualnej został stworzony wstępny widok większości stron w aplikacji mobilnej, celem samego projektowania nie było stworzenie finalnego, mocno wiążącego designu, lecz stworzenie inspiracji i pomocnej wizualizacji dla programistów zajmujących się aplikacją mobilną.
+Podczas ostatniego etapu wstępnego projektowania części wizualnej został stworzony wstępny widok większości stron w aplikacji mobilnej. Celem samego projektowania nie było stworzenie finalnego, mocno wiążącego designu, lecz stworzenie inspiracji i pomocnej wizualizacji dla programistów zajmujących się aplikacją mobilną.
 
-Podczas tworzenia wstępnego designu priorytetem było skupienie się na stworzeniu przejrzystego i przyjaznego środowiska dla użytkownika które zarazem jest funkcjonalne i estetyczne. Sam użytkownik docelowo powinien intuicyjnie przemieszczać się po wszystkich zakładkach oraz od razu wiedzieć gdzie znajduje się jaka funkcjonalność aplikacji.
+Podczas tworzenia wstępnego designu priorytetem było skupienie się na stworzeniu przejrzystego i przyjaznego środowiska dla użytkownika, które zarazem jest funkcjonalne i estetyczne. Sam użytkownik docelowo powinien intuicyjnie przemieszczać się po wszystkich zakładkach oraz od razu wiedzieć gdzie znajduje się dana funkcjonalność aplikacji.
 
-W rezultacie wizualizacja mocno pomogła w procesie tworzenia aplikacji mobilnej a stworzony design finalnie nie odbiega mocno od designu zaimplementowanego w właściwej aplikacji, wiele elementów jak i koncepcji jest niemalże identycznych.
+W rezultacie wizualizacja mocno pomogła w procesie tworzenia aplikacji mobilnej, a~stworzony design finalnie nie odbiega mocno od designu zaimplementowanego we właściwej aplikacji, wiele elementów jak i koncepcji jest niemalże identycznych.
 
 
 
@@ -880,11 +913,11 @@ W rezultacie wizualizacja mocno pomogła w procesie tworzenia aplikacji mobilnej
     \caption{Wstępnie wybrany design aplikacji mobilnej}
 \end{figure}
 \newpage
-Warto zaznaczyć, że podczas wstępnego projektowania został stworzony także wstępny model bazy danych określający poszczególne tabele i relacje, baza danych finalnie została trochę zmodyfikowana, lecz etap ten pozwolił wstępnie oszacować wielkość oraz złożoność finalnej bazy danych a także pozwolił przemyśleć pewne rozwiązania i delikatnie je zmodyfikować.
+Warto zaznaczyć, że podczas wstępnego projektowania został stworzony także wstępny model bazy danych określający poszczególne tabele i relacje. Baza danych finalnie została trochę zmodyfikowana, lecz etap ten pozwolił wstępnie oszacować wielkość oraz złożoność ostatecznej bazy danych a także pozwolił przemyśleć pewne rozwiązania i delikatnie je zmodyfikować.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{wizje_ss/baza.png}
-    \caption{Wstępnie wybrany design aplikacji mobilnej}
+    \caption{Wstępnie relacje w bazie danych}
 \end{figure}
 \newpage
 
@@ -907,7 +940,7 @@ Sam system kontroli wersji ściśle współpracuje z platformą GitHub na które
     \item Repozytorium dla aplikacji mobilnej.
     \item *Repozytorium dla starej aplikacji webowej.
 \end{enumerate}
-*Początkowo aplikacja webowa miała powstać w technologii angular, lecz po wstępnej analizie tematu zdecydowaliśmy się na technologię React w zespół posiadał większe doświadczenie oraz wiedzę
+*Początkowo aplikacja webowa miała powstać w technologii Angular, lecz po dokonanej analizie tematu zdecydowaliśmy się na technologię React w której zespół posiadał większe doświadczenie oraz wiedzę.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{github_ss/organizacja.png}
@@ -916,9 +949,9 @@ Sam system kontroli wersji ściśle współpracuje z platformą GitHub na które
 
 
 \section{Komunikacja w zespole oraz przydział zadań}
-Ważnym aspektem implementacji jak i projektowania była sama komunikacja między członkami zespołu. Jako główną platformę komunikacyjną wybraliśmy aplikację Discord na której konsekwentnie uskuteczniana była metodyka Scrum -- metodyka w której zespół regularnie w cotygodniowych odstępach spotykał się na kanale głosowym aby omówić postęp pracy, zaplanować oraz przydzielić kolejne zadania i w razie potrzeby przedyskutować opóźnienia lub napotkane problemy.
+Ważnym aspektem implementacji jak i projektowania była sama komunikacja między członkami zespołu. Jako główną platformę komunikacyjną wybraliśmy aplikację Discord, na której konsekwentnie uskuteczniana była metodyka Scrum -- metodyka, w której zespół regularnie w cotygodniowych odstępach czasu spotykał się na kanale głosowym aby omówić postęp pracy, zaplanować oraz przydzielić kolejne zadania, a w razie potrzeby przedyskutować opóźnienia lub napotkane problemy.
 
-Zadania były tworzone na podstawie brakujących funkcjonalności lub powstałych błędów wymagających poprawek, w tym celu została wykorzystana funkcjonalność Issues z platformy GitHub, funkcjonalność ta pozwala tworzyć konkretne problemy i zadania z możliwością przypisania osoby odpowiedzialnej za wykonanie tego zadania. Narzędzie podczas tworzenia takiego problemu lub zadania daje nam możliwość stworzenia specjalnej gałęzi przeznaczonej dla tego problemu lub zadania dzięki czemu można w łatwy sposób kontrolować postęp prac oraz bezproblemowo działać na projekcie w kilka osób
+Zadania były tworzone na podstawie brakujących funkcjonalności lub powstałych błędów wymagających poprawek, w tym celu została wykorzystana funkcjonalność Issues z platformy GitHub. Funkcjonalność ta pozwala tworzyć konkretne problemy i zadania z możliwością przypisania osoby odpowiedzialnej za ich wykonanie. Narzędzie podczas tworzenia takiego problemu lub zadania daje nam możliwość stworzenia specjalnej gałęzi przeznaczonej dla tego problemu lub zadania, dzięki czemu można w łatwy sposób kontrolować postęp prac oraz bezproblemowo działać na projekcie w kilka osób.
 
 \begin{figure}[H]
     \centering
@@ -927,7 +960,7 @@ Zadania były tworzone na podstawie brakujących funkcjonalności lub powstałyc
 \end{figure}
 \newpage
 
-Sama platforma GitHub pozwala także na łatwe śledzenie ogólnej aktywności na danych repozytoriach dzięki temu podczas cotygodniowych spotkań bez głębszego analizowania zmienionego kodu i plików można dowiedzieć się o intensywności prac prowadzonych przez inne osoby w projekcie i nie tylko.
+Sama platforma GitHub pozwala także na łatwe śledzenie ogólnej aktywności na danych repozytoriach, dzięki temu podczas cotygodniowych spotkań bez głębszego analizowania zmienionego kodu i plików można dowiedzieć się o intensywności prac prowadzonych przez inne osoby w projekcie i nie tylko.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{github_ss/backend.png}
@@ -981,33 +1014,33 @@ Sama platforma GitHub pozwala także na łatwe śledzenie ogólnej aktywności n
 W rozdziale tym zostaną omówione biblioteki użyte w projekcie. Na początku omówimy główne biblioteki każdego z modułów. W dalszych podrozdziałach omówimy biblioteki dodatkowe, które wchodzą w skład modułów dodając do nich nowe funkcjonalności lub rozwijając już te istniejące.
 \subsection{Biblioteka główna mobilna}
 \begin{itemize}
-    \item Flutter - jest to technologia stworzona przez firmę Google pozwalająca na tworzenie aplikacji na urządzenia z systemami Android jak i iOS używając tego samego kodu. Językiem wykorzystywanym podczas tworzenia tych aplikacji jest Dart, który również został stworzony przez Google. Napisane we Flutterze aplikacje mobilne wyglądają i działają niemal identycznie na obu systemach z wydajnością, która jest bardzo zbliżona do aplikacji natywnych. Fluttera tworzą dwa podstawowe elementy którymi są framework, który jest niezbędny do poprawnego działania aplikacji oraz pakiet SDK, który jest konieczny do ich tworzenia.
+    \item Flutter -- jest to technologia stworzona przez firmę Google pozwalająca na tworzenie aplikacji na urządzenia z systemami Android jak i iOS używając tego samego kodu. Językiem wykorzystywanym podczas tworzenia tych aplikacji jest Dart, który również został stworzony przez Google. Napisane we Flutterze aplikacje mobilne wyglądają i działają niemal identycznie na obu systemach z wydajnością, która jest bardzo zbliżona do aplikacji natywnych. Fluttera tworzą dwa podstawowe elementy którymi są framework, który jest niezbędny do poprawnego działania aplikacji oraz pakiet SDK, który jest konieczny do ich tworzenia.
 \end{itemize}
 \subsection{Biblioteki mobilne dodatkowe}
 \begin{itemize}
-    \item intl - umożliwia stworzenie pliku zawierającego wszystkie wiadomości zawierające się w aplikacji oraz używanie odpowiednich plików z językami w zależności od ustawień.
-    \item http - jest to biblioteka umożliwiająca komunikację pomiędzy aplikacją a serwerem przy użyciu żądań HTTP.
-    \item flutter\_bloc - biblioteka, która zawiera w sobie widgety, ułatwiająca wprowadzenie BLoC jako state management w aplikacji.
-    \item flutter\_secure\_storage - w aplikacji używany jest do przechowywania JWT otrzymanego podczas logowania. Biblioteka szyfruje wartości jakie otrzymuje przed umieszczeniem ich w pamięci. Na platformie Android jest używane do tego szyfrowanie AES, natomiast na platformie iOS jest to KeyChain. 
-    \item jwt\_decoder - jest biblioteka do dekodowania JWT. Dzięki niej możemy sprawdzić, czy token wygasł i na podstawie tego przekierować użytkownika na odpowiednią podstronę.
-    \item shimmer - biblioteka dodająca widget używany podczas ładowania danych z serwera.
-    \item image\_picker - oficjalna biblioteka umożliwiająca wybieranie zdjęć z galerii lub tworzenie od razu nowych i dalsze ich wykorzystywanie w aplikacji.
-    \item country\_picker - biblioteka dodająca widget do wybierania kraju.
-    \item auto\_size\_text - jest to biblioteka dająca większą kontrolę nad wyświetlanym tekstem. Dzięki niej łatwo możemy skalować tekst na mniejszych ekranach lub ustawiać limit wierszy przy zawijaniu.
-    \item background\_locator\_2 - jest to jedna z istotniejszych bibliotek w naszej aplikacji. Służy ona na do pobierania z telefonu koordynatów. Funkcja kontynuuje działanie, nawet gdy aplikacja działa w tle lub gdy jest całkowicie wyłączona. Biblioteka jest również rozwinięta o funkcje callback, która jest wykonywana za każdym razem gdy pobierane są nowe koordynaty co umożliwia nam wykonywanie wtedy innych funkcji, nawet gdy aplikacja jest wyłączona.
-    \item path\_provider - biblioteka wykorzystywana do lokalizowanie plików w systemie.
-    \item location\_permissions - umożliwia pobieranie lokalizacji z urządzenia. 
-    \item permission\_handler - biblioteka, która obsługuje nadawanie oraz sprawdzanie istniejących zgód na wykorzystywanie poszczególnych serwisów w urządzeniu, takich jak powiadomienia lub pamięć. 
-    \item geolocator - biblioteka, która pozwala na komunikację z serwisem odpowiedzialnym za lokalizację. W projekcie jest wykorzystywana w celu sprawdzenia czy lokalizacja jest ciągle włączona na urządzeniu. 
-    \item cached\_memory\_image - biblioteka umożliwiająca zapisywanie grafik w pamięci telefonu co eliminuje miganie obrazów podczas ich ciągłego pobierania.
-    \item url\_launcher - umożliwia otwieranie linków w osobnej karcie przeglądarki na użądzeniach mobilnych. 
-    \item loading\_animation\_widget - biblioteka zawierająca animacje ładowania.
-    \item flutter\_animate - biblioteka umożliwiająca animowania dowolnego widgetu w aplikacji.
-    \item easy\_debounce - biblioteka upraszczająca oryginalny zapis debouncera języka Dart. 
-    \item shared\_preferences - służy do zapisywania różnych zmiennych w pamięci telefonu jako pary klucz-wartość w podobny sposób jak to robi secure storage. 
-    \item app\_settings - umożliwia otworzenie ustawień telefonu z poziomu aplikacji.
-    \item provider - jest to biblioteka do zarządzania stanem aplikacji. Umożliwia na przebudowanie widoku gdy Consumer wykryje zmianę wartości zmiennej.
-    \item flutter\_local\_notifications - biblioteka umożliwiająca wykonywanie lokalnych powiadomień typu ``push'', nawet gdy aplikacja jest wyłączona. 
+    \item intl -- umożliwia stworzenie pliku zawierającego wszystkie wiadomości zawierające się w aplikacji oraz używanie odpowiednich plików z językami w zależności od ustawień.
+    \item http -- jest to biblioteka umożliwiająca komunikację pomiędzy aplikacją a serwerem przy użyciu żądań HTTP.
+    \item flutter\_bloc -- biblioteka, która zawiera w sobie widgety, ułatwiająca wprowadzenie BLoC jako state management w aplikacji.
+    \item flutter\_secure\_storage -- w aplikacji używany jest do przechowywania JWT otrzymanego podczas logowania. Biblioteka szyfruje wartości jakie otrzymuje przed umieszczeniem ich w pamięci. Na platformie Android jest używane do tego szyfrowanie AES, natomiast na platformie iOS jest to KeyChain. 
+    \item jwt\_decoder -- jest biblioteka do dekodowania JWT. Dzięki niej możemy sprawdzić, czy token wygasł i na podstawie tego przekierować użytkownika na odpowiednią podstronę.
+    \item shimmer -- biblioteka dodająca widget używany podczas ładowania danych z serwera.
+    \item image\_picker -- oficjalna biblioteka umożliwiająca wybieranie zdjęć z galerii lub tworzenie od razu nowych i dalsze ich wykorzystywanie w aplikacji.
+    \item country\_picker -- biblioteka dodająca widget do wybierania kraju.
+    \item auto\_size\_text -- jest to biblioteka dająca większą kontrolę nad wyświetlanym tekstem. Dzięki niej łatwo możemy skalować tekst na mniejszych ekranach lub ustawiać limit wierszy przy zawijaniu.
+    \item background\_locator\_2 -- jest to jedna z istotniejszych bibliotek w naszej aplikacji. Służy ona na do pobierania z telefonu koordynatów. Funkcja kontynuuje działanie, nawet gdy aplikacja działa w tle lub gdy jest całkowicie wyłączona. Biblioteka jest również rozwinięta o funkcje callback, która jest wykonywana za każdym razem gdy pobierane są nowe koordynaty co umożliwia nam wykonywanie wtedy innych funkcji, nawet gdy aplikacja jest wyłączona.
+    \item path\_provider -- biblioteka wykorzystywana do lokalizowanie plików w systemie.
+    \item location\_permissions -- umożliwia pobieranie lokalizacji z urządzenia. 
+    \item permission\_handler -- biblioteka, która obsługuje nadawanie oraz sprawdzanie istniejących zgód na wykorzystywanie poszczególnych serwisów w urządzeniu, takich jak powiadomienia lub pamięć. 
+    \item geolocator -- biblioteka, która pozwala na komunikację z serwisem odpowiedzialnym za lokalizację. W projekcie jest wykorzystywana w celu sprawdzenia czy lokalizacja jest ciągle włączona na urządzeniu. 
+    \item cached\_memory\_image -- biblioteka umożliwiająca zapisywanie grafik w pamięci telefonu co eliminuje miganie obrazów podczas ich ciągłego pobierania.
+    \item url\_launcher -- umożliwia otwieranie linków w osobnej karcie przeglądarki na użądzeniach mobilnych. 
+    \item loading\_animation\_widget -- biblioteka zawierająca animacje ładowania.
+    \item flutter\_animate -- biblioteka umożliwiająca animowania dowolnego widgetu w aplikacji.
+    \item easy\_debounce -- biblioteka upraszczająca oryginalny zapis debouncera języka Dart. 
+    \item shared\_preferences -- służy do zapisywania różnych zmiennych w pamięci telefonu jako pary klucz-wartość w podobny sposób jak to robi secure storage. 
+    \item app\_settings -- umożliwia otworzenie ustawień telefonu z poziomu aplikacji.
+    \item provider -- jest to biblioteka do zarządzania stanem aplikacji. Umożliwia na przebudowanie widoku gdy Consumer wykryje zmianę wartości zmiennej.
+    \item flutter\_local\_notifications -- biblioteka umożliwiająca wykonywanie lokalnych powiadomień typu ``push'', nawet gdy aplikacja jest wyłączona. 
 \end{itemize}
 \section{Architektura systemu}
 \subsection{Architektura modułu mobilnego}
@@ -1060,25 +1093,25 @@ Wszystkie te elementy razem tworzą spójną i skalowalną architekturę, która
 
 Poniżej znajdują się nazwy głównych folderów oraz opis plików jakie w sobie posiadają:
 \begin{itemize}
-    \item /api - znajdują się tam wszystkie modele związane z tworzeniem zapytań oraz odbieraniem danych z serwera. Każdy model request posiada metodę toJson(), która zamienia obiekt flutterowy na JSON'a, natomiast modele respons, posiadają metodę fromJson(), która zamienia JSON'a z serwera na obiekt flutterowy, który możemy wykorzystać w aplikacji.
+    \item /api -- znajdują się tam wszystkie modele związane z tworzeniem zapytań oraz odbieraniem danych z serwera. Każdy model request posiada metodę toJson(), która zamienia obiekt flutterowy na JSON'a, natomiast modele respons, posiadają metodę fromJson(), która zamienia JSON'a z serwera na obiekt flutterowy, który możemy wykorzystać w aplikacji.
 
-    \item /constants - folder ten zawiera wszelkie stałe, które są używane w wielu miejscach aplikacji. Dla przykładu baseUrl który jest niezmienną częścią adresu url do połączenia z backendem.
+    \item /constants -- folder ten zawiera wszelkie stałe, które są używane w wielu miejscach aplikacji. Dla przykładu baseUrl który jest niezmienną częścią adresu url do połączenia z backendem.
 
-    \item /cubit - zawiera pliki dotyczące zarządzania stanem aplikacji. Dzięki użyciu cubita zamiast czystego BLoCa nie posiadamy w nim plików związanych ze zdarzeniami ponieważ funkcjonalność zdarzeń przejęły funkcje znajdujące się już w cubitach. Poza cubitami, które zmieniają stany aplikacji oraz obsługują logikę, folder ten posiada również pliki stanów, które określają jakie zmienne posiadają konkretne stany aplikacji.
+    \item /cubit -- zawiera pliki dotyczące zarządzania stanem aplikacji. Dzięki użyciu cubita zamiast czystego BLoCa nie posiadamy w nim plików związanych ze zdarzeniami ponieważ funkcjonalność zdarzeń przejęły funkcje znajdujące się już w cubitach. Poza cubitami, które zmieniają stany aplikacji oraz obsługują logikę, folder ten posiada również pliki stanów, które określają jakie zmienne posiadają konkretne stany aplikacji.
 
-    \item /custom\_widgets - jest to zbiór ostylowanych widgetów przygotowanych do wielokrotnego użytku. W większości przypadków zmiana sprowadza się to do tego, że dany widget ma własności które posiadają wartości domyślne które możemy zmienić w zależności od potrzeb lub zostawić takimi jakimi są, lecz są również własności które należy podać.
+    \item /custom\_widgets -- jest to zbiór ostylowanych widgetów przygotowanych do wielokrotnego użytku. W większości przypadków zmiana sprowadza się to do tego, że dany widget ma własności które posiadają wartości domyślne które możemy zmienić w zależności od potrzeb lub zostawić takimi jakimi są, lecz są również własności które należy podać.
 
-    \item /extensions - są to pliki, które umożliwiają rozwijanie wbudowanych klas takich jak na przykład String o nowe metody które nie są domyślnie zawarte we frameworku.
+    \item /extensions -- są to pliki, które umożliwiają rozwijanie wbudowanych klas takich jak na przykład String o nowe metody które nie są domyślnie zawarte we frameworku.
 
-    \item /helpers - są tu zawarte funkcje, które z uwagi na wielokrotne użycie w wielu miejscach naszej aplikacji, zostały przeniesione do osobnego folderu. Znajdują się tu dla przykładu funkcje wyświetlające snackbary lub formatujące datę zgodnie z ustawieniami użytkownika. 
+    \item /helpers -- są tu zawarte funkcje, które z uwagi na wielokrotne użycie w wielu miejscach naszej aplikacji, zostały przeniesione do osobnego folderu. Znajdują się tu dla przykładu funkcje wyświetlające snackbary lub formatujące datę zgodnie z ustawieniami użytkownika. 
 
-    \item /l10n - jest to folder zawierający pliki .arb które są odpowiedzialne za przechowywanie tekstów znajdujących się w aplikacji. Dzięki zawarciu wszystkich tekstów tutaj, tłumaczenie aplikacji sprowadza się do dodania nowego pliku .arb zawierającego wszystkie teksty, oraz dodanie obsługiwanego tekstu do main.dart. 
+    \item /l10n -- jest to folder zawierający pliki .arb które są odpowiedzialne za przechowywanie tekstów znajdujących się w aplikacji. Dzięki zawarciu wszystkich tekstów tutaj, tłumaczenie aplikacji sprowadza się do dodania nowego pliku .arb zawierającego wszystkie teksty, oraz dodanie obsługiwanego tekstu do main.dart. 
 
-    \item /pages - są tutaj wszystkie strony jakie posiadamy w aplikacji. są one przechowywane w osobnych folderach ponieważ każda ze stron jest rozdzielona na mniejsze widgety które z uwagi na swoje jednokrotne zastosowanie i brak uniwersalności nie możemy przechowywać w folderze /custom\_widgets. 
+    \item /pages -- są tutaj wszystkie strony jakie posiadamy w aplikacji. są one przechowywane w osobnych folderach ponieważ każda ze stron jest rozdzielona na mniejsze widgety które z uwagi na swoje jednokrotne zastosowanie i brak uniwersalności nie możemy przechowywać w folderze /custom\_widgets. 
 
-    \item /providers - jest to zbiór klas providerów używanych w aplikacji. Każdy plik posiada konstruktor, funkcję set oraz funkcje get.
+    \item /providers -- jest to zbiór klas providerów używanych w aplikacji. Każdy plik posiada konstruktor, funkcję set oraz funkcje get.
 
-    \item /services - znajdują się tutaj pliki odpowiedzialne za komunikację pomiędzy aplikacją a serwerem, jak i również komunikację wewnątrz aplikacji jak na przykład pobieranie danych GPS urządzenia czy dostęp do pamięci wewnętrznej urządzenia. 
+    \item /services -- znajdują się tutaj pliki odpowiedzialne za komunikację pomiędzy aplikacją a serwerem, jak i również komunikację wewnątrz aplikacji jak na przykład pobieranie danych GPS urządzenia czy dostęp do pamięci wewnętrznej urządzenia. 
 
 \end{itemize}
 
@@ -1098,23 +1131,6 @@ Wysłanie zapytania tak jak to było wspomniane powyżej jest wykonywane przez s
 Provider w aplikacji mobilnej jest drugim po BLoCu, systemem zarządzania stanem. Dzięki tej bibliotece zarządzanie zmiennymi globalnymi staje się dużo prostsze. Możemy dzięki temu odświeżyć aplikację, gdy taka zmienna została zmieniona w dowolnym miejscu naszej aplikacji. Działanie wygląda następująco:
 \begin{itemize}
     \item Widgety klasy, w której chcemy zainicjalizować Providera, dodajemy jako dziecko widgetu, który znajduje się w bibliotece Provider, zwanym ChangeNotifierProvider. Widget ten potrzebuje klasy typu Provider, której obiekt tworzony jest podczas inicjalizacji. Klasa typu Provider to klasa, która posiada w sobie konstruktor, funkcję ustawiającą ``set'', funkcję, która zwraca zmienne oraz zmienne, które mają być dostępne w naszej aplikacji, a ich zmiana ma skutkować odświeżeniem strony. Na rysunkach poniżej przedstawione zostały fragmenty kodów odpowiedzialnych kolejno za implementację widgetu ChangeNotifierProvider oraz implementację widgetu Consumer.
-    \begin{figure}[H]
-        \begin{lstlisting}
-        @override
-        Widget build(BuildContext context) {
-            return Scaffold(
-
-              ...
-              
-              body: ChangeNotifierProvider(
-                create: (_) => MetricSystemProvider(),
-                child: ListView()
-
-                ...
-        \end{lstlisting}
-    \caption{Implementacja widgetu ChangeNotifierProvider}
-    \label{fig:pseudokod:listings}
-    \end{figure}
     \begin{figure}[H]
         \begin{lstlisting}
         class MetricSystemProvider extends ChangeNotifier {
@@ -1141,6 +1157,24 @@ Provider w aplikacji mobilnej jest drugim po BLoCu, systemem zarządzania stanem
     \caption{Klasa typu Provider}
     \label{fig:pseudokod:listings}
     \end{figure}
+    \newpage
+    \begin{figure}[H]
+        \begin{lstlisting}
+        @override
+        Widget build(BuildContext context) {
+            return Scaffold(
+
+              ...
+              
+              body: ChangeNotifierProvider(
+                create: (_) => MetricSystemProvider(),
+                child: ListView()
+
+                ...
+        \end{lstlisting}
+    \caption{Implementacja widgetu ChangeNotifierProvider}
+    \label{fig:pseudokod:listings}
+    \end{figure}
     \item W miejscu, które ma odczytywać lub zapisywać zmienną klasy Provider, dodajemy do drzewa widget Consumer. Jest to kolejny widget, który jest nam dostarczany razem z biblioteką i służy do nasłuchiwania zmian, które następują w obiekcie klasy Provider. Gdy taka zmiana zostanie wykryta, powoduje ona przebudowę całego drzewa widgetów aż do Consumera, używając najnowszych danych.
     \begin{figure}[H]
         \begin{lstlisting}
@@ -1162,7 +1196,6 @@ Provider w aplikacji jest używany w celu:
     \item Zmiany motywu kolorystycznego aplikacji: Zmiana motywu kolorystycznego następuje w podstronie ustawienia za pomocą przełącznika, który zapisuje jego stan w~pamięci wewnętrznej aplikacji. Aby poinformować, że użytkownik chce zmienić motyw, musielibyśmy widget po widgecie dotrzeć na sam początek drzewa i tam wykonać funkcję setState(). Dzięki użyciu Providera ChangeNotifier, sam wykryje zmianę wartości, której nasłuchuje, i odświeży stronę z prawidłowym motywem kolorystycznym. 
     \item Zmiana systemu metrycznego: W naszej aplikacji wykorzystujemy system metryczny. Mamy jednak również możliwość zmiany tego systemu na system imperialny. Użycie Providera powoduje prostą zmianę jednostek w innej gałęzi drzewa widgetów, bez konieczności przekazywania funkcji voidCallback().
 \end{itemize}
-
 \subsection{Powiadomienia}
 
 Aplikacja mobilna posiada zaimplementowaną funkcjonalność lokalnych powiadomień. Powiadomienia dotyczą:
@@ -1170,13 +1203,14 @@ Aplikacja mobilna posiada zaimplementowaną funkcjonalność lokalnych powiadomi
     \item Poinformowaniu użytkownika, że znajduje się w pobliżu pocztówki która jest możliwa do zebrania. 
     \item Poinformowaniu użytkownika, że aplikacja aktualnie używa lokalizacji użytkownika w celu lokalizowania nowych pocztówek.
 \end{itemize}
-Do wykonywania lokalnych powiadomień wykorzystaliśmy bibliotekę ``flutter\_local\_notifications''. Aby powiadomienia mogły być wyświetlane, wymagane były odpowiednie zmiany w pliku AndroidManifest.xml, w którym należało dodać odpowiednie pozwolenia.
+Do wykonywania lokalnych powiadomień wykorzystaliśmy bibliotekę \newline flutter\_local\_notifications. Aby powiadomienia mogły być wyświetlane, wymagane były odpowiednie zmiany w pliku AndroidManifest.xml, w którym należało dodać odpowiednie pozwolenia.
 Powiadomienie o tym, że w pobliżu znajduje się pocztówka możliwa do zebrania, wykonywane jest po odpowiedzi z serwera. Serwer na podstawie naszej lokalizacji przysyła nam dwie listy:
 \begin{itemize}
     \item Listę pocztówek możliwych do zebrania.
     \item Listę pocztówek w pobliżu, do których musimy jeszcze się zbliżyć, aby je zebrać.
 \end{itemize}
 Po każdym wykonanym zapytaniu, aplikacja zapamiętuje, o których pocztówkach już poinformowała użytkownika zapisując ich ID w pamięci lokalnej urządzenia, która jest resetowana po godzinie lub przy wyłączeniu opcji lokalizowania. Poniżej znajduje się fragment kodu odpowiedzialny za wykonywanie lokalnych powiadomień.
+\newpage
 \begin{figure}[H]
         \begin{lstlisting}
         ...
@@ -1217,6 +1251,7 @@ Po każdym wykonanym zapytaniu, aplikacja zapamiętuje, o których pocztówkach 
     \caption{Fragment funkcji odpowiedzialny za wykonywanie powiadomień}
     \label{fig:pseudokod:listings}
     \end{figure}
+    \newpage
 Sama operacja wykonywania powiadomienia jest zawarta w klasie NotificationService, która zawiera metodę showNotification.
 \begin{figure}[H]
         \begin{lstlisting}
@@ -1237,8 +1272,8 @@ Sama operacja wykonywania powiadomienia jest zawarta w klasie NotificationServic
 Aplikacja mobilna posiada dodatkową stronę do administrowania pocztówkami znajdującymi się w bazie danych. W celu otrzymania dostępu do tej strony, administrator musi nadać rolę ADMIN do konta, na którym strona ma być dostępna. Po zalogowaniu na odpowiednie konto, użytkownik powinien mieć dostęp do ``Admin Panel'' z poziomu menu bocznego. 
 Na tej stronie użytkownik posiada możliwość edycji danych pocztówki lub dodanie nowej. W celu obsługi dodatkowych funkcjonalności admina użyty został Provider, który umożliwia nam na sprawdzenie w dowolnym miejscu aplikacji przy użyciu widgetu Consumer czy zalogowany użytkownik posiada rolę USER czy ADMIN i na podstawie tego wyświetlać odpowiednie podstrony i dane.
 
+\newpage
 \section{Instrukcja obsługi}
-
 \subsection{Rejestracja i logowanie}
 Aby rozpocząć używanie aplikacji, użytkownik musi założyć konto na stronie rejestracji (zobacz rysunek 5.8).
 \begin{figure}[H]
@@ -1257,7 +1292,7 @@ Po udanej rejestracji na dole ekranu pojawi się informacja na zielonym tle info
 \end{figure}
 
 Na stronie logowania również posiadamy przycisk odsłaniający hasło a przycisk ``Sign up'' przenosi użytkownika do strony z rejestracją. 
-
+\newpage
 \subsection{Nawigacja po aplikacji}
 Nawigacja po aplikacji została wykonana w postaci szuflady. Każdy dział aplikacji posiada odpowiednią podstronę. Dodatkowo administrator posiada podstronę do zarządzania pocztówkami znajdującymi się w bazie danych oraz każdy typ użytkownika posiada przycisk wylogowujący na dole szuflady.
 
@@ -1266,7 +1301,7 @@ Nawigacja po aplikacji została wykonana w postaci szuflady. Każdy dział aplik
     \includegraphics[width=0.5\textwidth]{mobile_ss/szuflada.png}
     \caption{Szuflada służąca do nawigacji}
 \end{figure}
-
+\newpage
 \subsection{Edycja konta i informacji}
 W aplikacji możemy zobaczyć jak inni widzą nasz profil wchodząc na stronę ``Profile page'', która została przedstawiona na rysunku 5.11.
 
@@ -1290,7 +1325,7 @@ Na powyższym zrzucie ekranu widzimy profil, który posiada dwie ulubione poczt�
     \caption{Edycja profilu z wprowadzonymi danymi}
   \end{minipage}
 \end{figure}
-
+\newpage
 Po wprowadzeniu danych nasz profil prezentuje się jak na rysunku 5.14.
 
 \begin{figure}[H]
@@ -1298,7 +1333,7 @@ Po wprowadzeniu danych nasz profil prezentuje się jak na rysunku 5.14.
     \includegraphics[width=0.5\textwidth]{mobile_ss/profil_z_info.png}
     \caption{Strona z profilem użytkownika bez informacji}
 \end{figure}
-
+\newpage
 \subsection{Kolekcja}
 Kolekcja to dział w którym możemy zobaczyć wszystkie pocztówki, które kiedykolwiek odebraliśmy nawet jeżeli pocztówkę z tego miejsca komuś wysłaliśmy. Pierwsza zakładka to nasza kolekcja, która wygląda następująco. 
 
@@ -1335,7 +1370,7 @@ Pocztówki to podstrona, która zawiera te pocztówki, które zebraliśmy i moż
 \end{figure}
 
 Druga zakładka zawiera pocztówki, które dostaliśmy od innych użytkowników. Zawartość jest podobna jak w pierwszej zakładce z tą różnicą, że pocztówki, które są naszymi ulubionymi posiadają złotą ramkę. Różnice znajdują się również w podglądzie. Zamiast przycisku ``Send'' mamy przycisk serduszka, dodający daną pocztówkę do naszych ulubionych.  W podglądzie mamy również tytuł oraz treść, którą ktoś wraz z daną pocztówką nam wysłał.
-
+\newpage
 \begin{figure}[H]
   \centering
   \begin{minipage}[b]{0.49\textwidth}
@@ -1365,7 +1400,7 @@ Odbieranie pocztówek następuje na podstronie ``Collect''. Strona posiada dwie 
     \caption{Podstrona do lokalizowania pocztówki}
   \end{minipage}
 \end{figure}
-
+\newpage
 Aplikacja posiada również mechanizm powiadamiania użytkownika o tym, że znajduje się w pobliżu pocztówki do odebrania. Gdy znajdujemy się w jej zasięgu zostaje wysłane lokalne powiadomienie. Jest one wysyłane tylko raz na godzinę lub do momentu ponownego włączenia lokalizowania pocztówek.
 
 \begin{figure}[H]
@@ -1424,7 +1459,7 @@ Użytkownicy ze statusem administratora mają dostęp do dodatkowej zakładki, w
     \caption{Podstrona do edycji i dodawania nowych pocztówek}
   \end{minipage}
 \end{figure}
-
+\newpage
 \subsection{Znajomi}
 Strona która służy do zdobywania nowych znajomości jest podzielona na 3 zakładki. W pierwszej zakładce znajdują się użytkownicy, których śledzimy, w drugiej zakładce znajdują się użytkownicy, którzy nas śledzą, natomiast w trzeciej zakładce znajdują się wszyscy użytkownicy. 
 
@@ -1447,13 +1482,13 @@ Strona która służy do zdobywania nowych znajomości jest podzielona na 3 zak�
 \end{figure}
 
 Po wciśnięciu na dowolnej zakładce karty z użytkownikiem zostaniemy przekierowani do strony ze szczegółami danego użytkownika, na której również znajduje się przycisk, który służy do śledzenia lub zrezygnowania ze śledzenia danego użytkownika. 
-
+\newpage
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{mobile_ss/friend.png}
     \caption{Strona użytkownika}
 \end{figure}
-
+\newpage
 \subsection{Wysyłanie pocztówek}
 Aby wysłać pocztówkę należy udać się na stronę z pocztówkami, tam po wybraniu odpowiedniej pocztówki na podglądzie wciskamy ``Send'' co przekieruje nas na podstronę do wysyłania pocztówek. Tam, możemy dodać tytuł oraz opis do pocztówki a następnie wybrać użytkownika do którego chcemy daną pocztówkę wysłać. 
 
@@ -1462,6 +1497,483 @@ Aby wysłać pocztówkę należy udać się na stronę z pocztówkami, tam po wy
     \includegraphics[width=0.5\textwidth]{mobile_ss/wysyłanie.png}
     \caption{Strona do wysyłania pocztówek}
 \end{figure}
+
+
+% ==========================================================================================
+% ==========================================================================================
+% ===================== FRONTEND  ==========================================================================================
+
+\chapter{Aplikacja webowa}
+\section{Technologia}
+Rozpoczynając planowanie i projektowanie aplikacji webowej kierowaliśmy się popularnością i dostępnością gotowych rozwiązań danej technologi. Wybór padł na Angular. Powstał wstępny szkielet aplikacji dla sprawdzenia sił członków zespołu. Po dłuższych rozmowach i przydziale zadań członków do pracy inżynierskiej, doszliśmy do wniosku, iż lepszym wyborem dla zespołu webowego będzie wybór technologi React.js. Obie te technologie mają dużo zalet, dlatego wybór kierowany był głównie dobrą znajomością technologi React w przeciwieństwie do Angular'a.  
+\subsection{React}
+React jest popularną biblioteką JavaScriptową, która służy do tworzenia interfejsów użytkownika. Dzięki wirtualnemu obiektowemu modelowi (Document Object Model -- DOM) możliwe jest dynamiczne aktualizowanie i generowanie komponentów. To wpływa pozytywnie na pozycjonowanie i doświadczenia użytkownika. Komponenty mogą także być ponownie używane, co daje możliwości redukcji ilości kodu do napisania aplikacji webowej. React zyskał popularność także poprzez swoją łatwość w kodowaniu oraz lekkie, szybkie i stabilne środowisko. Za pomocą dużej ilości dodatkowych bibliotek zewnętrznych React zapewnia zestaw gotowych rozwiązań takich jak Material--UI czy Redux.
+\subsection{React MUI}
+\textbf{React MUI} -- jest to obszerna biblioteka komponentów przeznaczona do projektowania interfejsu użytkownika, którą programiści i projektanci wykorzystują do łatwego implementowania elementów w swoich aplikacjach. Jest to biblioteka open source, która jest zgodna z wytycznymi wyznaczonymi przez Google i dotyczy tworzenia komponentów na stronach internetowych i w aplikacjach. MUI oferuje szeroką gamę podstawowych i~zaawansowanych komponentów interfejsu użytkownika, które można dostosować do swojego projektu. Do wyboru jest wiele gotowych komponentów np. przyciski, pola tekstu, czy alerty.
+\subsection{Flux}
+Projektując aplikację społecznościową trzeba wziąć pod uwagę wzorzec projektowy. Zakładając, że na portalach społecznościowych około 20\% osób pisze posty, a aż 80\% osób czyta, można założyć, że zapytania modyfikujące będą o wiele rzadziej wykonywane niż te do odczytu. Nie ma potrzeby aby te dwa fragmenty aplikacji były skalowane i połączone na takim samym poziomie. Z pomocą przychodzi wzorzec CQRS (Command Query Responsinility Segregation), którego celem jest rozwiązanie tego problemu. Architektura Flux natomiast opiera się właśnie o ten wzorzec i posiada 3 główne elementy:
+
+\begin{itemize}
+    \item \textbf{View} -- jest to miejsce gdzie odbywają się akcje. Jest również widokiem.
+    \item \textbf{Store} -- jest to miejsce gdzie przechowywane są informacje.
+    \item \textbf{Dispatcher} -- to miejsce gdzie przychodzą akcje, a dane są rozsyłane do odpowiednich store’ów.
+\end{itemize}
+
+Ważnym elementem, tej architektury jest kierunek przepływu informacji. Informacje zawsze przepływają tylko w jednym kierunku. Story są to miejsca przechowywania danych w sposób hermetyzowany, przez co zewnętrzne metody mogą jedynie odczytać dane, a nie modyfikować. Jedynym sposobem na zmianę danych jest przesłanie odpowiedniej akcji przez Dispatcher.
+Przedstawiono to na ilustracji poniżej:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{webowka_ss/Flux.png}
+    \caption{Schematyczny przepływ danych w Aplikacji React'a}
+\end{figure}
+
+Jako, że architekturę Flux można implementować na wiele różnych sposobów, my zdecydowaliśmy się na Redux, który opisany jest poniżej.
+
+\subsection{Redux}
+\textbf{Redux} -- jest to kontener stanu do aplikacji JavaScriptowej. Implementuje architekturę Flux. Redux jest bardzo popularną biblioteką do zarządzania stanem aplikacji, poprzez swoją łatwość śledzenia przepływu danych i przewidywalność. Aplikacje napisane z~pomocą Reduxa zachowują się spójnie w środowiskach serwerowych, natywnych i klienckich oraz są proste w testowaniu. Redux jest też lekki, mimo to ma duży pakiet dostępnych narzędzi. Komponenty zarządzane przez Redux będą renderowane ponownie tylko wtedy, gdy dane zostaną ostatecznie zmienione. Dzięki Redux stany komponentów są przechowywane w store, a każdy komponent ma dostęp do dowolnego wymaganego stanu w tym właśnie store’rze. RTK Query jest opcjonalnym narzędziem w pakiecie ReduxToolkit. 
+
+RTK Query to rozbudowane narzędzie buforowania i pobierania danych. Obsługuje podstawowe przypadki załadowań danych aplikacji React, w taki  sposób by wyeliminować potrzebę samodzielnego tworzenia logiki buforowania i pobierania danych dla tworzonej aplikacji.
+\subsection{Preprocesory}
+W swojej aplikacji wykorzystaliśmy preprocesory CSS (Cascading Style Sheets). Preprocesor CSS to język skryptowy zaprojektowany by udoskonalić możliwości podstawowego CSS o funkcje wykorzystywane w tradycyjnych językach programowania. Zdecydowaliśmy się na SASS (Syntactically Awesome Stylesheet). Jest to popularny preprocessor, który pozwala na pisanie arkuszy stylów kaskadowych w odpowiednio uproszczonej składni, co bezpośrednio przekłada się na przejrzystość kodu, jak i sprawniejszą, szybszą pracę. Dzieli się on na dwie składnie SASS oraz SCSS. Różnice w tych dwóch składniach są minimalne. W naszej aplikacji zdecydowaliśmy się na składnie SCSS. 
+\newpage
+\begin{figure}[H]
+    \begin{lstlisting}
+.postcards_info,
+.profile_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  .bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .country,
+    .city,
+    .birth_date {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 700;
+    }
+}
+...
+    \end{lstlisting}
+    \caption{Fragment przykładowego pliku SCSS}
+    \label{fig:pseudokod:listings}
+\end{figure}
+Przydatne funkcje jakie posiada ten język to: tworzenie własnych funkcji, zagnieżdżanie selektorów, instrukcji warunkowych, pętli i wiele innych.
+\subsection{TypeScript}
+Typescript to obiektowy i skompilowany język programowania z możliwością typowania, który opiera się na JavaScript. Aplikacja stworzona  w języku Typescript jest transpilowana na kod w JavaScript. Jest semantycznie nadzbiorem JavaScriptu, który został zaprojektowany tak, aby dać większą ilość narzędzi dla dowolnej skali projektu. Technologia jest wspierana przez firmę Microsoft oraz rozpowszechniona na modelu open-source. TypeScript jest językiem programowania, który szybko zyskał popularność wśród frontend developerów, którzy są głównymi użytkownikami tego rozwiązania.
+\subsection{RWD -- Responsive Web Design}
+Jest to podejście do projektowania i planowania stron internetowych polegającym na reagowaniu na zachowanie użytkownika i środowisko w zależności od rozdzielczości ekranu, orientacji i platformy. Użytkownik korzystający ze strony internetowej od samego początku nie powinien mieć problemów z interakcję z interfejsem. Strona powinna być przejrzysta na komputerze, jak i na urządzeniu mobilnym. Zazwyczaj strona dzieli się na 2-3 widoki, które w zależności od rozdzielczości ekranu, są przełączane.
+\subsection{Context}
+Do implementacji motywów, a mianowicie trybu jasnego i ciemnego, wykorzystaliśmy element taki jak Context. Context pozwala na przekazywanie danych przez wszystkie poziomy drzewa komponentów bez konieczności ręcznego przekazywania danych za pomocą props w każdym pod elemencie. W standardowej aplikacji React dane przekazywane są z~rodzica do dziecka za pomocą props’ów. Przy takich właściwościach jak motywy lub język aplikacji może to być czasochłonne, by w każdym komponencie przekazać tą wartość do kolejnego pod komponentu. Dzięki kontekstowi takie właściwości są współdzielone i~dostępne na każdym poziomie drzewa.
+\subsection{Hook i jego rodzaje}
+Pozwalają zmieniać stany elementów Reacta, jak i działać na podstawie cyklu życia tych elementów. Hooki nie używa się w klasach, przez co nie ma konieczności pisania dodatkowego kodu. React posiada także wbudowane Hooki takie jak useEffect, czy useState. Te dwa podstawowe Hooki oraz kilka pomocniczych zostały opisane poniżej:
+
+\textbf{useEffect} --  efekt tego hook’a pozwala na uruchomienie części kodu po użyciu funkcji komponentu, do którego został przypięty.
+\begin{figure}[H]
+    \begin{lstlisting}
+useEffect(() => {
+    searchParams.set("UserId", user?.id ?? "0");
+    searchParams.set("PageSize", pageSize.toString());
+    searchParams.set("PageNumber", pageNumber.toString());
+
+    setSearchParams(searchParams);
+}, [pageNumber, pageSize, searchParams, setSearchParams, user?.id]);
+
+    \end{lstlisting}
+    \caption{Przykład kodu przedstawiającego useEffect}
+    \label{fig:pseudokod:listings}
+\end{figure}
+Hook powyżej zostanie uruchomiony po każdym uaktualnieniu wymienionych parametrów.
+
+\textbf{useState} -- Efekt tego hook’a pozwala na tworzenie zmiennej, która jest niezależna od funkcji, przez co pozwala na przekazywanie zmiennej między funkcjami bez wykorzystania this.state.
+
+
+\begin{figure}[H]
+    \begin{lstlisting}
+const [pageNumber, setPageNumber] = useState<number>(1);
+    \end{lstlisting}
+    \caption{Przykład kodu przedstawiającego useState}
+    \label{fig:pseudokod:listings}
+\end{figure}
+
+Jak widać hook powyżej tworzy zmienną, która posiada nazwę  „pageNumber”. Do nazwy zmiennej odnosimy się by wyciągnąć z niej wartość. Funkcja „setPageNumber” pozwala natomiast zmienić zawartość tej zmiennej. Hook ten tworzymy niezależnie od funkcji, co pozwala na łatwe i przejrzyste przesyłanie zmiennych między funkcjami.
+
+
+\textbf{useNavigate} -- hook zwraca funkcję, która pozwala na nawigację po stronach, np. po przesłaniu formularza. Pomaga przejść do określonego adresu URL, strony do przodu, czy do tyłu. "useNavigate" jest hookiem wbudowanym w bibliotekę React Router.
+
+\begin{figure}[H]
+    \begin{lstlisting}
+const navigate = useNavigate();
+
+<ListItemButton onClick={() => navigate("/profile")}>
+    \end{lstlisting}
+    \caption{Przykład kodu przedstawiającego useNavigate}
+    \label{fig:pseudokod:listings}
+\end{figure}
+
+
+\textbf{useMemo} -- to hook React, który pozwala buforować wyniki obliczeń pomiędzy ponownymi renderowaniami. Daje to oszczędność w mocy obliczeniowej serwera i przyspiesza proces załadowania strony po odświeżeniu jej przez użytkownika.
+\begin{figure}[H]
+    \begin{lstlisting}
+const { colorMode, handleSetColorMode } = useSettingsContext();
+const colorModeMemo = useMemo(
+() => ({
+  toggleColorMode: () => {
+    handleSetColorMode(colorMode === "LIGHT" 
+    ? "DARK" : "LIGHT");
+  },
+}),
+[colorMode, handleSetColorMode]
+);
+    \end{lstlisting}
+    \caption{Przykład kodu przedstawiającego useMemo}
+    \label{fig:pseudokod:listings}
+\end{figure}
+W przykładzie powyżej  hook "useMemo" przechowuje jeden z dwóch możliwych trybów jasności (ciemny lub jasny). Dla przykładu, gdy użytkownik zmieni motyw na ciemny nie zmieni się on na jasny po odświeżeniu strony.
+
+
+
+
+
+Hooki \textbf{"useSelector"} i \textbf{"useDispatch"} umożliwiają łączenie się ze storem Redux i wysyłanie akcji. Są to hooki, które można wykorzystać alternatywnie do komponentu wyższego rzędu connect(). Hook "useSelector" przyjmuje argument funkcji i zwraca żądaną część stanu. Natomiast useDispatch można postrzegać jako odpowiednik mapy stanu dla props'ów.   
+
+\begin{figure}[H]
+    \begin{lstlisting}
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const useTypedDispatch = () => useDispatch<AppDispatch>();
+...
+const user = useTypedSelector((state) => state.auth.user);
+const dispatch = useTypedDispatch();
+    \end{lstlisting}
+    \caption{Przykład kodu przedstawiającego useSelector oraz useDispatch}
+    \label{fig:pseudokod:listings}
+\end{figure}
+
+
+
+
+
+Można także budować własne Hooki by kilkukrotnie używać zachowania stanów pomiędzy komponentami.
+
+
+
+\subsection{Router}
+Router w React JS to pakiet JavaScript, który pozwala tworzyć skomplikowane aplikacje po stronie klienta. React Router pozwala na łatwiejsze zarządzanie adresem URL i nawigacją aplikacji. Dzięki temu możemy określić wszystkie możliwe wzorce adresów URL w aplikacji i przydzielić konkretny komponent interfejsu użytkownika do konkretnego wzorca za pomocą React Router. Pozwala to na uproszczenie i faktoryzacje kodu, dzięki czemu łatwiej utrzymać stan aplikacji. React Router może być używany zarówno po stronie serwera jak i po stronie przeglądarki. Daje on także możliwość tworzenia jednostronicowych aplikacji mobilnych i internetowych, które pozwalają na nawigację po stronie, bez potrzeby odświeżania strony. Element zachowuje właściwy widok aplikacji przy jednoczesnej możliwości korzystania z historii przeglądarki.
+\subsection{Node Modules}
+Moduły Node to fragmenty kodu JavaScriptowego, które mogą być używane wielokrotnie w aplikacjach Node.js. Można zaimplementować jeden plik .js lub cały folder z~kilkoma plikami. Jest to przydatna funkcja w przestrzeganiu zasady Don't Reapet Yourself (w skrócie DRY, z pol. „nie powtarzaj się”) podczas programowania. Istotna jest ta zasada, gdyż obniża ilość kodu i ułatwia czytelność. Dzięki takiemu rozbiciu kodu możliwy jest podział na mniejsze i bardziej czytelne części. Moduły Node można implementować z istniejących już bibliotek udostępnionych publicznie. Można również tworzyć własne.
+\begin{figure}[H]
+    \begin{lstlisting}
+import * as Yup from "yup";
+    \end{lstlisting}
+    \caption{Przykład importu biblioteki zewnętrznej}
+    \label{fig:pseudokod:listings}
+\end{figure}
+\section{Dodatkowe biblioteki wykorzystywane w projekcie}
+\begin{itemize}
+    \item \textbf{date-fns} -- biblioteka ta zapewnia prosty w obsłudze zestaw narzędzi do modyfikacji dat JavaScript’owych w przeglądarce i Node.js.
+    \item \textbf{dotenv} -- to moduł, który załadowuje zmienne środowiskowe z pliku .env do pliku process.env. Pozwala to na przechowywanie konfiguracji w oddzielnym środowisku od kodu. Praktyka ta opiera się o metodologię  The Twelve-Factor App.
+    \item \textbf{formik} -- biblioteka Formik jest małym i uproszczonym rozszerzeniem do formularzy w React’ie. Wyręcza użytkownika z najbardziej czasochłonnych zadań takich jak: pobieranie i aktualizowanie stanu formularza, walidacja i komunikaty o błędach oraz obsługa przesyłania formularzy. Przekłada się to na mniejszy czas poświęcony elementom związanym z formularzami. Biblioteka łączy wszystkie powyższe elementy, zapewniając porządek w kodzie i jego czytelność.
+    \item \textbf{yup} -- Yup to narzędzie do tworzenia schematów, które służą do łatwego parsowania i walidacji danych w czasie wykonywania kodu.
+    \item \textbf{jwt-decode} -- biblioteka, która pomaga odkodować tokeny JWT (JSON Web Token) zakodowane w Base64Url.
+    \item \textbf{Sass} -- Sass to język skryptowy preprocesora, który po kompilacji zostaje przetłumaczony na CSS. Dzięki takim możliwościom jak tworzenie własnych funkcji, zagnieżdżanie selektorów, instrukcji warunkowych, pętli, i wiele innych, ułatwia pracę z arkuszami stylów kaskadowych.
+\end{itemize}
+\newpage
+\section{Architektura systemu}
+
+\subsection{Struktura plików}
+Na rysunku 6.6 przedstawiono strukturę plików aplikacji frontendowej.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{webowka_ss/folder_glowny.png}
+    \caption{Widok głównego folderu aplikacji webowej}
+\end{figure}
+W pliku źródłowym aplikacji webowej znajduje się kilka folderów wraz z plikami. Zostały one podzielone ze względu na swoje przeznaczenie. Folder główny zawiera kilka standardowych plików:
+.env – plik ten zapisuje wyekstrahowane dane, które odnoszą się do zmiennych serwera oraz hostingu. Są one używane podczas generowania aplikacji.
+Pliki package.json oraz package--lock.json –- są to pliki odpowiedzialne za przetrzymywanie wersji użytych paczek react, node modules.
+/src – folder ten zawiera całą aplikacje webową. Struktura folderu wygląda następująco:
+\begin{itemize}
+    \item \textbf{index.tsx} –- jest to plik startowy, który otwiera się jako pierwszy i tworzy aplikację.
+    \item \textbf{App.tsx} -- jest wywoływany przez plik index.tsx. Dzieli aplikacje na routes’y (widoki), oraz zawiera wszystkie zmienne wykorzystywane przez context’y.
+    \item \textbf{index.scss} -- łączy wszystkie zależności SCSS z folderu styles, wykorzystywane w~aplikacji w postaci miksinów oraz zmiennych.
+    \item \textbf{/assets} -- folder zawierający wszystkie wykorzystywane zdjęcia/obrazki na stronie.
+    \item \textbf{/components} -- zawiera komponenty tworzące aplikację:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{webowka_ss/komponenty.png}
+            \caption{Widok podfolderu zawierającego komponenty aplikacji webowej}
+        \end{figure}
+        \begin{itemize}
+            \item \textbf{AdminRoute} -- komponent przydzielający dostęp do panelu administratora na podstawie jego roli.
+            \item \textbf{Base64Converter} -- komponent konwertujący zdjęcia wysyłane przez użytkownika na format BASE64 i przesyłający go dalej poprzez formularz.
+            \item \textbf{DrawerList} -- nagłówek, który pozwala użytkownikowi na zmianę palety kolorów i wylogowanie się.
+            \item \textbf{FavoritePostcard} -- komponent tworzący interfejs dodający pocztówki.
+            \item \textbf{HorizontalDivider} -- prosty komponent dzielący stronę długą linią.
+            \item \textbf{Navigation} -- lista widoków, która pozwala użytkownikowi na nawigację między nimi.
+            \item \textbf{PosrcardCard} -- komponent tworzący interaktywną pocztówkę.
+            \item \textbf{ProtectedRoute} -- komponent zarządza wyświetlaniem ekranu logowania w~zależności od tego, czy istnieje token użytkownika.
+            \item \textbf{StyledButton} -- komponent tworzący dostosowany przycisk wykorzystywany w kilku miejscach aplikacji.
+            \item \textbf{TextFieldCountry} –- komponent, który tworzy input dla pozycji „kraj”.
+            \item \textbf{Toast} -– wyświetla informację zwrotną dla użytkownika, gdy end-point zostanie wysłany.
+        \end{itemize}
+    \item \textbf{/context} -- to komponent zawierający ustawienia kontekstu do motywu ciemnego i jasnego.
+    \item \textbf{/core} -- to przypisanie wartości z pliku .env do konkretnych zmiennych, później wykorzystywanych w projekcie.
+    \item \textbf{/hooks} -- zawiera własne hooki wykorzystywane w aplikacji webowej. Znajduje się tam „useToken”, który jest odpowiedzialny za obsługę tokenu użytkownika i jego przetrzymywanie.
+    \item \textbf{/models} -- to folder z modelami interfejsów, które wykorzystywane są podczas tworzenia end-point’ów.
+    \item \textbf{/services} -- to folder zawierający wszystkie pliki obsługujące przebieg odbioru i~wysyłania end-point’ów.
+    \item \textbf{/store} -- folder ten zawiera pliki przechowujące odebrane end-pointy oraz dane. Działa jak schowek dla danych. Obsługuje także autoryzację użytkowników podczas logowania.
+    \item \textbf{/styles} -- zawiera miksiny i zmienne wykorzystywane we wszystkich plikach SCSS projektu.
+    \item \textbf{/views} -- odpowiada za widoki miedzy którymi użytkownik interfejsu może się poruszać:
+    \newpage
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{webowka_ss/widoki.png}
+            \caption{Widok podfolderu zawierającego widoki aplikacji webowej}
+        \end{figure}
+        \begin{itemize}
+            \item \textbf{/AdminPanel} –- widok, do którego ma dostęp tylko konto administratorskie. Pozwala ono na dodawanie nowych rekordów do bazy pocztówek dostępnych do zdobycia.
+            \item \textbf{/FriendDetailPage} –- pozwala na oglądanie profili użytkowników oraz zaobserwowanie osoby jak i rezygnację.
+            \item \textbf{/Friends} –- widok pozwala na przeglądanie wszystkich osób zarejestrowanych, które obserwują użytkownika jak i tych, które użytkownik obserwuje.
+            \item \textbf{/Home} -- strona główna, gdzie można dowiedzieć się do czego służy aplikacja, a także jak ją pobrać. Widnieje tam również przekierowanie do logowania i~rejestracji.
+            \item \textbf{/Login} -- widok pozwala zalogować się na konto. Z tego poziomu użytkownik jest weryfikowany.
+            \item \textbf{/Postcard} -- widok ten zawiera listy pocztówek (posiadanych, do wysłania jak i tych, których nie posiada użytkownik). Użytkownicy mają możliwość przeglądania tych list jak i wysyłania niewykorzystanych pocztówek do innych użytkowników.
+            \item \textbf{/Profile} -- widok główny po zalogowaniu użytkownika. Wyświetla wszystkie informacje o użytkowniku i jest wizytówką konta. Użytkownik może edytować informacje o koncie jak i eksponować zebrane pocztówki.
+            \item \textbf{/Register} -- widok, który służy do zarejestrowania konta. Z tego poziomu użytkownik tworzy swoje konto, które potem może edytować w widoku profilu.
+        \end{itemize}
+\end{itemize}
+\subsection{Sposób komunikacji pomiędzy serwerem a front-end’em}
+By wyjaśnić interakcje z back-end’em, trzeba przybliżyć działanie end-point’ów serwera. By uzyskać odpowiedź trzeba „strzelić” za pomocą URL na serwer. Interakcje z~serwerem można podzielić na cztery metody: get, put, post oraz delete. Nie istnieją dwie metody put o takiej samej nazwie. Co pomaga w nawigowaniu po end-point’ach. Jeżeli chcemy otrzymać informacje o pocztówce, w URL wpisujemy adres /api/Postcard… 
+Zwrócone informacje poprzez get można podzielić na zwracające jeden record np. /api/Postcard/{id}, gdzie trzeba zawrzeć id rekordu, który chcemy uzyskać, lub zwracające listę np. /api/PostcardCollection.
+\begin{figure}[H]
+    \begin{lstlisting}
+export const postcardDataApi = createApi({
+  reducerPath: "postcardDataApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_URL,
+    prepareHeaders: (header) => {
+      header.set("Authorization", `Bearer ${getTokenFromSessionStorage()}`);
+      return header;
+    },
+  }),
+  endpoints: (builder) => ({
+    postCoordinates: builder.mutation<Coordinates, PostcardData>({
+      query: (body) => ({
+        url: "/api/User/login",
+        method: "POST",
+        body,
+      }),
+    }),
+    getPostcardsData: builder.query<Pagination<PostcardData>, PostcardDataFilter>({
+      query: (postcardDataFilter) => {
+        const queryUrl = queryBuilder(postcardDataFilter);
+        return {
+          url: `/api/PostcardData?${queryUrl}`,
+          method: "GET",
+        };
+      },
+    }),
+  }),
+});
+...
+    \end{lstlisting}
+    \caption{Przykład fragmentu kodu tworzącego end-pointy}
+    \label{fig:pseudokod:listings}
+\end{figure}
+
+Tworząc zapytanie w aplikacji webowej dzielimy je na dwa rodzaje: mutation -- manipulujące danymi, jak i query -- odbierające dane. Obrazek 6.9 Przedstawia przykładowy plik obsługujący zapytania. Przykład powyżej zawiera oba te typy. POST jako mutation oraz GET jako query.  W pliku tym dla każdego zapytania definiuje się adres URL, oraz metodę, którą wykonuje. Zawiera także odniesienia do interfejsów, które definiują jakie dane są odbierane i wysyłane na serwer.
+
+\subsection{Komponenty i ich założenia}
+Przy budowie aplikacji frontendowej często posługiwaliśmy się komponentami. Możliwość ponownego wykorzystania napisanego komponentu, pozwoliła nam na redukcję ilości kodu, co bezpośrednio przełożyło się na czas i organizację pracy między członkami zespołu. Ich jednolitość wpłynęła pozytywnie na współpracę w zespole i ułatwiała innym zrozumienie kodu. Poniżej zamieszczony został przykład komponentu z naszego projektu, który zawiera wszystkie podstawowe elementy.
+\newpage
+\begin{figure}[H]
+        \begin{lstlisting}
+import React, { useState } from "react";
+import styles from "./styles.module.scss";
+
+interface Props {
+  image?: string;
+  setImage: (image: string) => void;
+}
+
+function Base64Converter(props: Props) {
+  const { image, setImage } = props;
+  const [img, setImg] = useState<string | undefined>();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files![0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const imageDataUrl = reader.result as string;
+        setImage(imageDataUrl);
+        setImg(imageDataUrl);
+        props.setImage(imageDataUrl);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+  return (
+    <div className={styles.container}>
+      {image ? (
+        <img alt="Converter" src={img} className={styles.img} />
+      ) : (
+        <div className={styles.img} />
+      )}
+      <label className={styles.custom_file_upload}>
+        <input
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={handleChange}
+        />
+        Pick photo
+      </label>
+    </div>
+  );
+}
+
+        \end{lstlisting}
+    \caption{Zawartość pliku komponentu Base64Converter}
+    \label{fig:pseudokod:listings}
+\end{figure}
+Komponent konwertujący z folderu Base64Converter
+Na początku plik zawiera importowane elementy z innych komponentów lub same komponenty. Poniżej zawarto interfejs, który odbiera przesłane dane poprzez zmienną props. Następnie otwierana jest funkcja, która przyjmuje zmienną (props). Początek funkcji zaczynamy deklaracją zmiennych używanych w komponencie, w tym przypadku „image”, „img”. Następnie widoczne są funkcje, które obsługują modyfikowanie wartości zmiennych (funkcja handleChange). Na koniec zwracamy return, wpisując w jego nawiasach kod wyjściowy. Może to być zwykła liczba lub struktura elementów wyświetlona na stronie, tak jak w przykładzie powyżej. Ostatnim elementem jest zawarcie linii kodu eksportującego komponent na zewnątrz pliku. Plik zapisywany jest w formacie tsx, a po kompilacji jest zamieniany na js.
+
+\section{Instrukcja Obsługi}
+\subsection{Strona powitalna}
+Włączając stronę, jako pierwszy wyświetla się widok główny. Na stronie użytkownik zostaje zapoznany z aplikacją. Wyświetla się również informacja zachęcająca do zainstalowania jej również na telefonie poprzez odnośniki do Sklepu Play lub Apple Store. W~prawym górnym rogu widnieją dwa przyciski. Ikona po lewej tronie pozwala użytkownikowi na zmianę trybu z domyślnego ciemnego na jasny oraz odwrotnie. Drugi przycisk z~napisem „SIGN IN” przekierowuje użytkownika na widok rejestracji.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/Home.png}
+    \caption{Strona powitalna po wejściu na stronę aplikacji}
+\end{figure}
+\subsection{Rejestracja i logowanie}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/register.png}
+    \caption{Strona do rejestracji}
+\end{figure}
+Użytkownik na stronie musi wypełnić cztery pola, które są wymagane by utworzyć konto: nazwa użytkownika, e-mail i hasło wraz z jego powtórzeniem. Po poprawnym wpisaniu danych należy kliknąć przycisk „REGISTER”. Jeśli użytkownik wszystko wykona poprawnie, zostanie przeniesiony na stronę logowania. W przeciwnym razie pojawi się odpowiedni komunikat
+Jeżeli Użytkownik posiada już konto, może kliknąć widoczny napis "login" poniżej przycisku ”REGISTER”, co przekieruje go na widok logowania.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/login.png}
+    \caption{Strona do logowania}
+\end{figure}
+W widoku logowania należy podać dane konta. Tak jak w przypadku rejestracji, gdy po kliknięciu przycisku „LOGIN” dane nie będą poprawne, użytkownikowi pojawi się stosowny komunikat. Po pomyślnym zalogowaniu użytkownik zostaje przekierowany na widok profilu, na który się zalogował. Zmiany jakie zaszły w poprzednim interfejsie to zamiana przycisku „SIGN IN” na ikonę profilu, która po kliknięciu  wyświetla napis „Log out”, którym można się wylogować. Kolejną zmianą widoczną w interfejsie jest przycisk z~ikoną trzech pasków w lewym górnym rogu strony. Po kliknięciu tego przycisku, wysuwa się nawigator z lewej strony, którym możemy poruszać się po widokach.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{webowka_ss/navigator_close.png}
+    \caption{Nawigator do widoków przed otworzeniem}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{webowka_ss/navigator_open.png}
+    \caption{Nawigator do widoków po otworzeniu}
+\end{figure}
+\subsection{Widok Profile}
+Użytkownik ma do wyboru trzy opcje: Profile, Postcards oraz Friends.
+Opcja pierwsza pozwala użytkownikowi na edycję danych swojego profilu. Informacje widoczne to obrazek profilu, obrazek w tle, nazwa profilu, imię i nazwisko. Poniżej są zawarte również dodatkowe informacje, które są rozwijalnym elementem zawierającym miasto zamieszkania, kraj zamieszkania, datę urodzin oraz krótką informacje o sobie. Na dole zawarte są trzy wartości: liczba odebranych pocztówek, liczba wysłanych pocztówek, liczba zebranych punktów z poprzednich dwóch czynności. Profil można edytować klikając przycisk „edit profile” z~ikoną ołówka w prawym górnym rogu komponentu. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{webowka_ss/profile.png}
+    \caption{Widok profilu użytkownika}
+\end{figure}
+Po jego kliknięciu wyskakuje nam okienko.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{webowka_ss/edit_profile.png}
+    \caption{Okno do edycji profilu}
+\end{figure}
+\newpage
+W tym miejscu możliwa jest edycja pól z informacjami o profilu, takich jak: ikona profilu, obrazek w tle, imię, nazwisko, kraj zamieszkania, miasto zamieszkania, datę urodzenia oraz informację o sobie. Pole z wyborem kraju jest listą rozwijalną. Poniżej znajduje się lista ulubionych pocztówek, które można otrzymać od innych użytkowników. Pocztówki można oglądać z obu stron. Zmiana strony wymaga kliknięcia w pocztówkę.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/favorite.png}
+    \caption{Wyeksponowane ulubione pocztówki pod profilem użytkownika}
+\end{figure}
+Po kliknięciu przycisku „Edit favourite” uruchamia się okno edycji. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/edit_favorite.png}
+    \caption{Okno do edycji ulubionych pocztówek}
+\end{figure}
+Okno to służy do wyboru swoich ulubionych pocztówek. Posiada ono listę pocztówek z~przyciskami dodania „ADD POSTCARD”. Liczby na pocztówkach (zobacz rysunek 6.19) oznaczają kolejność ich wyświetlania się na profilu. Po kliknięciu przycisku, pocztówce zostanie nadana liczba oraz przycisk zmieni zawartość na „DELETE POSTCARD”. Jeżeli klikniemy przycisk usunięcia „DELETE POSTCARD” pocztówce zostanie odebrany numer, a reszta pocztówek o wyższym numerze zostanie przesunięta o jeden numer niżej. W~prawym dolnym rogu znajduje się przycisk „SAVE”, który pozwala zapisać listę pocztówek, która aktualizuje się do najnowszej wersji. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/pagination.png}
+    \caption{Element paginacji pozwalający na poruszanie się między listą pocztówek}
+\end{figure}
+W prawym dolnym rogu znajduje się panel nawigacyjny, który pomaga w poruszaniu się między listą pocztówek. Liczba „Rows per page” oznacza ile pocztówek jest wyświetlanych na stronie. Pocztówki można oglądać z obu stron.
+
+\subsection{Widok Postcard}
+Drugim widokiem są listy pocztówek, które dzielą się na cztery zakładki :
+\begin{itemize}
+
+\item \textbf{My Postcard} –- pocztówki, które otrzymaliśmy od innych.
+\item \textbf{Postcard to send} –- pocztówki gotowe do wysłania innym użytkownikom.
+\item \textbf{My Collection} –- zebrane obrazki pocztówek (zebrane i otrzymane od innych użytkowników).
+\item \textbf{All Postcard} -- zbiór wszystkich dostępnych pocztówek. 
+\newpage
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/postcard.png}
+    \caption{Widok list pocztówek}
+\end{figure}
+Zakładki: „My Postcard” oraz „Postcard to send” zawierają posiadają element nazwany „filters”, który widoczny jest w lewym górnym rogu. Pozwala on na przefiltrowanie danych pod względem tytułu oraz zawartości pocztówki.
+Natomiast w zakładkach: „My Collection” oraz „All Postcard” ta funkcja pozwala na przefiltrowanie danych pod względem tytułu, zawartości pocztówki, nazwy miasta oraz kraju. W prawym dolnym rogu znajdują się panel nawigacyjny. Obydwa elementy posiadają przycisk „Search”, który przeszukuje dostępne pocztówki i wyświetla te pasujące do filtrów. Obok widnieje przycisk „CLEAR” który czyści filtry i wyświetla całą listę danej zakładki. Na końcu, przechodząc do zakładki „Postcard to send”, mamy możliwość wybrania pocztówki, którą można wysłać przyciskając "SEND". Następnie użytkownik będzie miał możliwość uzupełnienia: tytułu pocztówki, dodania opisu oraz zaznaczenia osoby, do której ją adresuje. Po kliknięciu kolejnego przycisku „SEND”, pocztówka jest wysyłana do wybranego użytkownika.
+\newpage
+\subsection{Widok Friends}
+Kolejnym widokiem są listy przyjaciół. Są to trzy zakładki: wszyscy użytkownicy, obserwujący profil zalogowanego klienta, użytkownicy których obserwuje zalogowany klient.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/friends.png}
+    \caption{Widok list użytkowników}
+\end{figure}
+Po kliknięciu wybranego użytkownika w dowolnej zakładce, otworzy się widok jego profilu.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/friend_profile.png}
+    \caption{Widok profilu wybranego użytkownika}
+\end{figure}
+Jest to podgląd konkretnego profilu użytkownika. Dodatkowo widok przedstawiony powyżej posiada przycisk "BACK" oraz „FOLLOW” (obserwuj) lub „UNFOLLOW” (przestań obserwować) w zależności, czy tą osoba jest już przez użytkownika obserwowana, czy nie. Wyświetla się również komunikat informujący o statusie obserwowania.
+\subsection{Widok Admin}
+Ostatnim widokiem jest panel administratorski, do którego ma dostęp tylko użytkownik o uprawnieniach administratora.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/admin_panel.png}
+    \caption{Widok panelu administratorskiego}
+\end{figure}
+
+Pozwala on na przeglądanie, edycję oraz dodawanie nowych pocztówek do zdobycia.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/admin_panel_edit.png}
+    \caption{Okno edycji pocztówek}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{webowka_ss/admin_panel_add.png}
+    \caption{Okno dodawania pocztówek}
+\end{figure}
+
+Ten panel ten bardzo podobny do zakładki "all postcard", czyli widoku listy wszystkich pocztówek. Po kliknięciu pocztówki pojawia się okno, które pozwala na edytowanie takich danych jak: obrazek, kraj, miasto, tytuł, koordynaty i zasięg zdobywania (w metrach). Po zmianie, dane można zapisać klikając przycisk „SAVE”. W prawym dolnym rogu znajduje się przycisk z plusem, który otwiera identyczne okno umożliwiające dodanie nowej pocztówki do bazy danych.
+
+
+
+
+
+
 
 % ==========================================================================================
 % ==========================================================================================
@@ -1475,10 +1987,10 @@ Podczas wyboru technologii do realizacji aplikacji backendowej, kierowaliśmy si
 Język C\# jest silnie typowany oraz obiektowy, stworzony oraz rozwijany przez firmę Microsoft. Jest on częścią frameworka .NET, który umożliwia tworzenie aplikacji desktopowych, mobilnych, webowych.  Język C\# historycznie wzorowany jest na języku Java, czerpał z niego np. składnie, sposób działania. Dzięki byciu młodszą technologią wprowadza oraz doskonali wiele nowych rozwiązań.  
 Do najważniejszych cech języka C\# można zaliczyć m.in.: 
 \begin{itemize}
-    \item Obiektowość - cała logika oraz sposób działania oparty jest na klasach. Podstawową klasą jest klasa ‘Object’ znajdująca się w przestrzeni nazw ‘System’. Każda inna dostępna klasa dziedziczy po niej. Dzięki czemu każda klasa w C\# posiada takie metody jak np. Equals(Object), GetType(), ToString(), oraz parę innych. 
-    \item Zarządzanie pamięcią - język C\# podobnie jak Java posiada mechanizm Garbage Collector, dzięki któremu program automatycznie usuwa obiekty, które są już nieużywane. Dzięki takiemu rozwiązaniu programista nie musi dbać o ręczne zarządzanie pamięcią, co pozwala uniknąć problemów z jej wyciekiem. 
-    \item LINQ – kwerendy Language Integrated Query umożliwiają pracę na obiektach, listach obiektów. Podobnie jak w języku SQL możemy pisać zapytania zwracające odpowiednie dane.
-    \item Asynchroniczność - C\# pozwala na wykonywanie kodu w sposób wielowątkowy. Zawiera mechanizmy pozwalające wykonywać kod w sposób asynchroniczny, co jest istotne w przypadku nowoszesnych aplikacji webowych.
+    \item Obiektowość -- cała logika oraz sposób działania oparty jest na klasach. Podstawową klasą jest klasa ‘Object’ znajdująca się w przestrzeni nazw ‘System’. Każda inna dostępna klasa dziedziczy po niej. Dzięki czemu każda klasa w C\# posiada takie metody jak np. Equals(Object), GetType(), ToString(), oraz parę innych. 
+    \item Zarządzanie pamięcią -- język C\# podobnie jak Java posiada mechanizm Garbage Collector, dzięki któremu program automatycznie usuwa obiekty, które są już nieużywane. Dzięki takiemu rozwiązaniu programista nie musi dbać o ręczne zarządzanie pamięcią, co pozwala uniknąć problemów z jej wyciekiem. 
+    \item LINQ -- kwerendy Language Integrated Query umożliwiają pracę na obiektach, listach obiektów. Podobnie jak w języku SQL możemy pisać zapytania zwracające odpowiednie dane.
+    \item Asynchroniczność -- C\# pozwala na wykonywanie kodu w sposób wielowątkowy. Zawiera mechanizmy pozwalające wykonywać kod w sposób asynchroniczny, co jest istotne w przypadku nowoszesnych aplikacji webowych.
 \end{itemize}
 
 \subsection{Platforma .NET}
@@ -1487,7 +1999,7 @@ Platforma .NET stworzona przez Microsoft jest przeznaczona do tworzenia aplikacj
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{compiler.png}
-    \caption{Przepływ kompilowanego kodu \href{https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet-framework}{https://dotnet.microsoft.com}.}
+    \caption{Przepływ kompilowanego kodu \href{https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet-framework}{https://dotnet.microsoft.com}}
     \label{Kompilator}
 \end{figure}
 
@@ -1507,7 +2019,7 @@ W niniejszej sekcji zaprezentowano zastosowane w projekcie biblioteki wraz z ich
         \item \textbf{Microsoft.AspNetCore.Authentication.JwtBearer} -- implementacja funkcji dostarczających obsługę uwierzytelniania z wykorzystaniem tokenów JWT (JSON Web Token).
         \item \textbf{Swashbuckle.AspNetCore} -- dostęp do narzędzia Swagger, umożliwiającego generowanie dokumentacji na podstawie dostępnych w aplikacji endpointów.
         \item \textbf{Swashbuckle.AspNetCore.Annotations} -- wsparcie dla Swaggera, w postaci adnotacji.
-        \item \textbf{AutoMapper} -– biblioteka służąca do mapowania obiektów znajdujących się pomiędzy różnymi warstwami.
+        \item \textbf{AutoMapper} -- biblioteka służąca do mapowania obiektów znajdujących się pomiędzy różnymi warstwami.
         \item \textbf{AutoMapper.Extensions.Microsoft.DependencyInjection} -- rozszerzenie funkcji Automappera, o wstrzykiwanie zależności.
         \item \textbf{Microsoft.AspNetCore.Http} -- obsługa żądań HTTP.
         \item \textbf{Microsoft.Extensions.DependencyInjection.Abstractions} -- interfejsy dla systemu wstrzykiwania zależności.
@@ -1524,7 +2036,7 @@ W projekcie zastosowaliśmy architekturę Onion Architecture (Cebulowa Architekt
 \subsection{Onion Architecture}
 \begin{itemize}
     \item \textbf{Warstwa Domain} -- nie posiada żadnej zależności, znajduje się w samym centrum warstw. Warstwa ta tworzy modele obiektów użytych później w bazie danych. Każdy z Modeli konfigurujemy, ustawiamy typ danych, jego właściwości. Jest również odpowiedzialna za logikę biznesową. 
-    \item \textbf{Warstwa Application} -- posiada zależność do warstwy Domain. Warstwa ta posiada implementacje serwisów, czerpie dane z wartwy wewnętrznej, czyli Domain, a następnie przetwarza odpowiednio dane i przekazuje do warstwy zewnętrznej, czyli Infrastructure. 
+    \item \textbf{Warstwa Application} -- posiada zależność do warstwy Domain. Warstwa ta posiada implementacje serwisów, czerpie dane z wartwy wewnętrznej, czyli Domain, a~następnie przetwarza odpowiednio dane i przekazuje do warstwy zewnętrznej, czyli Infrastructure. 
     \item \textbf{Warstwa Infrastructure} -- posiada zależność do warstwy Application. Warstwa odpowiada za komunikację z bazą danych, wymienia się danymi z warstwą Application. 
     \item \textbf{Warstwa WebAPI} -- posiada zależność do warstwy Application oraz Infrastructure. Jej głównym celem jest obsługa zdarzeń z użytkownikiem oraz przekazywanie żądanych danych. Dane te są obsługiwane poprzez wykorzystanie protokołu HTTP. 
     \item \textbf{Warstwa Tests} -- posiada zależność do warstwy Application, dzięki czemu posiadamy możliwość wywoływania funkcjonalności z aplikacji. 
@@ -1549,7 +2061,7 @@ Cała solucja podzielona jest na parę projektów. Każdy z nich pełni odpowied
 
     \item \textbf{Application} \begin{itemize}
         \item \textbf{/Constants} -- stałe wartości, użyte w aplikacji.
-        \item \textbf{/Dto} -- modele Data Transfer Object (DTO) - obiekty które zawierają konkretne pola, które chcemy przekazać dalej.
+        \item \textbf{/Dto} -- modele Data Transfer Object (DTO) -- obiekty które zawierają konkretne pola, które chcemy przekazać dalej.
         \item \textbf{/Exceptions} -- spersonalizowane wyjątki.
         \item \textbf{/Helpers} -- pomocnicze funkcje.
         \item \textbf{/Interfaces} -- interfejsy do serwisów.
@@ -1602,12 +2114,14 @@ Tabela Postcards zbiera dane, które w połączeniu z tabelami: UserPostcards, F
 
 Tabela \_\_EFMigrationsHistory zawiera historię o wykonanych migracjach przy użyciu biblioteki EntityFramework. 
 
+\newpage
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{diagram1.png}
     \caption{Diagram UML}
     \label{Kompilator}
 \end{figure}
+\newpage
 
 \section{Specyfikacja wewnętrzna}
 Głównym plikiem uruchomieniowym aplikacji backendowej jest plik WebAPI/Program.cs. To właśnie w tym pliku definiujemy m.in. DataSeeder, Swaggera, użycie kontrolerów, mechanizmu uwierzytelniania oraz instalacji. Wykorzystując klasę WebApplicationBuilder tworzymy builder na podstawie, którego budowana jest aplikacja serwerowa. W celu usprawnienia budowania oraz tworzenia projektu zaimplementowaliśmy abstrakcyjny poziom instalacji zależności wraz z metodą instalującą InstallServicesInAssembly(). Abstrakcja ta polega na implementacji metody InstallService() w interfejsie IInstaller. W ten sposób zaimplementowane zostały instalacje metod potrzebnych dla: Cors, Swaggera, Cache, Authentication, MVC, Db. Zastosowanie tego rozwiązania pozwala utrzymać porządek w kodzie, zwłaszcza w tak kluczowym segmencie projektu. 
@@ -1615,12 +2129,12 @@ Głównym plikiem uruchomieniowym aplikacji backendowej jest plik WebAPI/Program
 Definicje REST API warto rozpocząć od zdefiniowania czym jest samo API.  
 API (Application Programming Interface), czyli interfejs programistyczny aplikacji jest opisem zasada, w jaki programy komunikują się między sobą. API możemy wyobrazić sobie jako most łączący dwa brzegi, przez który poruszają się samochody, czyli w tym przypadku nasze dane. Gdyby ten most nie istniał to komunikacja lądowa pomiędzy dwoma brzegami byłaby niemożliwa. Tak samo jest z API, które jest kluczowe do działania programu.  
 
-REST (Representational State Transfer) API – styl architektoniczny, który opisuje w jaki sposób tworzony ma być rozproszony system. REST API zawiera w sobie sześć reguł projektowania: 
+REST (Representational State Transfer) API – styl architektoniczny, który opisuje w~jaki sposób tworzony ma być rozproszony system. REST API zawiera w sobie sześć reguł projektowania: 
 \begin{enumerate}
     \item \textbf{Jednolity interfejs} -- zapytania spełniają reguły formatowania API.
     \item \textbf{Rozdzielenie klient-serwer} -- klient oraz serwer to osobne aplikacje. Klient posiada informację o nazwie zasobu i w razie potrzeby pobiera ją z serwera. Natomiast serwer nie może ingerować w klienta. 
     \item \textbf{Bezstanowość} -- serwer nie musi przechowywać informacji o żądaniu.
-    \item \textbf{Buforowość} -- mechanizm, który wymusza implementację cachu. Jeżeli dany zasób jest w krótkim czasie wywoływany kilkukrotnie to powinien być on zapisany w pamięci podręcznej. 
+    \item \textbf{Buforowość} -- mechanizm, który wymusza implementację cachu. Jeżeli dany zasób jest w krótkim czasie wywoływany kilkukrotnie to powinien być on zapisany w~pamięci podręcznej. 
     \item \textbf{Warstwowa architektura systemu} -- końcowy klient nie musi posiadać wiedzy czy zasoby, o które prosi znajdują się na bezpośrednio pytanym serwerze, czy też na innym. Serwer może pełnić funkcję pośrednika pomiędzy zasobami dostępnymi w bazie danych a w bazach danych zewnętrznych dostawców. 
     \item \textbf{Kod na żądanie} -- klient może żądać wykonania kodu.
 \end{enumerate}
@@ -1629,11 +2143,11 @@ Protokołem komunikacyjnym, który pomaga spełnić wymagania REST API jest HTTP
 
 Kody odpowiedzi HTTP możemy podzielić na pięć kategorii: 
 \begin{enumerate}
-    \item \textbf{Grupa informacyjna}. Przedział: 100 – 199.
-    \item \textbf{Grupa potwierdzenia sukcesu}. Przedział: 200 – 299.
-    \item \textbf{Grupa przekierowania}. Przedział: 300 – 399.
-    \item \textbf{Grupa błędu po stronie klienta}. Przedział: 400 – 499.
-    \item \textbf{Grupa błędu po stronie serwera}. Przedział: 500 – 599.
+    \item \textbf{Grupa informacyjna}. Przedział: 100 -- 199.
+    \item \textbf{Grupa potwierdzenia sukcesu}. Przedział: 200 -- 299.
+    \item \textbf{Grupa przekierowania}. Przedział: 300 -- 399.
+    \item \textbf{Grupa błędu po stronie klienta}. Przedział: 400 -- 499.
+    \item \textbf{Grupa błędu po stronie serwera}. Przedział: 500 -- 599.
 \end{enumerate}
 
 \subsection{Kontroler}
@@ -1657,6 +2171,7 @@ Aby utworzyć migrację wykorzystujemy polecenie Add-Migration <Nazwa>. Dzięki 
 Zawartość pliku migracji.cs to klasa zawierająca metody: Up() oraz Down(). Metoda Up() tworzy tabele, określa kolumny oraz relacje. Definiuje klucze główne oraz obce. Metoda Down() definiuje operację, które należy wykonać, aby cofnąć zmiany z metody Up(). Przydatne w razie pomyłki oraz potrzeby cofnięcia zmian.
 Natomiast plik migracja.Designer.cs definiuje encje, które odpowiadają modelom w kodzie.
 W celu wprowadzenia zmian z migracji do bazy danych należy skorzystać z polecenia Update-Database. Na rysunku 6.3 przedstawiono przykładowy plik migracyjny, zawierający informację o tworzonej nowej tabeli.
+\newpage
 \begin{figure}[H]
     \begin{lstlisting}
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -1707,7 +2222,7 @@ public partial class InitializeDatabase : Migration
 Interfejs w C\# podobnie jak w innych obiektowych językach programowania to abstrakcyjny typ posiadający jednie deklaracje. Nie możemy stworzyć na jej podstawie obiektu, natomiast każda klasa lub struktura może zaimplementować dowolnie wiele interfejsów. Warunkiem do poprawnego użycia interfejsu jest konieczność implementacji wszystkich zdefiniowanych w interfejsie metod. Interfejsów używamy w celu osiągnięcia pewnego poziomu abstrakcji. Przykładem użycia jest interfejs IRepository, po którym to dziedziczy każde z repozytoriów. Ponadto każde repozytorium oraz serwis posiadają swój indywidualny interfejs. Stosowane jest to w celu poprawnej implementacji architektury Onion Architecture. Dla przykładu implementacja repozytoriów znajduje się w projekcie Infrastructure, natomiast ich interfejsy znajdują się w warstwie Domain. Jest tak, ponieważ oddzielamy w ten sposób logikę biznesową od domeny. Ułatwia to późniejsze testowanie aplikacji. 
 
 \subsection{Wstrzykiwanie zależności}
-Dependency injection – wstrzykiwanie zależności stosowane jest do zarządzania zależnościami w ramach całej solucji. W ramach konkretnych projektów może być potrzeba na zarejestrowanie usługi i/lub jej użycie. W ramach rejestracji usług interfejs IServiceCollection dostarcza metody. Trzy główne oraz najczęściej stosowane to: AddScoped, AddTransient i AddSingleton. 
+Dependency injection -- wstrzykiwanie zależności stosowane jest do zarządzania zależnościami w ramach całej solucji. W ramach konkretnych projektów może być potrzeba na zarejestrowanie usługi i/lub jej użycie. W ramach rejestracji usług interfejs IServiceCollection dostarcza metody. Trzy główne oraz najczęściej stosowane to: AddScoped, AddTransient i AddSingleton. 
 \textbf{AddScoped} -- usługa tworzona jest raz podczas pojedynczego żądania HTTP, przy każdym zapytaniu otrzymujemy nowy obiekt 
 \textbf{AddTransient} -- dla każdego żądania usługi zostaje tworzona nowa instancja 
 \textbf{AddSingleton} -- to nic innego jak użycie wzorca projektowego Singleton. Pozwala stworzyć usługę tylko raz podczas trwania działania aplikacji. Używane jest podczas gdy dane które są w tej usłudze rejestrowane, są współdzielone w wielu miejscach. 
@@ -1729,10 +2244,10 @@ Na rysunku 6.4 przedstawiono w sposób schematyczny proces uwierzytelniania.
 \end{figure}
 
 \subsection{Proces uwierzytelniania} 
-Proces uwierzytelniania zaczyna się od użytkownika oraz aplikacji klienckiej z wbudowanym formularzem logowania. Użytkownik po wpisaniu danych logowania wysyła prośbę o uwierzytelnienie na serwer. Ten natomiast sprawdza czy podane dane są zgodne ze stanem faktycznym w bazie danych. Następnie tworzy token, który zawiera informacje o użytkowniku oraz długości życia sesji. Przekazuje je do aplikacji klienta. Klient posiadając taki token ma możliwość z dalszego korzystania z aplikacji oraz dostępu do zablokowanych źródeł. Podczas każdego autoryzowanego zapytania klient wysyła w nagłówku otrzymany token, co pozwala serwerowi na dalszą autoryzację oraz uwierzytelnianie użytkownika. W przypadku niepoprawnego tokenu lub błędnych danych przekazanych na serwer, aplikacja klienta odmówi dostępu do niedostępnych danych. 
+Proces uwierzytelniania zaczyna się od użytkownika oraz aplikacji klienckiej z wbudowanym formularzem logowania. Użytkownik po wpisaniu danych logowania wysyła prośbę o uwierzytelnienie na serwer. Ten natomiast sprawdza czy podane dane są zgodne ze stanem faktycznym w bazie danych. Następnie tworzy token, który zawiera informacje o~użytkowniku oraz długości życia sesji. Przekazuje je do aplikacji klienta. Klient posiadając taki token ma możliwość z dalszego korzystania z aplikacji oraz dostępu do zablokowanych źródeł. Podczas każdego autoryzowanego zapytania klient wysyła w nagłówku otrzymany token, co pozwala serwerowi na dalszą autoryzację oraz uwierzytelnianie użytkownika. W~przypadku niepoprawnego tokenu lub błędnych danych przekazanych na serwer, aplikacja klienta odmówi dostępu do niedostępnych danych. 
 
 \subsection{Czym jest token JWT?} 
-JWT (JSON Web Token) - token wydawany przez serwer. Jest to ciąg znaków kodowany do Base64. Jest on nie szyfrowany, oznacza to, że każdy jest w stanie odkodować jego zawartość. Co za tym, nie mogą znajdować się w nim dane wrażliwe, a jedynie informacje o nazwie użytkownika, jego id lub podobne. Każdy token ma określoną długość życia. W ramach każdego zapytania długość ta może być przedłużana przy pomocy RefreshTokena, aby zachować ciągłość działania aplikacji bez potrzeby ponownego logowania. 
+JWT (JSON Web Token) - token wydawany przez serwer. Jest to ciąg znaków kodowany do Base64. Jest on nie szyfrowany, oznacza to, że każdy jest w stanie odkodować jego zawartość. Co za tym, nie mogą znajdować się w nim dane wrażliwe, a jedynie informacje o~nazwie użytkownika, jego id lub podobne. Każdy token ma określoną długość życia. W~ramach każdego zapytania długość ta może być przedłużana przy pomocy RefreshTokena, aby zachować ciągłość działania aplikacji bez potrzeby ponownego logowania. 
 
 RefreshToken to specjalny token, który zostaje użyty w przypadku, gdy nasz token dostępu utraci swoją ważność. RefreshToken ma dłuższy czas życia niż token dostępu. 
 
@@ -1748,25 +2263,25 @@ W skład tokenu wchodzi: nagłówek, payload, podpis tokena. Nagłówek to infor
 \subsection{Data seeder} 
 W celu ułatwienia procesu deweloperskiego na nasze wewnętrzne potrzeby stworzony został mechanizm wprowadzania danych. Jest to specjalny zestaw klas oraz metod, które wywoływane są jedynie na środowisku testowym. Metody te wprowadzają dane testowe do naszej bazy danych.  
 
-Główną klasą, która zarządza danymi jest klasa DataSeeder. Posiada metodę Seed(), która jest wywoływana wraz z uruchomieniem programu. Sprawdza ona czy nasze połączenie z bazą testową jest prawidłowe oraz następnie dla każdej tabeli sprawdza czy posiada ona już jakieś testowe dane. Jeśli dana tabela nie posiada danych testowych to za pomocą odpowiadających im klas statycznych wprowadza dane testowe do tabeli. Dzięki temu rozwiązaniu dane testowe nie są dublowane przy każdym uruchomieniu aplikacji, a jedynie w momencie, gdy tabela jest pusta. Takie rozwiązanie bardzo ułatwia testowanie aplikacji oraz symulowanie rzeczywistego działania na danych. 
+Główną klasą, która zarządza danymi jest klasa DataSeeder. Posiada metodę Seed(), która jest wywoływana wraz z uruchomieniem programu. Sprawdza ona czy nasze połączenie z bazą testową jest prawidłowe oraz następnie dla każdej tabeli sprawdza czy posiada ona już jakieś testowe dane. Jeśli dana tabela nie posiada danych testowych to za pomocą odpowiadających im klas statycznych wprowadza dane testowe do tabeli. Dzięki temu rozwiązaniu dane testowe nie są dublowane przy każdym uruchomieniu aplikacji, a~jedynie w momencie, gdy tabela jest pusta. Takie rozwiązanie bardzo ułatwia testowanie aplikacji oraz symulowanie rzeczywistego działania na danych. 
 
 \subsection{Cachowanie} 
 Podczas tworzenia aplikacji backendowej ważnym aspektem jest jego optymalizacja oraz szybkość działania. Jednym z mechanizmów pozwalającym zwiększyć wydajność aplikacji jest mechanizm cachowania, czyli przechowywania tymczasowych kopii. Cache obejmuje przechowywanie danych pozyskanych z bazy danych, plików które są dostępne z poziomu backendu. Stosowanie cachingu zwiększa wydajność poprzez ograniczenie ilości powtórnie wykonywanych operacji odczytu. Dla przykładu, jeżeli użytkownik odczyta jakieś dane, a w niedalekiej przyszłości zrobi to ponownie, to dzięki zastosowaniu mechanizmu cache ta druga operacja nie będzie musiała być ponownie obliczona przez serwer. Zostaną jedynie zwrócone dane które były zapisane w pamięci podręcznej podczas pierwszego zapytania. Minusem takiego zastosowania jest oczywiście zużycie pamięci, przez co należy używać tego mechanizmu z rozwagą i jedynie w kluczowych miejscach. Druga sprawa to taka, że jeżeli dane zostały zmienione pomiędzy zapytaniami a my mamy dostęp do przestarzałego cache, który może być wynikiem błędnej implementacji, to użytkownik otrzyma niezaktualizowane dane. I to właśnie na poprawną implementację powinniśmy zwrócić uwagę. Ponieważ podczas fazy deweloperskiej utrudnia to poprawne zlokalizowanie błędów, a podczas korzystania z wydanej aplikacji zwrócić może nieaktualne dane. 
-W C\#, aby zrealizować mechanizm cachowania możemy skorzystać z przestrzeni nazw Microsoft.Extensions.Caching.Memory oraz interfejsu IMemoryCache. W standardowy sposób wstrzykujemy przez kontruktor obiekt IMemoryCache, a następnie za pomocą metody Set() możemy ustawić klucz oraz wartość danej kopii. Aby poprawnie stworzyć kopię tymczasową, potrzebujemy klucza, który jednoznacznie zidentyfikuje daną kopię, dane które chcemy zapamiętać, oraz opcjonalnie ustawienia. Do skorzystania z ustawień należy użyć klasy MemoryCacheEntryOptions. To w niej możemy zawrzec takie informacje jak np. czas przechowywania kopii w pamięci, jego priorytetu oraz rozmiar danych. Do tworzenia kluczy stworzona została statyczna klasa CacheKeyGenerator. Posiada przeciążoną metodę GetKey(), która to przyjmuje jako argumentu różne wartości, zależne od kontekstu aplikacji. 
+W~C\#, aby zrealizować mechanizm cachowania możemy skorzystać z przestrzeni nazw Microsoft.Extensions.Caching.Memory oraz interfejsu IMemoryCache. W standardowy sposób wstrzykujemy przez kontruktor obiekt IMemoryCache, a następnie za pomocą metody Set() możemy ustawić klucz oraz wartość danej kopii. Aby poprawnie stworzyć kopię tymczasową, potrzebujemy klucza, który jednoznacznie zidentyfikuje daną kopię, dane które chcemy zapamiętać, oraz opcjonalnie ustawienia. Do skorzystania z ustawień należy użyć klasy MemoryCacheEntryOptions. To w niej możemy zawrzec takie informacje jak np. czas przechowywania kopii w pamięci, jego priorytetu oraz rozmiar danych. Do tworzenia kluczy stworzona została statyczna klasa CacheKeyGenerator. Posiada przeciążoną metodę GetKey(), która to przyjmuje jako argumentu różne wartości, zależne od kontekstu aplikacji. 
 
 Mechanizm cache zastosowaliśmy podczas pobierania danych pocztówek oraz użytkownika. Związane jest to z tym, że powyższe wartości bardzo rzadko ulegają zmianie. Dzięki temu serwer nie musi za każdym zapytaniem ponownie przetwarzać danych, co wpływa na szybkość z jaką otrzymujemy dane z serwera.
 
 \subsection{Mapper} 
 Mapowanie, czyli funkcja, która zamienia jeden obiekt do postaci innego obiektu. Stosowana jest w celu uniknięcia przypisywania każdego pola do nowego obiektu, pozwala to uniknąć powtórzeń w kodzie oraz usprawnić proces przekazywania danych. Częstym miejscem w kodzie, gdzie stosuje się mapowanie np. przekazywanie obiektu z zapytania użytkownika do następnej warstwy aplikacji. Na tym etapie otrzymujemy od użytkownika szczątkowe informacje o obiekcie, ale przy pomocy mappera tworzymy nowy obiekt, który zawiera brakujące pola. Ten nowy obiekt następnie może posłużyć do wykonania działań na bazie danych przy pomocy repozytoriów.
 
-W kodzie zastosowaliśmy dwa podejścia do mappera. Pierwsze, z wykorzystaniem biblioteki AutoMapper, która to po uprzednim skonfigurowaniu pozwala w znaczący sposób zautomatyzować proces mapowania. Służą do tego wewnętrzne funkcje biblioteki. Każdy z obiektów DTO (Data Transfer Object), czyli obiektów transferów danych, posiada zaimplementowaną metodę Map. Ponadto posiadamy osobną klasę AutoMapperConfig, w której to znajduje się dalsza część mapowania obiektów.
+W kodzie zastosowaliśmy dwa podejścia do mappera. Pierwsze, z wykorzystaniem biblioteki AutoMapper, która to po uprzednim skonfigurowaniu pozwala w znaczący sposób zautomatyzować proces mapowania. Służą do tego wewnętrzne funkcje biblioteki. Każdy z obiektów DTO (Data Transfer Object), czyli obiektów transferów danych, posiada zaimplementowaną metodę Map. Ponadto posiadamy osobną klasę AutoMapperConfig, w~której to znajduje się dalsza część mapowania obiektów.
 
 Drugim podejściem jest mapowanie manualne przy pomocy ręcznie napisanych klas. Wszystkie nasze klasy mapera znajdują się w folderze /Application/Mapping/Manual. Są to klasy statyczne które jako argument przyjmują obiekt klasy wchodzącej, a zwracają obiekt klasy docelowej.
 
 Różnica pomiędzy oboma podejściami jest taka, że w podejściu z wykorzystaniem AutoMappera, wiele zadań jest wykonanych automatycznie bez naszego udziału. Natomiast potrzebna jest wcześniejsza konfiguracja, która miejscami może być o wiele trudniejsza. W przypadku manualnych maperów mamy do czynienia z większą ilością kodu, jednak pisanie tych klas jest bardzo proste i mamy większą kontrolę nad procesem mapowania np. w przypadku debugowania kodu.
 
 \subsection{Swagger}
-Swagger to narzędzie, które pozwala w łatwy oraz przystępny sposób na korzystanie z naszego API. Dodatkowo pełni funkcję dokumentacji. Dane te można eksportować i użyć w Postmanie lub innych programach do testowania API. Każdy z endpointów możemy dowolnie testować. Można przekazywać dowolne dane, a dzięki wbudowanym mechanizmom istnieje możliwość wstrzyknięcia tokenu JWT, dzięki czemu nie mamy żadnych ograniczeń. W naszej aplikacji serwerowej, Swagger uruchamiany jest automatycznie podczas rozpoczęcia działania aplikacji. Jego sesja gaśnie wraz z zamknięciem okna przeglądarki lub wyłączenia backendu.
+Swagger to narzędzie, które pozwala w łatwy oraz przystępny sposób na korzystanie z~naszego API. Dodatkowo pełni funkcję dokumentacji. Dane te można eksportować i użyć w Postmanie lub innych programach do testowania API. Każdy z endpointów możemy dowolnie testować. Można przekazywać dowolne dane, a dzięki wbudowanym mechanizmom istnieje możliwość wstrzyknięcia tokenu JWT, dzięki czemu nie mamy żadnych ograniczeń. W naszej aplikacji serwerowej, Swagger uruchamiany jest automatycznie podczas rozpoczęcia działania aplikacji. Jego sesja gaśnie wraz z zamknięciem okna przeglądarki lub wyłączenia backendu.
 
 \section{Ważne funkcjonalności}
 \subsection{Wzór Haversine}
@@ -1861,6 +2376,7 @@ public Task<LoginResponse> Login(LoginUserDto loginUserDto)
 Po zakończeniu procesu logowania sukcesem, zwracany jest token JWT. Na dalszym etapie obsłuży on procesy związane z uwierzytelnianiem oraz autoryzacją. Jak możemy zauważyć tworzona jest lista Claimsów. Zawiera ona informację, które następnie będą dostępne z poziomu tokena JWT. Są to informacje o ID użytkownika, jego nicku, emailu oraz roli.
 
 Na rysunku 6.8 przedstawiony został proces tworzenia tokenu JWT. Na początku definiujemy Claimsy, w kolejnych krokach długość życia tokenu.
+\newpage
 \begin{figure}[H]
 \begin{lstlisting}
 public string Login(User user)
@@ -1892,7 +2408,7 @@ public string Login(User user)
 \caption{Metoda tworząca token JWT}
 \label{fig:pseudokod:listings}
 \end{figure}
-
+\newpage
 \subsection{Przekazywanie pocztówki}
 Przekazywanie pocztówki to proces, w którym użytkownik wybierając adresata oraz jedną ze swoich nowych pocztówek wysyła tę pocztówkę wraz z opisem. Opisem może być dowolna treść. Może to być pozdrowienie z wakacji, opisanie jakieś historii lub pewna forma komunikacji. W skład opisu wchodzi nagłówek pocztówki oraz treść właściwa. 
 
@@ -1967,7 +2483,7 @@ Aby uruchomić serwer przy pomocy terminala, wchodzimy do folderu z projektem. N
 Serwer można uruchomić również wraz z trybem debugowania z poziomu środowiska programistycznego. Można do tego użyć Visual Studio, Visual Studio Code lub Rider. Mając uruchomione środowisko oraz projekt klikamy przycisk uruchomienia projektu. Projekt w tym czasie zostaje uruchomiony wraz z usługą Swagger. Poza tym mamy możliwość debugowania kodu. 
 
 \subsection{Sposób pracy}
-Przed pierwszym uruchomienia projektu ważne jest, aby posiadać zainstalowane wszystkie potrzebne zależności oraz programy, które zostały przedstawione wcześniej. Aplikacja serwerowa posiada pliki konfiguracyjne, które należy skopiować oraz dostosować pod swoje potrzeby. Są to pliki appsettings.Development.json i appsettings.Production.json. Kiedy mamy już uruchomione IDE wraz z projektem, ważne jest, aby postępować zgodnie z instrukcjami zawartymi w plikach README.md. Po pierwsze uruchomienie wszystkich migracji, abyśmy byli w stanie działać na bazie danych. W tym celu w konsoli Package Manager Console w projekcie src/Infrastructure wpisujemy polecenie: Update-Database. Gdybyśmy chcieli stworzyć nową migrację w tym celu polecenie to poprzedzamy poleceniem Add-Migration <NazwaNaszejMigracji>. W razie pomyłki ostatnią migrację można cofnąć poleceniem Remove-Migration. We wszystkich projektach wchodzących w skład systemu korzystamy z systemu kontroli wersji GIT. W związku z tym wszystkie nowe zmiany tworzymy na uprzednio utworzonym branchu, a następnie każdą zmianę wrzucamy na brancha. Aby stworzyć nowego brancha korzystamy z wewnętrznego integratora projektów GitHub Projects. To w nim tworzymy nowe zadania. Kiedy dana funkcjonalność jest zakończona zmiany dołączamy do głównej gałęzi - master. 
+Przed pierwszym uruchomienia projektu ważne jest, aby posiadać zainstalowane wszystkie potrzebne zależności oraz programy, które zostały przedstawione wcześniej. Aplikacja serwerowa posiada pliki konfiguracyjne, które należy skopiować oraz dostosować pod swoje potrzeby. Są to pliki appsettings.Development.json i appsettings.Production.json. Kiedy mamy już uruchomione IDE wraz z projektem, ważne jest, aby postępować zgodnie z~instrukcjami zawartymi w plikach README.md. Po pierwsze uruchomienie wszystkich migracji, abyśmy byli w stanie działać na bazie danych. W tym celu w konsoli Package Manager Console w projekcie src/Infrastructure wpisujemy polecenie: Update-Database. Gdybyśmy chcieli stworzyć nową migrację w tym celu polecenie to poprzedzamy poleceniem Add-Migration <NazwaNaszejMigracji>. W razie pomyłki ostatnią migrację można cofnąć poleceniem Remove-Migration. We wszystkich projektach wchodzących w skład systemu korzystamy z systemu kontroli wersji GIT. W związku z tym wszystkie nowe zmiany tworzymy na uprzednio utworzonym branchu, a następnie każdą zmianę wrzucamy na brancha. Aby stworzyć nowego brancha korzystamy z wewnętrznego integratora projektów GitHub Projects. To w nim tworzymy nowe zadania. Kiedy dana funkcjonalność jest zakończona zmiany dołączamy do głównej gałęzi -- master. 
 
 \subsection{Testy}
 Ważnym aspektem tworzenia nowego oprogramowania jest odpowiednie uzupełnienie zaimplementowanych funkcjonalności o testy. Testy możemy podzielić na dwa główne typy.
@@ -1996,6 +2512,7 @@ Każdy serwis posiada oddzielną klasę do testów.
 Za pomocą konstruktora, wstrzykujemy odpowiednio zamockowane dane, oraz testowany przez nas serwis.
 
 Na poniższym rysunku 6.12 przedstawiona została przykładowa klasa testów jednostkowych.
+\newpage
     \begin{figure}[H]
         \begin{lstlisting}
 namespace Tests;
@@ -2032,11 +2549,11 @@ public class UserServiceTests
     \end{figure}
 
 \subsubsection{Wzorzec AAA}
-Nazwa pochodzi od wzorca \textbf{Arrange - Act - Assert}. Jest to główna idea tworzenia testów jednostkowych. Arrange odpowiada za organizację danych wejściowych. Są to dane, które chcemy przetestować i od których oczekujemy odpowiedniego wyniku. Act to konkretne wywołanie metody. Natomiast Assert to porównanie wyników końcowych z danymi wcześniej przez nas podstawionymi. Ponadto każdą z metod nazywamy w odpowiedni sposób, zgodny z ustaloną konwencją. Czyli opis wykonywanej akcji, wraz z oczekiwanym rezultatem testu.
+Nazwa pochodzi od wzorca \textbf{Arrange -- Act -- Assert}. Jest to główna idea tworzenia testów jednostkowych. Arrange odpowiada za organizację danych wejściowych. Są to dane, które chcemy przetestować i od których oczekujemy odpowiedniego wyniku. Act to konkretne wywołanie metody. Natomiast Assert to porównanie wyników końcowych z danymi wcześniej przez nas podstawionymi. Ponadto każdą z metod nazywamy w odpowiedni sposób, zgodny z ustaloną konwencją. Czyli opis wykonywanej akcji, wraz z~oczekiwanym rezultatem testu.
 \begin{itemize}
-    \item \textbf{GetAll\_ShouldReturnAllUsers} - metoda pobierająca wszystkich użytkowników, zwraca wszystkich użytkowników.
-    \item \textbf{Login\_ValidCredentials\_ShouldReturnToken} - metoda logowania, zawierająca poprawne dane, powinna zwrócić token uwierzytelnienia.
-    \item \textbf{Login\_InvalidEmail\_ShouldThrowInvalidLoginException} - metoda logowania, zawiera błędny adres e-mail, zwraca wyjątek.
+    \item \textbf{GetAll\_ShouldReturnAllUsers} -- metoda pobierająca wszystkich użytkowników, zwraca wszystkich użytkowników.
+    \item \textbf{Login\_ValidCredentials\_ShouldReturnToken} -- metoda logowania, zawierająca poprawne dane, powinna zwrócić token uwierzytelnienia.
+    \item \textbf{Login\_InvalidEmail\_ShouldThrowInvalidLoginException} -- metoda logowania, zawiera błędny adres e-mail, zwraca wyjątek.
 \end{itemize}
 
 Rysunek 6.13 przedstawia jedną z metod klasy testowej. Metoda posiada dekorator [Fact], który świadczy o tym, że metoda jest metodą testową.
@@ -2087,35 +2604,33 @@ Na wynik poprawnego wykonania testów, często mówimy, że świecą się na zie
 \label{ch:Podsumowanie}
 
 \section{Dalsze kierunki rozwoju aplikacji}
-Pomimo zrealizowania zakładanej funkcjonalności, aplikacja jest otwarta na dodanie nowych możliwości, oto kilka możliwych kierunków w których aplikacja może być rozwijana.
+Pomimo zrealizowania zakładanej funkcjonalności, aplikacja jest otwarta na dodanie nowych możliwości. Oto kilka możliwych kierunków, w których aplikacja może być rozwijana.
 \begin{itemize}
-    \item Stworzenie lustrzanej aplikacji dla systemu iOS oraz inne systemy niszowe.
+    \item Stworzenie lustrzanej aplikacji dla systemu iOS oraz dla innych systemów niszowych.
     \item Dodanie więcej opcji językowych dla aplikacji.
     \item Możliwość oceniania i komentowania danej pocztówki.
     \item Możliwość wysyłania wiadomości między użytkownikami.
     \item Poszerzenie aplikacji o pocztówki ograniczone czasowo z ciekawych wydarzeń, a nie tylko konkretnych miejsc.
     \item Dodanie ogólnej strony pokazującej nowo dodane pocztówki, opinie oraz aktywności śledzonych użytkowników.
-    \item Współpraca z lokalnymi biznesami -- pocztówki nie tylko z miast ale z ciekawych atrakcji (na przykład przy zakupie biletu pocztówka w aplikacji gratis, lub po zeskanowaniu kodu qr).
+    \item Współpraca z lokalnymi biznesami -- pocztówki nie tylko z miast, ale także z ciekawych atrakcji (na przykład przy zakupie biletu pocztówka w aplikacji gratis lub po zeskanowaniu kodu qr).
     \item Integracja z innymi platformami społecznościowymi -- możliwość udostępniania informacji o zdobyciu pocztówki na innych platformach.
-    \item Edukacyjne trasy z pocztówkami -- specjalne szlaki na których w określonych odstępach można zebrać pocztówkę a przy okazji nauczyć się czegoś o otaczającej przyrodzie
+    \item Edukacyjne trasy z pocztówkami -- specjalne szlaki na których w określonych odstępach można zebrać pocztówkę, a przy okazji nauczyć się czegoś o otaczającej przyrodzie.
 \end{itemize}
 
 \section{Problemy napotkane w trakcie pracy}
-Podczas pracy nasz zespół napotkał wiele różnych problemów kilka z nich jest wartych opisania:
+Podczas pracy nasz zespół napotkał wiele różnych problemów, kilka z nich jest wartych opisania:
 \begin{itemize}
-    \item \textbf{Mylące nazewnictwo w kodzie} -- Podczas pracy nazewnictwo niektórych elementów było bardzo do siebie podobne, głównie rozchodzi się o pocztówki do wysłania/otrzymane (Postcards w kodzie) oraz kolekcję pocztówek z miejsc które odwiedziliśmy (PostcardsData w kodzie) co wielokrotnie podczas cotygodniowych spotkań wprowadzało małe zamieszanie tym bardziej że w bazie danych były to całkowicie różne tabele a co za tym idzie, rożne zapytania wysyłane do aplikacji serwerowej, więc podczas występujących błędów ciężej było zidentyfikować problem.
-    \item \textbf{Brak szczegółowych widoków dla aplikacji mobilnej} -- Podczas wstępnej fazy projektowania za pomocą narzędzia Figma stworzyliśmy większość podstawowych widoków dla aplikacji mobilnej która z założenia miała być głównym trzonem całej aplikacji, w przypadku aplikacji webowej stworzony został jedynie poglądowy widok strony głównej (jako iż w początkowej koncepcji miała to być jedynie strona wizytówkowa a nie funkcjonalna) przez co praca przy tworzeniu funkcjonalnej części aplikacji webowej trwała dłużej niż w przypadku aplikacji mobilnej.
-    \item \textbf{Różne dane w bazie danych} -- Każdy z programistów posiadał swoją lokalną kopię bazy danych z pocztówkami użytkownikami i innymi ważnymi danymi, co często powodowało różne działanie aplikacji w zależności od zawartych tam danych. Często podczas większych zmian baza danych musiała być inicjalizowana oraz zapełniana na nowo, w wypadku nie wykonania tych czynności często występowały różne anomalie, w rozwiązaniu tego problemu pomógł seeder który zapełniał bazę gotowymi danymi lecz i on czasami nie spełniał oczekiwań
+    \item \textbf{Mylące nazewnictwo w kodzie} -- Podczas pracy nazewnictwo niektórych elementów było bardzo do siebie podobne. Głównie rozchodzi się o pocztówki możliwe do wysłania/otrzymania (Postcards w nomenklaturze kodu) oraz kolekcję pocztówek z~miejsc które odwiedziliśmy (PostcardsData w nomenklaturze kodu) co wielokrotnie podczas cotygodniowych spotkań wprowadzało małe zamieszanie, tym bardziej, że w bazie danych były to całkowicie różne tabele, a co za tym idzie, rożne zapytania wysyłane do aplikacji serwerowej. Koniec końców podczas śledzenia występujących błędów ciężej było zidentyfikować problem.
+    \item \textbf{Brak szczegółowych widoków dla aplikacji webowej} -- Podczas wstępnej fazy projektowania za pomocą narzędzia Figma stworzyliśmy większość podstawowych widoków dla aplikacji mobilnej, która z założenia miała być głównym trzonem całej aplikacji. W przypadku aplikacji webowej stworzony został jedynie poglądowy widok strony głównej (jako, iż w początkowej koncepcji miała to być jedynie strona wizytówkowa, a nie funkcjonalna) przez co praca przy tworzeniu funkcjonalnej części aplikacji webowej trwała dłużej niż w przypadku aplikacji mobilnej.
+    \item \textbf{Różne dane w bazie danych} -- Każdy z programistów posiadał swoją lokalną kopię bazy danych z pocztówkami, użytkownikami i innymi ważnymi danymi, co często powodowało różne działanie aplikacji w zależności od zawartych tam danych. Często podczas większych zmian baza danych musiała być inicjalizowana oraz zapełniana na nowo, w wypadku niewykonania tych czynności często występowały anomalie. W~rozwiązaniu tego problemu pomógł seeder, który zapełniał bazę gotowymi danymi lecz mimo wszystko zdarzało się, że i on czasami nie spełniał oczekiwań.
 \end{itemize}
-Pomimo różnych problemów, większość które wystąpiły była związana z organizacją, co może wynikać z braku głównego menadżera projektu, ani jednej osoby decyzyjnej -- często różne osoby miały różne wizje na dany temat, więc dojście do wspólnego środka wymagało więcej czasu
+Pomimo różnych problemów, większość które wystąpiły była związana z organizacją, co może wynikać z braku głównego menadżera projektu, ani jednej osoby decyzyjnej -- często różne osoby miały różne wizje na dany temat, więc dojście do wspólnego środka wymagało więcej czasu.
 
 \newpage
 \section{Uzyskane wyniki w świetle postawionych celów i wymagań}
-Rezultatem wielomiesięcznej pracy powstała aplikacja składająca się z trzech modułów -- aplikacji mobilnej, aplikacji webowej, aplikacji serwerowej. Jako całość aplikacja spełnia wszystkie postawione wcześniej wymagania funkcyjne oraz niefunkcyjne.
-Gotowy projekt nadaje się do użytkowania przez zwykłych użytkowników w przeznaczonym do tego celu - kolekcjonowaniu oraz wysyłaniu pocztówek z różnych miejsc na świecie. Sama aplikacja jest prosta i intuicyjna.
-Proces tworzenia pomógł całemu zespołowi nauczyć się wielu nowych rzeczy, nabrać doświadczenia w pracowaniu w zespole, niezbędnego w przyszłych karierach zawodowych. Czas poświęcony na tworzenie aplikacji zdecydowanie można opisać jako dobrze spożytkowany, pomógł on zdecydowanie w rozwoju intelektualnym ale również stanowił istotne wsparcie w rozwoju zawodowym. Sam efekt końcowy można uznać za bardzo zadowalający, a nabyte umiejętności z pewnością przydadzą się w innych projektach.
-
-
+Rezultatem wielomiesięcznej pracy jest aplikacja składająca się z trzech modułów -- aplikacji mobilnej, aplikacji webowej, aplikacji serwerowej. Jako całość aplikacja spełnia wszystkie postawione wcześniej wymagania funkcyjne oraz niefunkcyjne.
+Gotowy projekt nadaje się do użytkowania przez zwykłych użytkowników w przeznaczonym do tego celu - kolekcjonowaniu oraz wysyłaniu pocztówek z różnych miejsc na świecie. Sama aplikacja jest prosta w obsłudze i intuicyjna.
+Proces tworzenia pomógł całemu zespołowi nauczyć się wielu nowych rzeczy, nabrać doświadczenia w pracowaniu w zespole, niezbędnego w~przyszłych karierach zawodowych. Czas poświęcony na tworzenie aplikacji zdecydowanie można opisać jako dobrze spożytkowany, pomógł on z pewnością w rozwoju intelektualnym, ale również stanowił istotne wsparcie w rozwoju zawodowym. Sam efekt końcowy można uznać za bardzo zadowalający, a nabyte umiejętności z pewnością przydadzą się w innych projektach.
 
 
 
@@ -2133,31 +2648,71 @@ Proces tworzenia pomógł całemu zespołowi nauczyć się wielu nowych rzeczy, 
 \chapter{Spis skrótów i symboli}
 
 \begin{itemize}
-    \item ORM -- Object Relational Mapping - Mapowanie obiektowo-relacyjne
+    \item ORM -- Object Relational Mapping
     \item Framework -- platforma programistyczna
-    \item Backend -- wartwa dostępu do danych
-    \item Dependency Injection -- wstrzykiwanie zależności
-    \item JWT (JSON Web Token) -- token uwierzytelniania
+    \item Backend -- aplikacja serwerowa
+    \item DI -- Dependency Injection
+    \item JWT -- JSON Web Token
+    \item JSON -- JavaScript Object Notation
     \item Endpoint -- punkt końcowy komunikacji
     \item HTTP -- Hypertext Transfer Protocol
     \item HTTPS -- Hypertext Transfer Protocol Secure
-    \item CRUD -- CREATE READ UPDATE DELETE
-    \item Dependency injection (DI) -- wstrzykiwanie zależności
-    \item DTO (Data Transfer Object) -- obiekt transferu danych
-    \item IDE -- zintegrowane środowisko programistyczne
+    \item CRUD -- Create Read Update Delete
+    \item DTO -- Data Transfer Object
+    \item IDE -- Integrated Development Environment
+    \item OWASP (Open Worldwide Application Security Project) -- społeczność internetowa, która tworzy ogólnodostępne artykuły, metodologie, dokumentację, narzędzia i technologie z zakresu bezpieczeństwa aplikacji internetowych.
+    \item HMAC-SHA-1 -- typ algorytmu wyznaczania wartości skrótu klucza, który jest tworzony z funkcji skrótu SHA1 i używany jako kod uwierzytelniania komunikatów oparty na skrótach lub HMAC.
+    \item PBKDF2 -- funkcja wyprowadzania klucza z przesuwnym kosztem obliczeniowym, stosowana w celu zmniejszenia podatności na ataki brute-force.
+    \item Scrum -- metodyka zarządzania procesem produkcji.
+    \item Commit -- wysyłanie zmian do repozytorium.
+    \item Widget -- element graficznego interfejsu użytkownika.
+    \item SDK -- Software Development Kit.
+    \item EDA -- Event-Driven Architecture.
+    \item BLoC -- Business Logic Component.
+    \item Frontend -- wygląd aplikacji, czyli to co użytkownik widzi od strony interfejsu
+    \item Context -- kontekst
+    \item Hook -- hak
+    \item DOM -- Document Object Model
+    \item MUI -- Material User Interface
+    \item CQRS -- Command Query Responsinility Segregation
+    \item RTK Query -- Redux Toolkit Query
+    \item CSS -- Cascading Style Sheets
+    \item SASS -- Syntactically Awesome Stylesheet
+    \item SCSS -- Sassy Cascading Style Sheets
+    \item RWD -- Responsive web design
+    \item DRY -- Don't Repeat yourself
+    \item URL -- Uniform Resource Locator
+
+
 \end{itemize}
 
 
 
 % TODO
-\chapter{Źródła}
-% backend
-https://www.ovhcloud.com/pl/learn/what-is-rest-api/ 
-https://masterbranch.pl/uwierzytelnianie-w-api-czyli-bearer-token/ 
-https://jwt.io/ 
-https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet-framework
-https://pl.wikipedia.org/wiki/Ortodroma 
-% backend
+\chapter{Literatura}
+\begin{enumerate}
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://www.ovhcloud.com/pl/learn/what-is-rest-api/ 
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://masterbranch.pl/uwierzytelnianie-w-api-czyli-bearer-token/ 
+    \item Dekoder tokenu [Dostęp 19.12.2023]. Dostęp w: https://jwt.io/ 
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://dotnet.microsoft.com/en-us/learn/dotnet /what-is-dotnet-framework
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://pl.wikipedia.org/wiki/Ortodroma 
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://learn.microsoft.com/pl-pl/dotnet
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://aws.amazon.com/what-is/flutter/
+    \item Biblioteki [Dostęp 19.12.2023]. Dostęp w: https://pub.dev/
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://en.wikipedia.org/wiki/React\_(software)
+    \item Biblioteki [Dostęp 19.12.2023]. Dostęp w: https://boringowl.io/tag/material-ui
+    \item Biblioteki [Dostęp 19.12.2023]. Dostęp w: https://mui.com/
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://typeofweb.com/flux-i-redux-globalny-store-jednokierunkowy-przeplyw-danych\#fnref-3
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://www.rekinysukcesu.pl/blog/internet /preprocesory-css-po-co-mi-to-wstep-do-sass-scss
+    \item Biblioteki [Dostęp 19.12.2023]. Dostęp w: https://www.typescriptlang.org/
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://legacy.reactjs.org/docs/hooks-intro.html
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://legacy.reactjs.org/docs/hooks-overview.html
+    \item Artykuł [Dostęp 19.12.2023]. Dostęp w: https://www.freecodecamp.org/news/what-are-node-modules/
+    \item Zdjęcia [Dostęp 19.12.2023]. Dostęp w: https://www.freepik.com/free-vector /hand-drawn-abstract-landscape-cover-collection\_15591719.htm
+    \item Książka Robert C. Martin, Czysty kod, wydawnictwo HELION, Gliwice 2014
+    \item Książka Krzysztof Baranowski, Flutter. Podstawy, wydawnictwo HELION, Gliwice 2023
+    \item Książka Dmitri Nesteruk, Wzorce projektowe w .NET. Projektowanie zorientowane obiektowo z wykorzystaniem C\# i F\#, wydawnictwo HELION, Gliwice 2020
+\end{enumerate}
 
 
 
@@ -2190,22 +2745,10 @@ https://pl.wikipedia.org/wiki/Ortodroma
 %   throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
 %\end{minted}
 
-
-% TODO
-\chapter{Lista dodatkowych plików, uzupełniających tekst pracy} 
-
-
-W systemie do pracy dołączono dodatkowe pliki zawierające:
-\begin{itemize}
-\item źródła programu,
-\item film pokazujący działanie opracowanego oprogramowania lub zaprojektowanego i~wykonanego urządzenia,
-\end{itemize}
-
-
 \listoffigures
 \addcontentsline{toc}{chapter}{Spis rysunków}
-\listoftables
-\addcontentsline{toc}{chapter}{Spis tabel}
+% \listoftables
+% \addcontentsline{toc}{chapter}{Spis tabel}
 
 \end{appendices}
 
